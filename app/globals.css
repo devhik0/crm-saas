@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* main bg: #212b40 */
+
+@media (prefers-color-scheme: dark) {
+  body {
+    @apply bg-[#212b40] text-gray-300;
+  }
+}

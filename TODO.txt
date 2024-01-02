@@ -1,1 +1,2 @@
-- add cssnano, eslint, prettier tsconfig rules
+- finish dashboard
+- add integrations
