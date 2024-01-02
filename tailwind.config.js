@@ -1,6 +1,6 @@
-import type { Config } from "tailwindcss";
-
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+/* eslint-disable max-len */
+module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -127,4 +127,3 @@ const config: Config = {
   ],
   plugins: [require("@headlessui/tailwindcss")],
 };
-export default config;

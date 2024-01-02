@@ -1,0 +1,1 @@
+- add cssnano, eslint, prettier tsconfig rules
