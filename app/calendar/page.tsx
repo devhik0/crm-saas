@@ -2,5 +2,5 @@
 
 export default function Calendar() {
   // todo: find a calendar
-  return <>Calendar</>;
+  return <div className="mt-2 h-96 bg-gray-900">Calendar</div>;
 }

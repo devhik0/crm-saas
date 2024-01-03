@@ -10,6 +10,8 @@
     "format": "prettier -w ."
   },
   "dependencies": {
+    "@fullcalendar/daygrid": "^6.1.10",
+    "@fullcalendar/react": "^6.1.10",
     "@heroicons/react": "1.0.6",
     "@tremor/react": "^3.12.1",
     "next": "14.0.4",
