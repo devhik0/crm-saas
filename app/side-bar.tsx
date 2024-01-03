@@ -4,6 +4,10 @@ export default function Sidebar() {
   const routes = [
     { page: "Dashboard", link: "/dashboard" },
     { page: "Calendar", link: "/calendar" },
+    { page: "Profile", link: "/profile" },
+    { page: "Reports", link: "/reports" },
+    { page: "Charts", link: "/charts" },
+    { page: "Tasks", link: "/tasks" },
   ];
 
   return (
