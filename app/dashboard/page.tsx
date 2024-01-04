@@ -1,6 +1,6 @@
 "use client";
 
-import DataPages from "../data-pages";
+import DataPages from "./data-pages";
 
 export default function Dashboard() {
   return (
