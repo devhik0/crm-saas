@@ -1,12 +1,13 @@
 import BeakerIcon from "@heroicons/react/solid/BeakerIcon";
 import Link from "next/link";
+import { ReactNode } from "react";
 
-export default function Inbox() {
+export default function MailsLayout({ children }: { children: ReactNode }) {
   return (
     <div className="mt-2 flex flex-row items-center gap-1 border-2 border-gray-800">
-      <div className="w-[20%] border-r-2 border-blue-600 p-2">
+      <div className="w-[15%] border-r-2 border-blue-600 p-2">
         <ul>
-          {["Inbox", "Starred", "Sent", "Spam", "Trash"].map((item, idx) => {
+          {["Inbox", "Starred", "Sent", "Spam", "Draft", "Trash"].map((item, idx) => {
             return (
               <div
                 key={idx}
@@ -14,16 +15,15 @@ export default function Inbox() {
               >
                 <li className="m-2 flex justify-between gap-2 p-2">
                   <BeakerIcon className="h-6 w-6 text-gray-400" />
-                  <Link href={"inbox/#starred"}>{item}</Link>
+                  <Link href={`/mails/${item.toLocaleLowerCase()}`}>{item}</Link>
                 </li>
               </div>
             );
           })}
         </ul>
       </div>
-      <div className="p-2" id="inbox">
-        Content
-      </div>
+      {children}
+      <div className="border-l-2 border-blue-600">Reading field</div>
     </div>
   );
 }

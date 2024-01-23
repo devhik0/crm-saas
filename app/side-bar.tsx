@@ -8,7 +8,7 @@ export default function Sidebar() {
     { page: "Reports", link: "/reports" },
     { page: "Charts", link: "/charts" },
     { page: "Tasks", link: "/tasks" },
-    { page: "Inbox", link: "/inbox" },
+    { page: "Mails", link: "/mails" },
   ];
 
   return (
