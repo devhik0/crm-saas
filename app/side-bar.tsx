@@ -9,6 +9,7 @@ export default function Sidebar() {
     { page: "Charts", link: "/charts" },
     { page: "Tasks", link: "/tasks" },
     { page: "Mails", link: "/mails" },
+    { page: "Chat", link: "/chat" },
   ];
 
   return (
