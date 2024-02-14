@@ -8,11 +8,12 @@ export default async function Inbox() {
     <div className="w-[25%]">
       Inbox <Button>Sync</Button>
       <div>
-        {threads.map((thread) => (
-          <p className="m-2 h-[60px] overflow-hidden bg-gray-700 p-2" key={thread.id}>
-            {thread.snippet}
-          </p>
-        ))}
+        {threads &&
+          threads.map((thread) => (
+            <p className="m-2 h-[60px] overflow-hidden bg-gray-700 p-2" key={thread.id}>
+              {thread.snippet}
+            </p>
+          ))}
       </div>
     </div>
   );

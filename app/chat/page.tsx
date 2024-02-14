@@ -22,7 +22,7 @@ export default function Chat() {
       setTimeout(() => {
         setShowChat(true);
         setShowSpinner(false);
-      }, 4000);
+      }, 1000);
     } else {
       alert("Please fill in Username and Room Id");
     }
@@ -50,7 +50,7 @@ export default function Chat() {
         </button>
       </div>
       <div style={{ display: !showChat ? "none" : "" }}>
-        <ChatPage socket={socket} roomId={roomId} username={userName} />
+        <ChatPage socket={socket} roomId={roomId} userName={userName} />
       </div>
     </div>
   );

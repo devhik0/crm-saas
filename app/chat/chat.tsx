@@ -1,33 +1,42 @@
-import React, { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
+import { Socket } from "socket.io-client";
 import style from "./chat.module.css";
 
-interface IMsgDataTypes {
+type MessageOptions = {
   roomId: string | number;
   user: string;
   msg: string;
   time: string;
-}
+};
 
-const ChatPage = ({ socket, username, roomId }: any) => {
+const ChatPage = ({
+  socket,
+  userName,
+  roomId,
+}: {
+  socket: Socket;
+  userName: MessageOptions["user"];
+  roomId: MessageOptions["roomId"];
+}) => {
   const [currentMsg, setCurrentMsg] = useState("");
-  const [chat, setChat] = useState<IMsgDataTypes[]>([]);
+  const [chat, setChat] = useState<MessageOptions[]>([]);
 
-  const sendData = async (e: React.FormEvent<HTMLFormElement>) => {
+  const sendData = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (currentMsg !== "") {
-      const msgData: IMsgDataTypes = {
+      const msgData: MessageOptions = {
         roomId,
-        user: username,
+        user: userName,
         msg: currentMsg,
         time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes(),
       };
-      await socket.emit("send_msg", msgData);
+      socket.emit("send_msg", msgData);
       setCurrentMsg("");
     }
   };
 
   useEffect(() => {
-    socket.on("receive_msg", (data: IMsgDataTypes) => {
+    socket.on("receive_msg", (data: MessageOptions) => {
       setChat((pre) => [...pre, data]);
     });
   }, [socket]);
@@ -37,16 +46,17 @@ const ChatPage = ({ socket, username, roomId }: any) => {
       <div className={style.chat_border}>
         <div style={{ marginBottom: "1rem" }}>
           <p>
-            Name: <b>{username}</b> and Room Id: <b>{roomId}</b>
+            Name: <b>{userName}</b> and Room Id: <b>{roomId}</b>
           </p>
         </div>
         <div>
-          {chat.map(({ roomId, user, msg, time }, key) => (
-            <div key={key} className={user == username ? style.chatProfileRight : style.chatProfileLeft}>
-              <span className={style.chatProfileSpan} style={{ textAlign: user == username ? "right" : "left" }}>
+          {chat.map(({ user, msg, time }: MessageOptions, key) => (
+            <div key={key} className={user == userName ? style.chatProfileRight : style.chatProfileLeft}>
+              <h3 style={{ textAlign: user == userName ? "right" : "left" }}>{time}</h3>
+              <span className={style.chatProfileSpan} style={{ textAlign: user == userName ? "right" : "left" }}>
                 {user.charAt(0)}
               </span>
-              <h3 style={{ textAlign: user == username ? "right" : "left" }}>{msg}</h3>
+              <h3 style={{ textAlign: user == userName ? "right" : "left" }}>{msg}</h3>
             </div>
           ))}
         </div>

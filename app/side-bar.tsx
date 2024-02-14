@@ -10,10 +10,11 @@ export default function Sidebar() {
     { page: "Tasks", link: "/tasks" },
     { page: "Mails", link: "/mails" },
     { page: "Chat", link: "/chat" },
+    { page: "Contacts", link: "/contacts" },
   ];
 
   return (
-    <div className="w-[30%] bg-gray-900 text-gray-300">
+    <div className="w-[15%] bg-gray-900 text-gray-300">
       {routes.map((item, idx) => (
         <div key={idx} className="m-2 rounded-lg bg-[#212b40] p-2 text-center text-gray-300">
           <Link href={item.link}>{item.page}</Link>
