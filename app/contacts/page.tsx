@@ -1,6 +1,7 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 // 'use client';
 import { Button, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from "@tremor/react";
+import Link from "next/link";
 
 const data = [
   {
@@ -106,9 +107,11 @@ export default function Contacts() {
               <TableCell className="text-right">{item.costs}</TableCell>
               <TableCell className="text-right">{item.lastEdited}</TableCell>
               <TableCell className="text-right">
-                <Button variant="primary" size="xs">
-                  Call
-                </Button>
+                <Link href={`/contacts/call`}>
+                  <Button variant="primary" size="xs">
+                    Call
+                  </Button>
+                </Link>
               </TableCell>
             </TableRow>
           ))}
