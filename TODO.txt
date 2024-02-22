@@ -1,2 +1,2 @@
 - add integrations
- - accounting and invoicing
+ - time tracking and attendance control
