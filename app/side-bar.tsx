@@ -11,6 +11,7 @@ export default function Sidebar() {
     { page: "Mails", link: "/mails" },
     { page: "Chat", link: "/chat" },
     { page: "Contacts", link: "/contacts" },
+    { page: "Storage", link: "/storage" },
   ];
 
   return (

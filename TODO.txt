@@ -1,3 +1,2 @@
-- add types to chat and fix <--
-
 - add integrations
+ - accounting and invoicing
