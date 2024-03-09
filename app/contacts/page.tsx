@@ -1,6 +1,7 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 // 'use client';
 import { Button, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from "@tremor/react";
+import { kv } from "@vercel/kv";
 import Link from "next/link";
 
 const data = [
@@ -54,7 +55,13 @@ const data = [
   },
 ];
 
-export default function Contacts() {
+export default async function Contacts() {
+  await kv.hset("Data", data[0]);
+  const myData = (await kv.hgetall("Data")) as (typeof data)[0];
+  console.log("My data: ", myData);
+
+  const cache = false; // acts as response cache
+
   return (
     <>
       <div className="sm:flex sm:items-center sm:justify-between sm:space-x-10">
@@ -98,14 +105,14 @@ export default function Contacts() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((item) => (
-            <TableRow key={item.owner}>
-              <TableCell>{item.owner}</TableCell>
-              <TableCell>{item.status}</TableCell>
-              <TableCell>{item.region}</TableCell>
-              <TableCell>{item.capacity}</TableCell>
-              <TableCell className="text-right">{item.costs}</TableCell>
-              <TableCell className="text-right">{item.lastEdited}</TableCell>
+          {cache ? (
+            <TableRow key={myData.owner}>
+              <TableCell>{myData.owner}</TableCell>
+              <TableCell>{myData.status}</TableCell>
+              <TableCell>{myData.region}</TableCell>
+              <TableCell>{myData.capacity}</TableCell>
+              <TableCell className="text-right">{myData.costs}</TableCell>
+              <TableCell className="text-right">{myData.lastEdited}</TableCell>
               <TableCell className="text-right">
                 <Link href={`/contacts/call`}>
                   <Button variant="primary" size="xs">
@@ -114,7 +121,25 @@ export default function Contacts() {
                 </Link>
               </TableCell>
             </TableRow>
-          ))}
+          ) : (
+            data.map((item) => (
+              <TableRow key={item.owner}>
+                <TableCell>{item.owner}</TableCell>
+                <TableCell>{item.status}</TableCell>
+                <TableCell>{item.region}</TableCell>
+                <TableCell>{item.capacity}</TableCell>
+                <TableCell className="text-right">{item.costs}</TableCell>
+                <TableCell className="text-right">{item.lastEdited}</TableCell>
+                <TableCell className="text-right">
+                  <Link href={`/contacts/call`}>
+                    <Button variant="primary" size="xs">
+                      Call
+                    </Button>
+                  </Link>
+                </TableCell>
+              </TableRow>
+            ))
+          )}
         </TableBody>
       </Table>
     </>
