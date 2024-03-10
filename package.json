@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier -w .",
-    "chat": "node ./app/chat/chat-server.js"
+    "chat": "node ./app/chat/chat-server.js",
+    "test": "node ./tests/test.js"
   },
   "dependencies": {
     "@fullcalendar/daygrid": "^6.1.10",
