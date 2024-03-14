@@ -13,17 +13,21 @@ amqp.connect("amqp://localhost", function (error0, connection) {
     }
 
     var queue = "hello";
-    var msg = "Tell me what you do now !";
 
     channel.assertQueue(queue, {
       durable: false,
     });
-    channel.sendToQueue(queue, Buffer.from(msg));
 
-    console.log(" [x] Sent %s", msg);
+    console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", queue);
+
+    channel.consume(
+      queue,
+      function (msg) {
+        console.log(" [x] Received %s", msg.content.toString());
+      },
+      {
+        noAck: true,
+      }
+    );
   });
-  setTimeout(function () {
-    connection.close();
-    process.exit(0);
-  }, 500);
 });
