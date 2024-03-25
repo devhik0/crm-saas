@@ -11,14 +11,13 @@ amqp.connect("amqp://localhost", function (error0, connection) {
     if (error1) {
       throw error1;
     }
-
     var queue = "task_queue";
 
-    // This makes sure the queue is declared before attempting to consume from it
     channel.assertQueue(queue, {
       durable: true,
     });
-
+    channel.prefetch(1);
+    console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", queue);
     channel.consume(
       queue,
       function (msg) {
@@ -27,12 +26,13 @@ amqp.connect("amqp://localhost", function (error0, connection) {
         console.log(" [x] Received %s", msg.content.toString());
         setTimeout(function () {
           console.log(" [x] Done");
+          channel.ack(msg);
         }, secs * 1000);
       },
       {
-        // automatic acknowledgment mode,
+        // manual acknowledgment mode,
         // see /docs/confirms for details
-        noAck: true,
+        noAck: false,
       }
     );
   });

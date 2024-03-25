@@ -11,18 +11,18 @@ amqp.connect("amqp://localhost", function (error0, connection) {
     if (error1) {
       throw error1;
     }
+    var exchange = "direct_logs";
+    var args = process.argv.slice(2);
+    var msg = args.slice(1).join(" ") || "Hello World!";
+    var severity = args.length > 0 ? args[0] : "info";
 
-    var queue = "task_queue";
-    var msg = process.argv.slice(2).join(" ") || "Hello World again tho!";
-
-    channel.assertQueue(queue, {
-      durable: true,
+    channel.assertExchange(exchange, "direct", {
+      durable: false,
     });
-    channel.sendToQueue(queue, Buffer.from(msg), {
-      persistent: true,
-    });
-    console.log(" [x] Sent '%s'", msg);
+    channel.publish(exchange, severity, Buffer.from(msg));
+    console.log(" [x] Sent %s: '%s'", severity, msg);
   });
+
   setTimeout(function () {
     connection.close();
     process.exit(0);
