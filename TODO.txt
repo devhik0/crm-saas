@@ -1,0 +1,17 @@
+- create a file structure to have seperate containers for k8s <-
+
+- add docker, <- k8s, github actions, devops and monitoring (elk)
+
+- add mail features
+
+- make frontend styling, light/dark mode switch
+
+- add auth and middleware
+
+- add integrations
+
+- add notifications and sync
+
+- add unit and e2e tests
+
+- finish app and deploy

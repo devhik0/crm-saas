@@ -1,0 +1,92 @@
+name: Deploy Pipeline
+env:
+  NEXT_PUBLIC_CONVEX_URL: "https://incredible-wombat-732.convex.cloud"
+  NEXT_TELEMETRY_DISABLED: 1
+  KV_REST_API_URL: "https://honest-stinkbug-44940.upstash.io"
+  KV_REST_API_TOKEN: "Aa-MASQgOTE1NGFlMDMtMGRmZS00ZGI0LWE1NTYtODA0YmYzMGY2MjdlZDg4Mzg3NzZkZDk3NDdjYzgxM2YyZGQ3MGI4Yzk2ZmM="
+on: [push]
+jobs:
+  format:
+    name: Format
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: Install Dependencies
+        run: bun install
+
+      - name: Format App
+        run: bun run format
+
+  # todo: add here after adding tests
+  # test:
+  #   name: Test
+  #   needs: format
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+
+  #     - name: Install Bun
+  #       uses: oven-sh/setup-bun@v1
+
+  #     - name: Install Dependencies
+  #       run: bun install
+
+  #     - name: Test App
+  #       run: bun run test
+
+  build:
+    name: Build
+    # needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: Install Dependencies
+        run: bun install
+
+      - name: Build App
+        run: bun run build
+
+  docker:
+    name: Docker
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3.3.0
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v3.1.0
+        with:
+          username: ${{ vars.DOCKER_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v5.3.0
+        with:
+          context: .
+          push: true
+          tags: ${{ vars.DOCKER_USER }}/crm-saas:latest
+          platforms: linux/amd64,linux/arm64/v8
+
+      # - name: Docker Hub Description
+      #   uses: peter-evans/dockerhub-description@v4
+      #   with:
+      #     username: ${{ vars.DOCKER_USER }}
+      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+      #     repository: ${{ vars.DOCKER_USER }}/crm-saas
+      #     readme-filepath: ./README.md
+# todo: add k8 steps and more
