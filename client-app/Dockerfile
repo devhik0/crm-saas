@@ -1,5 +1,3 @@
-# TODO: MAKE IT RUN
-
 # use the official Bun image
 # see all versions at https://hub.docker.com/r/oven/bun/tags
 FROM oven/bun:1 as base
@@ -37,7 +35,7 @@ COPY --from=prerelease /app/public/ ./public/
 COPY --from=prerelease /app/package.json .
 
 # Set correct permissions for nextjs user and don't run as root
-RUN adduser crm
+RUN adduser -D crm
 RUN chown crm:bun .
 
 # run the app

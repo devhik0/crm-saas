@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{.Values.appName}}-depl"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      name: "{{.Values.appName}}-pod"
+      labels:
+        app: client
+    spec:
+      containers:
+        - name: client
+          image: devhik0/crm-saas:latest
+          # resources:
+          #   requests:
+          #     memory: 600Mi
+          #     cpu: 200m
+          #   limits:
+          #     memory: 1000Mi
+          #     cpu: 500m
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{.Values.appName}}-srv"
+spec:
+  type: NodePort
+  selector:
+    app: client
+  ports:
+    - port: 3000
+      targetPort: 3000

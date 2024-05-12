@@ -1,5 +1,3 @@
-- add docker, (client-app) ? <- k8s, github actions, devops and monitoring (elk)
-
 - add mail features
 
 - make frontend styling, light/dark mode switch
