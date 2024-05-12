@@ -1,8 +1,8 @@
 ## A CRM software for any scale business
 
-Dashboard ![Dashboard](public/dashboard.png)
+Dashboard ![Dashboard](client-app\public\dashboard.png)
 
-Tickets ![Tickets](public/tickets.png)
+Tickets ![Tickets](client-app\public\tickets.png)
 
 ### Features
 
