@@ -4,6 +4,7 @@
   "description": "",
   "main": "chat-server.js",
   "scripts": {
+    "format": "prettier -w .",
     "start": "bun run chat-server.js"
   },
   "keywords": [],
