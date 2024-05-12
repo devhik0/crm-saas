@@ -13,10 +13,11 @@ jobs:
 
       - name: Install Dependencies
         run: bun install
-        working-directory: ./client-app
+        working-directory: ./services/chat-svc
 
       - name: Format App
         run: bun run format
+        working-directory: ./services/chat-svc
 
   # todo: add here after adding tests
   # test:
@@ -32,10 +33,11 @@ jobs:
 
   #     - name: Install Dependencies
   #       run: bun install
+  #       working-directory: ./services/chat-svc
 
   #     - name: Test App
   #       run: bun run test
-
+  #       working-directory: ./services/chat-svc
   docker:
     name: Docker
     runs-on: ubuntu-latest
