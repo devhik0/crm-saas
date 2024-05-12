@@ -10,11 +10,10 @@ jobs:
 
       - name: Install Bun
         uses: oven-sh/setup-bun@v1
-        with:
-          path: ./client-app
 
       - name: Install Dependencies
         run: bun install
+        working-directory: ./client-app
 
       - name: Format App
         run: bun run format
