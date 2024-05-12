@@ -58,9 +58,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5.3.0
         with:
-          context: .
+          context: ./services/chat-svc
           push: true
           tags: ${{ vars.DOCKER_USER }}/crm-saas-chat-svc:latest
           platforms: linux/amd64,linux/arm64/v8
-          working-directory: ./services/chat-svc
 # todo: add k8 steps and more

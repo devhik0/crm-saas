@@ -83,11 +83,10 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5.3.0
         with:
-          context: .
+          context: ./client-app
           push: true
           tags: ${{ vars.DOCKER_USER }}/crm-saas:latest
           platforms: linux/amd64,linux/arm64/v8
-          working-directory: ./client-app
 
       # - name: Docker Hub Description
       #   uses: peter-evans/dockerhub-description@v4

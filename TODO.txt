@@ -1,4 +1,4 @@
-- add docker, ? <- k8s, github actions, devops and monitoring (elk)
+- add docker, (client-app) ? <- k8s, github actions, devops and monitoring (elk)
 
 - add mail features
 
