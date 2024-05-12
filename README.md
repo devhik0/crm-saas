@@ -1,8 +1,11 @@
 ## A CRM software for any scale business
 
-Dashboard ![Dashboard](client-app\public\dashboard.png)
+![Deploy](https://github.com/devhik0/crm-saas/actions/workflows/release-crm.yml/badge.svg)
+![Deploy](https://github.com/devhik0/crm-saas/actions/workflows/release-svc.yml/badge.svg)
 
-Tickets ![Tickets](client-app\public\tickets.png)
+Dashboard ![Dashboard](./client-app/public/dashboard.png)
+
+Tickets ![Tickets](./client-app/public/tickets.png)
 
 ### Features
 
