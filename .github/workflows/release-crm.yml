@@ -4,7 +4,10 @@ env:
   NEXT_TELEMETRY_DISABLED: 1
   KV_REST_API_URL: "https://honest-stinkbug-44940.upstash.io"
   KV_REST_API_TOKEN: "Aa-MASQgOTE1NGFlMDMtMGRmZS00ZGI0LWE1NTYtODA0YmYzMGY2MjdlZDg4Mzg3NzZkZDk3NDdjYzgxM2YyZGQ3MGI4Yzk2ZmM="
-on: [push]
+on:
+  push:
+    paths:
+      - "./client-app/**"
 jobs:
   format:
     name: Format

@@ -1,6 +1,4 @@
-- create a file structure to have seperate containers for k8s <-
-
-- add docker, <- k8s, github actions, devops and monitoring (elk)
+- add docker, ? <- k8s, github actions, devops and monitoring (elk)
 
 - add mail features
 

@@ -1,6 +1,6 @@
 # use the official Bun image
 # see all versions at https://hub.docker.com/r/oven/bun/tags
-FROM imbios/bun-node:20-slim as base
+FROM oven/bun:1 as base
 WORKDIR /app
 
 # install dependencies into temp directory
@@ -30,8 +30,8 @@ RUN bun run build
 # copy production dependencies and source code into final image
 FROM base AS release
 COPY --from=install /temp/prod/node_modules node_modules
-COPY --from=prerelease /app/.next .
-COPY --from=prerelease /app/public ./public
+COPY --from=prerelease /app/.next/ .
+COPY --from=prerelease /app/public/ ./public/
 COPY --from=prerelease /app/package.json .
 
 # Set correct permissions for nextjs user and don't run as root

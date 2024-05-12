@@ -1,5 +1,8 @@
 name: Deploy Pipeline (Chat Service)
-on: [push]
+on:
+  push:
+    paths:
+      - "./services/chat-svc/**"
 jobs:
   format:
     name: Format
