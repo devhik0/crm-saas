@@ -35,7 +35,7 @@ COPY --from=prerelease /app/public/ ./public/
 COPY --from=prerelease /app/package.json .
 
 # Set correct permissions for nextjs user and don't run as root
-RUN adduser -D crm
+RUN adduser crm
 RUN chown crm:bun .
 
 # run the app

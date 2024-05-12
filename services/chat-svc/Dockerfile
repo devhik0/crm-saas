@@ -31,7 +31,7 @@ COPY --from=prerelease /app/package.json .
 
 
 # Set correct permissions for nextjs user and don't run as root
-RUN adduser -D chat
+RUN adduser chat
 RUN chown chat:bun .
 
 # run the app
