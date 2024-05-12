@@ -1,7 +1,7 @@
 ## A CRM software for any scale business
 
-![Deploy](https://github.com/devhik0/crm-saas/actions/workflows/release-crm.yml/badge.svg)
-![Deploy](https://github.com/devhik0/crm-saas/actions/workflows/release-svc.yml/badge.svg)
+![Deploy](https://github.com/devhik0/crm-saas/actions/workflows/release-crm.yml/badge.svg?event=push)
+![Deploy](https://github.com/devhik0/crm-saas/actions/workflows/release-svc.yml/badge.svg?event=push)
 
 Dashboard ![Dashboard](./client-app/public/dashboard.png)
 
