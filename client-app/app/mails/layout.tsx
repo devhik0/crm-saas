@@ -11,9 +11,8 @@ import { ReactNode } from "react";
 
 export default function MailsLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="mt-10 flex h-full flex-row items-center gap-1 border-2 border-gray-800 bg-gray-900">
+    <div className="mt-10 flex h-full flex-row gap-1 border-2 border-gray-800 bg-gray-900">
       <div className="h-full w-[15%] border-r-2 border-blue-600 p-2">
-        {/* //todo: convert here to radio buttons */}
         <div className="">
           {[
             { page: "Inbox", icon: <InboxArrowDownIcon className="size-6 text-gray-400" /> },
@@ -28,7 +27,6 @@ export default function MailsLayout({ children }: { children: ReactNode }) {
                 key={idx}
                 className="border-l-2 border-gray-400 bg-gray-700 hover:border-l-blue-600 hover:text-blue-600 active:text-blue-600"
               >
-                {/* // here */}
                 <Link href={`/mails/${item.page.toLocaleLowerCase()}`}>
                   <li className="m-2 flex justify-between gap-2 p-2 hover:text-blue-600">
                     {item.icon}
