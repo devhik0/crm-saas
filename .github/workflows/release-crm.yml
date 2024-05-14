@@ -86,7 +86,7 @@ jobs:
           context: ./client-app
           push: true
           tags: ${{ vars.DOCKER_USER }}/crm-saas:latest
-          platforms: linux/amd64,linux/arm64/v8
+          platforms: linux/amd64
 
       # - name: Docker Hub Description
       #   uses: peter-evans/dockerhub-description@v4

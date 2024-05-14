@@ -6,6 +6,8 @@
 
 - add integrations
 
+- add search feature with elastic
+
 - add notifications and sync
 
 - add unit and e2e tests
