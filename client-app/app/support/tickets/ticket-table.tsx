@@ -31,22 +31,22 @@ export default async function TicketTable({ status }: { status?: "open" | "waiti
       <Table className="mt-8">
         <TableHead>
           <TableRow className="border-b border-tremor-border dark:border-dark-tremor-border">
-            <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
+            <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
               Requester
             </TableHeaderCell>
-            <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
+            <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
               Subject
             </TableHeaderCell>
-            <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
+            <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
               Asssignee
             </TableHeaderCell>
-            <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
+            <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
               Status
             </TableHeaderCell>
-            <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
+            <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
               Last message
             </TableHeaderCell>
-            <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
+            <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
               Actions
             </TableHeaderCell>
           </TableRow>
@@ -64,16 +64,16 @@ export default async function TicketTable({ status }: { status?: "open" | "waiti
 
                   return (
                     <TableRow key={item.requester}>
-                      <TableCell className="font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong">
+                      <TableCell className="text-center font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong">
                         <Link href={`/support/tickets/${item.id}`}>{item.requester}</Link>
                       </TableCell>
-                      <TableCell>{item.subject}</TableCell>
-                      <TableCell>{item.assignee}</TableCell>
+                      <TableCell className="text-center">{item.subject}</TableCell>
+                      <TableCell className="text-center">{item.assignee}</TableCell>
                       <TableCell className="flex flex-row items-center gap-2">
                         <DotFilledIcon className={ticketColors[item.status]} />
                         <span className={ticketColors[item.status]}>{item.status}</span>
                       </TableCell>
-                      <TableCell>{item.lastEdited}</TableCell>
+                      <TableCell className="text-center">{item.lastEdited}</TableCell>
                       <TableCell className="flex items-center justify-center">
                         <Popover>
                           <PopoverTrigger>

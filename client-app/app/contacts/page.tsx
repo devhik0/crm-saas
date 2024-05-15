@@ -1,5 +1,6 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 // 'use client';
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -12,7 +13,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { api } from "@/convex/_generated/api";
-import { Button, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from "@tremor/react";
+import { PencilSquareIcon, PhoneIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from "@tremor/react";
 import { kv } from "@vercel/kv";
 import { fetchQuery } from "convex/nextjs";
 import Link from "next/link";
@@ -43,40 +45,68 @@ export default async function Contacts() {
     <div className="mt-10 h-full bg-gray-900 p-2">
       <div className="sm:flex sm:items-center sm:justify-between sm:space-x-10">
         <div>
-          <h3 className="font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">Contacts</h3>
-          <p className="mt-1 text-tremor-default leading-6 text-tremor-content dark:text-dark-tremor-content">
-            Your contacts
-          </p>
+          <h3 className="font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">Contacts</h3>6
+          total
         </div>
-        <button
-          type="button"
-          className="mt-4 w-full whitespace-nowrap rounded-tremor-small bg-tremor-brand px-2 py-1 text-tremor-default font-medium text-tremor-brand-inverted shadow-tremor-input hover:bg-tremor-brand-emphasis sm:mt-0 sm:w-fit dark:bg-dark-tremor-brand dark:text-dark-tremor-brand-inverted dark:shadow-dark-tremor-input dark:hover:bg-dark-tremor-brand-emphasis"
-        >
-          Add Customer
-        </button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className="bg-blue-600">Add Contact</Button>
+          </DialogTrigger>
+          <DialogContent className="border-none bg-gray-900 sm:max-w-[425px]">
+            <DialogHeader>
+              <DialogTitle>Add contact</DialogTitle>
+              <DialogDescription>Add contact here and click save when you re done.</DialogDescription>
+            </DialogHeader>
+            <div className="grid gap-4 py-4">
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="name" className="text-right">
+                  Name
+                </Label>
+                <Input id="name" placeholder="Pedro Duarte" className="col-span-3" />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="email" className="text-right">
+                  Email
+                </Label>
+                <Input id="email" type="email" placeholder="pedro.duarte@gmail.com" className="col-span-3" />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="company" className="text-right">
+                  Company
+                </Label>
+                <Input id="company" placeholder="Acme GmBH" className="col-span-3" />
+              </div>
+            </div>
+            <DialogFooter>
+              <Button type="submit" className="bg-blue-600">
+                Save changes
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
       <Table className="mt-8">
         <TableHead>
           <TableRow className="border-b border-tremor-border dark:border-dark-tremor-border">
-            <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
-              Customer
+            <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
+              Name
             </TableHeaderCell>
-            <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
+            <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
+              Email
+            </TableHeaderCell>
+            <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
+              Company
+            </TableHeaderCell>
+            <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
+              Title
+            </TableHeaderCell>
+            <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
               Status
             </TableHeaderCell>
-            <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
-              Region
-            </TableHeaderCell>
-            <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
-              Capacity
-            </TableHeaderCell>
-            <TableHeaderCell className="text-right text-tremor-content-strong dark:text-dark-tremor-content-strong">
-              Costs
-            </TableHeaderCell>
-            <TableHeaderCell className="text-right text-tremor-content-strong dark:text-dark-tremor-content-strong">
+            <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
               Last called
             </TableHeaderCell>
-            <TableHeaderCell className="text-right text-tremor-content-strong dark:text-dark-tremor-content-strong">
+            <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
               Actions
             </TableHeaderCell>
           </TableRow>
@@ -84,42 +114,40 @@ export default async function Contacts() {
         <TableBody>
           {cache ? (
             <TableRow key={myData.owner}>
-              <TableCell>{myData.owner}</TableCell>
-              <TableCell>{myData.status}</TableCell>
-              <TableCell>{myData.region}</TableCell>
-              <TableCell>{myData.capacity}</TableCell>
-              <TableCell className="text-right">{myData.costs}</TableCell>
-              <TableCell className="text-right">{myData.lastEdited}</TableCell>
-              <TableCell className="text-right">
+              <TableCell className="text-center">{myData.owner}</TableCell>
+              <TableCell className="text-center">{myData.status}</TableCell>
+              <TableCell className="text-center">{myData.region}</TableCell>
+              <TableCell className="text-center">{myData.capacity}</TableCell>
+              <TableCell className="text-center">{myData.costs}</TableCell>
+              <TableCell className="text-center">{myData.lastEdited}</TableCell>
+              <TableCell className="text-center">
                 <Link href={`/contacts/call`}>
-                  <Button variant="primary" size="xs">
-                    Call
-                  </Button>
+                  <Button>Call</Button>
                 </Link>
               </TableCell>
             </TableRow>
           ) : (
             contacts.map((item) => (
               <TableRow key={item.owner}>
-                <TableCell>{item.owner}</TableCell>
-                <TableCell>{item.status}</TableCell>
-                <TableCell>{item.region}</TableCell>
-                <TableCell>{item.capacity}</TableCell>
-                <TableCell className="text-right">{item.costs}</TableCell>
-                <TableCell className="text-right">{item.lastEdited}</TableCell>
-                <TableCell className="text-right">
+                <TableCell className="text-center">{item.owner}</TableCell>
+                <TableCell className="text-center">{item.status}</TableCell>
+                <TableCell className="text-center">{item.region}</TableCell>
+                <TableCell className="text-center">{item.capacity}</TableCell>
+                <TableCell className="text-center">{item.costs}</TableCell>
+                <TableCell className="text-center">{item.lastEdited}</TableCell>
+                <TableCell className="flex flex-row items-center justify-center gap-8">
                   <Link href={`/contacts/call`}>
-                    <Button variant="primary" size="xs" className="mr-2">
-                      Call
-                    </Button>
+                    <PhoneIcon className="size-4 text-emerald-600" />
                   </Link>
                   <Dialog>
-                    <DialogTrigger>Edit</DialogTrigger>
+                    <DialogTrigger>
+                      <PencilSquareIcon className="size-4 text-orange-600" />
+                    </DialogTrigger>
                     <DialogContent className="bg-gray-900 sm:max-w-[425px]">
                       <DialogHeader>
-                        <DialogTitle>Edit customer</DialogTitle>
+                        <DialogTitle>Edit Contact</DialogTitle>
                         <DialogDescription>
-                          Make changes to your customer here. Click save when you done.
+                          Make changes to your Contact here. Click save when you done.
                         </DialogDescription>
                       </DialogHeader>
                       <div className="grid gap-4 py-4">
@@ -143,6 +171,25 @@ export default async function Contacts() {
                       </div>
                       <DialogFooter>
                         <Button type="submit">Save changes</Button>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
+                  <Dialog>
+                    <DialogTrigger>
+                      <TrashIcon className="size-4 text-red-600" />
+                    </DialogTrigger>
+                    <DialogContent className="border-none bg-gray-900">
+                      <DialogHeader>
+                        <DialogTitle>Are you absolutely sure?</DialogTitle>
+                        <DialogDescription>
+                          This action cannot be undone. Are you sure you want to permanently delete this contact from
+                          your list?
+                        </DialogDescription>
+                      </DialogHeader>
+                      <DialogFooter>
+                        <Button type="submit" className="bg-red-500 text-gray-200">
+                          Delete
+                        </Button>
                       </DialogFooter>
                     </DialogContent>
                   </Dialog>

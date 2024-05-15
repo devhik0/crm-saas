@@ -1,4 +1,4 @@
-- add other pages <--
+- organise pages and components
 
 - make frontend styling, light/dark mode switch
 
