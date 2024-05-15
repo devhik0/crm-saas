@@ -1,3 +1,5 @@
+- add chat page <--
+
 - organise pages and components
 
 - make frontend styling, light/dark mode switch

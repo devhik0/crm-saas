@@ -2,31 +2,14 @@
 "use client";
 
 import { api } from "@/convex/_generated/api";
+import { Visitor, numberFormatter, percentageFormatter, sumArray } from "@/lib/utils";
 import { AreaChart, Card, Metric, Tab, TabGroup, TabList, TabPanel, TabPanels } from "@tremor/react";
 import { useQuery } from "convex/react";
 
-type Visitor = {
-  Month: string;
-  Visitors: number;
-  "Page Views": number;
-  "Bounce Rate": number;
-};
 export default function Visitors() {
   const visitors = useQuery(api.visitors.get) as Visitor[];
 
   if (!visitors) return;
-
-  const numberFormatter = (value: number | bigint) => Intl.NumberFormat("us").format(value).toString();
-
-  const percentageFormatter = (value: number) =>
-    `${Intl.NumberFormat("us")
-      .format(value * 100)
-      .toString()}%`;
-
-  function sumArray(array: Visitor[], metric: string) {
-    // @ts-expect-error
-    return array.reduce((accumulator, currentValue) => accumulator + currentValue[metric], 0);
-  }
 
   return (
     <div className="mt-6">

@@ -1,6 +1,7 @@
 "use client";
 
 import { api } from "@/convex/_generated/api";
+import { valueFormatter } from "@/lib/utils";
 import { BarChart, Card, Text, Title } from "@tremor/react";
 import { useQuery } from "convex/react";
 
@@ -12,8 +13,6 @@ type Ticket = {
 };
 export default function Charts() {
   const tickets = useQuery(api.tickets.get) as Ticket[];
-
-  const valueFormatter = (number: number | bigint) => Intl.NumberFormat("us").format(number).toString();
 
   return (
     <Card className="mt-10 h-full">
