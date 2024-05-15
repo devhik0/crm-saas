@@ -7,7 +7,7 @@ import { Switch } from "@tremor/react";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Login from "./login";
+import LandingPage from "./landing-page";
 import Sidebar from "./side-bar";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "800"] });
@@ -56,13 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
             </div>
           ) : (
-            // todo: add landing page here <
-            <div>
-              Landing page (Welcome to your daily must-visit place :) ) Please login to continue your workflow.{" "}
-              <Login
-              // login={login}
-              />
-            </div>
+            <LandingPage />
           )}
         </ConvexClientProvider>
       </body>

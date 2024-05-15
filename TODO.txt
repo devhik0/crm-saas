@@ -1,7 +1,3 @@
-- fix todos
-
-- add landing page
-
 - add other pages <--
 
 - make frontend styling, light/dark mode switch
@@ -15,6 +11,8 @@
 - add notifications and sync
 
 - add unit and e2e tests
+
+- fix todos
 
 - optimize for performance and seo
 

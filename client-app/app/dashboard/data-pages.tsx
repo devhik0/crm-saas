@@ -53,8 +53,6 @@ export default async function DataPages() {
     Shipped: "emerald",
   } as { [key: string]: string };
 
-  // todo: fix overflow
-
   return (
     <TabGroup className="mt-6">
       <TabList>
