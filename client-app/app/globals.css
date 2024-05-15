@@ -7,6 +7,6 @@
 
 @media (prefers-color-scheme: dark) {
   body {
-    @apply bg-[#212b40] text-gray-300;
+    @apply bg-gray-900 text-gray-300;
   }
 }

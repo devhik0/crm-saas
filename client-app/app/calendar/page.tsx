@@ -3,9 +3,5 @@
 import CalendarC from "./calendar";
 
 export default function Calendar() {
-  return (
-    <>
-      Your calendar <CalendarC />
-    </>
-  );
+  return <CalendarC />;
 }

@@ -29,6 +29,8 @@ type Contact = {
 export default async function Contacts() {
   const contacts = (await fetchQuery(api.contacts.get)) as Contact[];
 
+  if (!contacts) return <>Loading...</>;
+
   await kv.hset("Data", contacts[0]);
   const myData = (await kv.hgetall("Data")) as (typeof contacts)[0];
   // console.log("My data: ", myData);
@@ -41,7 +43,7 @@ export default async function Contacts() {
         <div>
           <h3 className="font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">Contacts</h3>
           <p className="mt-1 text-tremor-default leading-6 text-tremor-content dark:text-dark-tremor-content">
-            Overview of all registered workspaces within your organization.
+            Your contacts
           </p>
         </div>
         <button

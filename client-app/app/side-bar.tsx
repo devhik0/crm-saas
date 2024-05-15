@@ -7,7 +7,6 @@ import {
   DashboardIcon,
   EnvelopeClosedIcon,
   ExitIcon,
-  GearIcon,
   ListBulletIcon,
   PersonIcon,
   PieChartIcon,
@@ -30,21 +29,20 @@ const routes = [
   { page: "Storage", link: "/storage", icon: <ArchiveIcon className="size-6" /> },
   { page: "Support", link: "/support", icon: <QuestionMarkIcon className="size-6" /> },
   // ---
-  { page: "Settings", link: "/settings", icon: <GearIcon className="size-6" /> },
   { page: "Logout", link: "/", icon: <ExitIcon className="size-6" /> },
 ];
 
 export default function Sidebar() {
   return (
     <div className="h-full bg-gray-900 text-gray-300">
-      <div className="flex items-center justify-between gap-6 bg-gray-700 p-2 py-4">
+      <div className="flex items-center justify-between gap-6 bg-gray-900 p-2 py-4">
         <Image src={"/logo.png"} alt="logo" width={48} height={48} /> <span>Customer Nexus</span>
       </div>
       <ul>
         {routes.map((item, idx) => (
           <li
             key={idx}
-            className="mb-2 border-transparent p-2 text-center text-gray-300 transition duration-500 hover:border-l-2 hover:border-l-[#879ed8] active:border-l-2 active:border-l-[#879ed8]"
+            className="mb-2 border-transparent p-2 text-center text-gray-300 transition duration-500 last:mt-8 last:text-red-500 hover:border-l-2 hover:border-l-[#879ed8] active:border-l-2 active:border-l-[#879ed8]"
           >
             <Link href={item.link} className="flex items-center justify-normal gap-6">
               <span>{item.icon}</span>
