@@ -1,7 +1,5 @@
 - add chat page <--
 
-- organise pages and components
-
 - make frontend styling, light/dark mode switch
 
 - add auth and middleware
@@ -15,6 +13,8 @@
 - add unit and e2e tests
 
 - fix todos
+
+- organise pages and components
 
 - optimize for performance and seo
 
