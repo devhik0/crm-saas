@@ -29,8 +29,6 @@ type Contact = {
 };
 
 export default async function Contacts() {
-  // todo: continue here !
-
   const contacts = (await fetchQuery(api.contacts.get)) as Contact[];
 
   if (!contacts) return <>Loading...</>;

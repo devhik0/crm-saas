@@ -1,6 +1,4 @@
-- add chat page <--
-
-- make frontend styling, light/dark mode switch
+- add remaining functionality to pages <--
 
 - add auth and middleware
 
@@ -9,6 +7,8 @@
 - add search feature with elastic
 
 - add notifications and sync
+
+- make frontend styling, light/dark mode switch
 
 - add unit and e2e tests
 

@@ -5,7 +5,7 @@
 
 Dashboard ![Dashboard](./client-app/public/dashboard.png)
 
-Tickets ![Tickets](./client-app/public/tickets.png)
+Tasks ![Tasks](./client-app/public/kanban.png)
 
 ### Features
 
@@ -23,6 +23,7 @@ Tickets ![Tickets](./client-app/public/tickets.png)
 - Typescript
 - Socket.io
 - Convex
+- Kubernetes
 
 ### Integrations
 
