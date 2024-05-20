@@ -11,6 +11,8 @@ import { fetchQuery } from "convex/nextjs";
 import { Task, TaskCategory } from "./page";
 
 export default async function TaskList() {
+  // todo: continue on !
+
   const tasks = (await fetchQuery(api.tasks.get)) as Task[];
   const taskCategories = tasks.map((cat) => cat.category) as TaskCategory["name"][];
 

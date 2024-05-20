@@ -1,6 +1,7 @@
 "use client";
 
 import { api } from "@/convex/_generated/api";
+import { Id } from "@/convex/_generated/dataModel";
 import { valueFormatter } from "@/lib/utils";
 import { BarChart, Card, LineChart, Text, Title } from "@tremor/react";
 import { useQuery } from "convex/react";
@@ -10,9 +11,12 @@ type Ticket = {
   Failed: number;
   Completed: number;
   "In Progress": number;
+  _id: Id<"tickets">;
 };
 export default function Charts() {
   const tickets = useQuery(api.tickets.get) as Ticket[];
+
+  if (!tickets) return <>Loading data...</>;
 
   const chartdata = [
     { date: "Jun 23", "IPhone 12": 3129, "Red Sofa": 172 },
