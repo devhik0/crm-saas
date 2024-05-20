@@ -10,7 +10,9 @@ import { Card } from "@tremor/react";
 import { fetchQuery } from "convex/nextjs";
 
 export default async function TaskList() {
+  // todo: first, make a one task component for both views
   // todo: continue on !
+  // todo: remove relation between tasks and categories and rewrite with Ents
 
   const tasks = await fetchQuery(api.tasks.get);
   const taskCategories = await fetchQuery(api.tasks.getTaskCategories);

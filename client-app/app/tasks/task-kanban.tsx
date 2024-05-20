@@ -8,7 +8,6 @@ import { api } from "@/convex/_generated/api";
 import { AvatarIcon, ClockIcon, DotsHorizontalIcon, PlusIcon } from "@radix-ui/react-icons";
 import { Card } from "@tremor/react";
 import { fetchQuery } from "convex/nextjs";
-import { createTask } from "./createTask";
 
 export default async function TaskKanban() {
   const tasks = await fetchQuery(api.tasks.get);
@@ -55,11 +54,7 @@ export default async function TaskKanban() {
                     </PopoverTrigger>
                     <PopoverContent className=" border-none bg-gray-900">
                       <div className="grid gap-4">
-                        <form action={createTask.bind(null, taskCategories)}>
-                          <div className="space-y-2">
-                            menu <Button>Add Task</Button>
-                          </div>
-                        </form>
+                        <div className="space-y-2">menu</div>
                       </div>
                     </PopoverContent>
                   </Popover>

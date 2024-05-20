@@ -2,11 +2,11 @@ import { Card, Divider, Tab, TabGroup, TabList, TabPanel, TabPanels, TextInput }
 
 export default async function Profile() {
   // todo: here will come from auth
-  const user = {
-    name: "Some user",
-    age: 24,
-    email: "user@some.com",
-  };
+  // const user = {
+  //   name: "Some user",
+  //   age: 24,
+  //   email: "user@some.com",
+  // };
 
   const usage = [
     { id: 1, resource: "Requests per day", usage: "145", maximum: "1,000", href: "#" },

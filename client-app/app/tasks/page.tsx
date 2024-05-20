@@ -1,19 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Id } from "@/convex/_generated/dataModel";
 import { CheckboxIcon, ListBulletIcon } from "@radix-ui/react-icons";
 import TaskKanban from "./task-kanban";
 import TaskList from "./task-list";
-
-export type Task = {
-  _id: Id<"tasks">;
-  _creationTime: number;
-  name: string;
-  category_id: Id<"task_categories">;
-  desc: string;
-  time: string;
-};
-
-export type TaskCategory = { name: string };
 
 export default function Tasks() {
   // todo: add drag n drop to tasks
