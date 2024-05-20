@@ -12,7 +12,7 @@ export default function Reports() {
 
   const roles = [
     {
-      name: "Front-End Developer",
+      name: "CFO",
       data: {
         [Categories.Interested]: {
           amount: "3,555",
@@ -29,7 +29,7 @@ export default function Reports() {
       },
     },
     {
-      name: "Product Designer",
+      name: "Sales Specialist",
       data: {
         [Categories.Interested]: {
           amount: "1,280",
@@ -46,7 +46,7 @@ export default function Reports() {
       },
     },
     {
-      name: "Technical UX-Engineer",
+      name: "Accountant",
       data: {
         [Categories.Interested]: {
           amount: "1,777",
@@ -63,7 +63,7 @@ export default function Reports() {
       },
     },
     {
-      name: "Product Manager",
+      name: "Financial Analyst",
       data: {
         [Categories.Interested]: {
           amount: "789",
@@ -225,7 +225,7 @@ export default function Reports() {
 
   const keywords = [
     {
-      name: "Dashboard",
+      name: "IPhone 12",
       data: {
         [Categories.Interested]: {
           amount: "37",
@@ -242,7 +242,7 @@ export default function Reports() {
       },
     },
     {
-      name: "React Library",
+      name: "Microsoft Surface Tab",
       data: {
         [Categories.Interested]: {
           amount: "28",
@@ -259,7 +259,7 @@ export default function Reports() {
       },
     },
     {
-      name: "Custom Web Dev",
+      name: "IKEA",
       data: {
         [Categories.Interested]: {
           amount: "20",
@@ -276,7 +276,7 @@ export default function Reports() {
       },
     },
     {
-      name: "Web Applications",
+      name: "Red Sofa",
       data: {
         [Categories.Interested]: {
           amount: "15",

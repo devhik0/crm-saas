@@ -2,7 +2,7 @@
 
 - add auth and middleware
 
-- add integrations
+- add integrations (calendar, mail, files for many vendors like google, microsoft ..)
 
 - add search feature with elastic
 

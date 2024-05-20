@@ -1,9 +1,33 @@
-import { Badge, Card, Flex, Tab, TabGroup, TabList, TabPanel, TabPanels, Text, Title } from "@tremor/react";
+import { api } from "@/convex/_generated/api";
+import {
+  Badge,
+  Card,
+  Flex,
+  ProgressBar,
+  Tab,
+  TabGroup,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Text,
+  Title,
+  Tracker,
+  type Color,
+} from "@tremor/react";
+import { fetchQuery } from "convex/nextjs";
 import Categories from "./categories";
 import Transactions from "./transactions";
 import Visitors from "./visitors";
 
-export default function Dashboard() {
+interface Tracker {
+  color: Color;
+  tooltip: string;
+}
+
+export default async function Dashboard() {
+  const trackers = (await fetchQuery(api.trackers.get)) as Tracker[];
+
+  if (!trackers) return <>Loading data...</>;
   return (
     <div className=" h-full p-2">
       <h3 className="text-lg">Overview</h3>
@@ -15,6 +39,28 @@ export default function Dashboard() {
         <TabPanels>
           <TabPanel>
             <Categories />
+            <div className="flex flex-row items-center gap-2 pt-6">
+              <Card className="m-0 flex size-full flex-col gap-2 p-10">
+                <h3 className="text-lg">Target Sales Revenue</h3>
+                <p className="flex items-center justify-between text-tremor-default text-tremor-content dark:text-dark-tremor-content">
+                  <span>$12,699 &bull; {((12699 / 20000) * 100).toPrecision(3)}%</span> <span>$20,000</span>
+                </p>
+                <ProgressBar value={Number(((12699 / 20000) * 100).toPrecision(3))} color="fuchsia" className="mt-3" />
+              </Card>
+
+              <Card className="flex size-full flex-col gap-2">
+                <h3 className="text-lg">Uptime SLA</h3>
+                <p className="flex items-center justify-between text-tremor-default">
+                  <span className="font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong">
+                    allyouneed.com
+                  </span>
+                  <span className="text-tremor-content dark:text-dark-tremor-content">
+                    uptime {((trackers.length / 30) * 100).toPrecision(3)}%
+                  </span>
+                </p>
+                <Tracker data={trackers} className="mt-2" />
+              </Card>
+            </div>
             <Visitors />
           </TabPanel>
           <TabPanel>

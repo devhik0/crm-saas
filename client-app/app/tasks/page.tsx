@@ -1,9 +1,16 @@
-"use client";
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CheckboxIcon, ListBulletIcon } from "@radix-ui/react-icons";
 import TaskKanban from "./task-kanban";
 import TaskList from "./task-list";
+
+export type Task = {
+  category: string;
+  desc: string;
+  name: string;
+  time: string;
+};
+
+export type TaskCategory = { name: string };
 
 export default function Tasks() {
   // todo: add drag n drop to tasks

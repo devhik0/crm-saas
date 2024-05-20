@@ -35,9 +35,11 @@ const routes = [
 export default function Sidebar() {
   return (
     <div className="h-full bg-gray-900 text-gray-300">
-      <div className="flex items-center justify-between gap-6 bg-gray-900 p-2 py-4">
-        <Image src={"/logo.png"} alt="logo" width={48} height={48} /> <span>Customer Nexus</span>
-      </div>
+      <Link href={`/`}>
+        <div className="flex items-center justify-between gap-6 bg-gray-900 p-2 py-4">
+          <Image src={"/logo.png"} alt="logo" width={48} height={48} /> <span>Customer Nexus</span>
+        </div>
+      </Link>
       <ul>
         {routes.map((item, idx) => (
           <li

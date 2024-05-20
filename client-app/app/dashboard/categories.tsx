@@ -13,7 +13,7 @@ type Category = {
 export default async function Categories() {
   const categories = (await fetchQuery(api.categories.get)) as Category[];
 
-  if (!categories) return;
+  if (!categories) return <>Loading data...</>;
 
   return (
     <Grid numItemsSm={2} numItemsLg={3} className="gap-6">
