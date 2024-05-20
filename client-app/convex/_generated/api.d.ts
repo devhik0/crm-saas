@@ -17,7 +17,9 @@ import type {
 import type * as categories from "../categories.js";
 import type * as contacts from "../contacts.js";
 import type * as helpTickets from "../helpTickets.js";
+import type * as tasks from "../tasks.js";
 import type * as tickets from "../tickets.js";
+import type * as trackers from "../trackers.js";
 import type * as transactions from "../transactions.js";
 import type * as visitors from "../visitors.js";
 
@@ -33,7 +35,9 @@ declare const fullApi: ApiFromModules<{
   categories: typeof categories;
   contacts: typeof contacts;
   helpTickets: typeof helpTickets;
+  tasks: typeof tasks;
   tickets: typeof tickets;
+  trackers: typeof trackers;
   transactions: typeof transactions;
   visitors: typeof visitors;
 }>;

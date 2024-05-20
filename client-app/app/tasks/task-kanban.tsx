@@ -4,28 +4,32 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { api } from "@/convex/_generated/api";
 import { AvatarIcon, ClockIcon, DotsHorizontalIcon, PlusIcon } from "@radix-ui/react-icons";
 import { Card } from "@tremor/react";
+import { fetchQuery } from "convex/nextjs";
+import { Task, TaskCategory } from "./page";
 
-export default function TaskKanban() {
+export default async function TaskKanban() {
+  const tasks = (await fetchQuery(api.tasks.get)) as Task[];
+  const taskCategories = tasks.map((cat) => cat.category) as TaskCategory["name"][];
+
+  if (!tasks || !taskCategories) return <>Loading data...</>;
+
   return (
     <>
       <div className="flex flex-row items-center justify-between">
         <div className="my-2 flex flex-col items-center gap-2 rounded-md bg-gray-800 p-3 ">
           <h4 className="text-sm">Category</h4>
           <RadioGroup defaultValue="" className="flex flex-row gap-2 text-sm">
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="preview" id="r1" />
-              <Label htmlFor="r1">Preview</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="design" id="r2" />
-              <Label htmlFor="r2">Design</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="feature" id="r3" />
-              <Label htmlFor="r3">Feature</Label>
-            </div>
+            {taskCategories.map((cat) => {
+              return (
+                <div key={cat} className="flex items-center space-x-2">
+                  <RadioGroupItem value={cat} id={cat} />
+                  <Label htmlFor={cat}>{cat}</Label>
+                </div>
+              );
+            })}
           </RadioGroup>
         </div>
         <div className="flex w-full max-w-sm items-center space-x-2 rounded-md bg-gray-800 p-2 py-4">
@@ -35,9 +39,9 @@ export default function TaskKanban() {
           </Button>
         </div>
       </div>
-      <div className="flex flex-row items-center gap-6">
+      <div className="flex w-full flex-row items-center gap-6">
         {["TODO", "IN PROGRESS", "REVIEW", "DONE"].map((item, idx) => (
-          <div key={idx} className="flex flex-col items-center gap-4 rounded-md bg-gray-800 p-2">
+          <div key={idx} className="flex w-full flex-col items-center gap-4 rounded-md bg-gray-800 p-2">
             <div className="flex w-full flex-row items-center justify-between gap-8">
               <div className="flex flex-row items-center gap-2">
                 <h3 className="text-base">{item}</h3>
@@ -66,17 +70,8 @@ export default function TaskKanban() {
                 </Popover>
               </div>
             </div>
-            {[
-              {
-                name: "Set up a meeting with Customer A",
-                desc: "A meeting to talk about product prices",
-                time: "1d",
-                category: "Preview",
-              },
-              { name: "Todo 2", desc: "Todo desc 2", time: "5d", category: "Design" },
-              { name: "Todo 3", desc: "Todo desc 3", time: "3w", category: "Feature" },
-            ].map((item, idx) => (
-              <Card key={idx} className="flex flex-col gap-3 p-3">
+            {tasks.map((item, idx) => (
+              <Card key={idx} className="flex w-full flex-col gap-3 p-3">
                 <Popover>
                   <PopoverTrigger asChild>
                     <DotsHorizontalIcon className="size-5 self-end" />
