@@ -27,7 +27,7 @@ export default defineSchema({
   }),
   task_categories: defineTable({ name: v.string() }),
   tasks: defineTable({
-    category: v.string(), // 1-1 ref
+    category_id: v.id("task_categories"),
     desc: v.string(),
     name: v.string(),
     time: v.string(),
