@@ -128,7 +128,7 @@ export default async function Contacts() {
               </TableCell>
             </TableRow>
           ) : (
-            contacts.map((item) => (
+            contacts.map((item: Contact) => (
               <TableRow key={item.owner}>
                 <TableCell className="text-center">{item.owner}</TableCell>
                 <TableCell className="text-center">{item.status}</TableCell>

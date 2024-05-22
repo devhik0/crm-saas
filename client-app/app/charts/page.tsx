@@ -29,6 +29,7 @@ export default function Charts() {
 
   useEffect(() => {
     getTickets();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const chartdata = [

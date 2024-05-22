@@ -17,7 +17,7 @@ export default async function Categories() {
 
   return (
     <Grid numItemsSm={2} numItemsLg={3} className="gap-6">
-      {categories.map((item) => (
+      {categories.map((item: Category) => (
         <Card key={item.title}>
           <Flex alignItems="start">
             <Text>{item.title}</Text>

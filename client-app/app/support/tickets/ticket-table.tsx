@@ -54,8 +54,8 @@ export default async function TicketTable({ status }: { status?: "open" | "waiti
         <TableBody>
           {status
             ? helpTickets
-                .filter((t) => t.status === status)
-                .map((item) => {
+                .filter((t: Ticket) => t.status === status)
+                .map((item: Ticket) => {
                   const ticketColors = {
                     open: "text-center text-blue-600",
                     waiting: "text-center text-orange-600",
@@ -92,7 +92,7 @@ export default async function TicketTable({ status }: { status?: "open" | "waiti
                     </TableRow>
                   );
                 })
-            : helpTickets.map((item) => {
+            : helpTickets.map((item: Ticket) => {
                 const ticketColors = {
                   open: "text-center text-blue-600",
                   waiting: "text-center text-orange-600",

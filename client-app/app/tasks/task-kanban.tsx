@@ -8,6 +8,17 @@ import { createClient } from "@/utils/supabase/server";
 import { AvatarIcon, ClockIcon, DotsHorizontalIcon, PlusIcon } from "@radix-ui/react-icons";
 import { Card } from "@tremor/react";
 
+type TaskCategory = {
+  _id: string;
+  name: string;
+};
+
+type Task = TaskCategory & {
+  category_id: string;
+  description: string;
+  time: string;
+};
+
 export default async function TaskKanban() {
   const supabase = createClient();
   const { data: tasks } = await (await supabase).from("tasks").select();
@@ -21,7 +32,7 @@ export default async function TaskKanban() {
         <div className="my-2 flex flex-col items-center gap-2 rounded-md bg-gray-800 p-3 ">
           <h4 className="text-sm">Category</h4>
           <RadioGroup defaultValue="" className="flex flex-row gap-2 text-sm">
-            {taskCategories.map((cat) => {
+            {taskCategories.map((cat: TaskCategory) => {
               return (
                 <div key={cat._id} className="flex items-center space-x-2">
                   <RadioGroupItem value={cat.name} id={cat.name} />
@@ -80,8 +91,8 @@ export default async function TaskKanban() {
                   </Popover>
                 </div>
               </div>
-              {tasks.map((item, idx) => {
-                const category = taskCategories.find((cat) => cat._id === item.category_id)?.name;
+              {tasks.map((item: Task, idx: number) => {
+                const category = taskCategories.find((cat: TaskCategory) => cat._id === item.category_id)?.name;
 
                 return (
                   <Card key={idx} className="flex w-full flex-col gap-3 p-3">
@@ -96,7 +107,7 @@ export default async function TaskKanban() {
                       </PopoverContent>
                     </Popover>
                     <h4 className="text-sm">{item.name}</h4>
-                    <p className="text-xs text-gray-500">{item.desc}</p>
+                    <p className="text-xs text-gray-500">{item.description}</p>
                     <div className="flex flex-row items-center justify-between">
                       <Badge className="bg-blue-600">{category}</Badge>
                       <AvatarIcon className="size-4" />

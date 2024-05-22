@@ -9,7 +9,7 @@ export default async function TicketDetails({ params }: { params: { id: string }
 
   if (!helpTickets) return;
 
-  const data = helpTickets.find((ticket) => ticket.id.toString() === params.id) as Ticket;
+  const data = helpTickets.find((ticket: Ticket) => ticket.id.toString() === params.id) as Ticket;
 
   const ticketId = params.id;
   return (

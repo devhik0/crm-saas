@@ -1,6 +1,6 @@
-- update deps <-- 
+- fix build errors
 
-- add remaining functionality to pages 
+- add remaining functionality to pages <-- 
 
 - add auth and middleware
 
@@ -19,5 +19,7 @@
 - organise pages and components
 
 - optimize for performance and seo
+
+- remove all console logs
 
 - finish app and deploy

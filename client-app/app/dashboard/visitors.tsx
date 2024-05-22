@@ -16,6 +16,7 @@ export default function Visitors() {
   };
   useEffect(() => {
     getVisitors();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!visitors) return;

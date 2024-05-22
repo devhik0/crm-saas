@@ -35,7 +35,7 @@ export default async function Transactions() {
         </TableRow>
       </TableHead>
       <TableBody>
-        {transactions.map((item) => (
+        {transactions.map((item: Transaction) => (
           <TableRow key={item.transactionID}>
             <TableCell>{item.transactionID}</TableCell>
             <TableCell>{item.user}</TableCell>
