@@ -1,11 +1,13 @@
-import { api } from "@/convex/_generated/api";
+import { createClient } from "@/utils/supabase/server";
 import { ExitIcon } from "@radix-ui/react-icons";
-import { fetchQuery } from "convex/nextjs";
 import Link from "next/link";
 import { Ticket } from "../ticket-table";
 
 export default async function TicketDetails({ params }: { params: { id: string } }) {
-  const helpTickets = (await fetchQuery(api.helpTickets.get)) as Ticket[];
+  const supabase = createClient();
+  const { data: helpTickets } = await (await supabase).from("helpTickets").select("*");
+
+  if (!helpTickets) return;
 
   const data = helpTickets.find((ticket) => ticket.id.toString() === params.id) as Ticket;
 

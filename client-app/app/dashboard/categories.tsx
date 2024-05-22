@@ -1,6 +1,5 @@
-import { api } from "@/convex/_generated/api";
+import { createClient } from "@/utils/supabase/server";
 import { BadgeDelta, Card, Flex, Grid, Metric, Text } from "@tremor/react";
-import { fetchQuery } from "convex/nextjs";
 
 type Category = {
   title: string;
@@ -11,7 +10,8 @@ type Category = {
 };
 
 export default async function Categories() {
-  const categories = (await fetchQuery(api.categories.get)) as Category[];
+  const supabase = createClient();
+  const { data: categories } = await (await supabase).from("categories").select("*");
 
   if (!categories) return <>Loading data...</>;
 

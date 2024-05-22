@@ -1,6 +1,5 @@
-import { api } from "@/convex/_generated/api";
+import { createClient } from "@/utils/supabase/server";
 import { Badge, Button, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from "@tremor/react";
-import { fetchQuery } from "convex/nextjs";
 
 type Transaction = {
   transactionID: string;
@@ -12,7 +11,10 @@ type Transaction = {
 };
 
 export default async function Transactions() {
-  const transactions = (await fetchQuery(api.transactions.get)) as Transaction[];
+  const supabase = createClient();
+  const { data: transactions } = await (await supabase).from("transactions").select("*");
+
+  if (!transactions) return;
 
   const colors = {
     "Ready for dispatch": "gray",

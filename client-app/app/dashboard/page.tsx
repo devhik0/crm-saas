@@ -1,4 +1,4 @@
-import { api } from "@/convex/_generated/api";
+import { createClient } from "@/utils/supabase/server";
 import {
   Badge,
   Card,
@@ -14,7 +14,6 @@ import {
   Tracker,
   type Color,
 } from "@tremor/react";
-import { fetchQuery } from "convex/nextjs";
 import Categories from "./categories";
 import Transactions from "./transactions";
 import Visitors from "./visitors";
@@ -25,7 +24,8 @@ interface Tracker {
 }
 
 export default async function Dashboard() {
-  const trackers = (await fetchQuery(api.trackers.get)) as Tracker[];
+  const supabase = createClient();
+  const { data: trackers } = await (await supabase).from("trackers").select("*");
 
   if (!trackers) return <>Loading data...</>;
   return (

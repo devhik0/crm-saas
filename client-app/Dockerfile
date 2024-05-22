@@ -23,7 +23,9 @@ COPY . .
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED 1
-ENV NEXT_PUBLIC_CONVEX_URL "https://incredible-wombat-732.convex.cloud"
+ENV NEXT_PUBLIC_SUPABASE_URL https://jokkvunyzexyiwypinjd.supabase.co
+ENV NEXT_PUBLIC_SUPABASE_ANON_KEY eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impva2t2dW55emV4eWl3eXBpbmpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTYzODIyNzEsImV4cCI6MjAzMTk1ODI3MX0.O-_1nkM2Blhm7kjscCL9bC0BIp_yhLeKGVoFKDdo_bw
+
 # RUN bun run test #todo: add here after adding tests
 RUN bun run build
 

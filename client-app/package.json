@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier -w .",
-    "be:dev": "bunx convex dev"
+    "format": "prettier -w ."
   },
   "dependencies": {
     "@fullcalendar/daygrid": "^6.1.10",
@@ -24,11 +23,11 @@
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-switch": "^1.0.3",
     "@radix-ui/react-tabs": "^1.0.4",
+    "@supabase/ssr": "^0.3.0",
     "@tremor/react": "^3.16.1",
     "@vercel/kv": "^1.0.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "convex": "^1.11.2",
     "next": "^14.2.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

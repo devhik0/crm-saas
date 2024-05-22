@@ -1,9 +1,12 @@
-import { api } from "@/convex/_generated/api";
-import { fetchQuery } from "convex/nextjs";
-import TicketTable, { Ticket } from "./ticket-table";
+import { createClient } from "@/utils/supabase/server";
+import TicketTable from "./ticket-table";
 
 export default async function Tickets({ searchParams }: { searchParams: { state?: "open" | "waiting" | "solved" } }) {
-  const helpTickets = (await fetchQuery(api.helpTickets.get)) as Ticket[];
+  const supabase = createClient();
+  const { data: helpTickets } = await (await supabase).from("helpTickets").select("*");
+
+  if (!helpTickets || helpTickets.length === 0) return;
+
   return (
     <div>
       {searchParams.state ? (

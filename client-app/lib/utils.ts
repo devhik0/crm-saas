@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Id } from "@/convex/_generated/dataModel";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -21,7 +20,7 @@ export type Visitor = {
   Visitors: number;
   "Page Views": number;
   "Bounce Rate": number;
-  _id: Id<"visitors">;
+  _id: string;
 };
 export function sumArray(array: Visitor[], metric: string) {
   // @ts-expect-error

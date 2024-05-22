@@ -1,13 +1,22 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 "use client";
 
-import { api } from "@/convex/_generated/api";
 import { Visitor, numberFormatter, percentageFormatter, sumArray } from "@/lib/utils";
+import { createClient } from "@/utils/supabase/client";
 import { AreaChart, Card, Metric, Tab, TabGroup, TabList, TabPanel, TabPanels } from "@tremor/react";
-import { useQuery } from "convex/react";
+import { useEffect, useState } from "react";
 
 export default function Visitors() {
-  const visitors = useQuery(api.visitors.get) as Visitor[];
+  const supabase = createClient();
+
+  const [visitors, setVisitors] = useState<Visitor[]>([]);
+  const getVisitors = async () => {
+    const { data: visitors1 } = await supabase.from("visitors").select("*");
+    setVisitors(visitors1 as Visitor[]);
+  };
+  useEffect(() => {
+    getVisitors();
+  }, []);
 
   if (!visitors) return;
 

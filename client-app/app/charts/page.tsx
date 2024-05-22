@@ -1,22 +1,35 @@
 "use client";
 
-import { api } from "@/convex/_generated/api";
-import { Id } from "@/convex/_generated/dataModel";
 import { valueFormatter } from "@/lib/utils";
+import { createClient } from "@/utils/supabase/client";
 import { BarChart, Card, LineChart, Text, Title } from "@tremor/react";
-import { useQuery } from "convex/react";
+import { useEffect, useState } from "react";
 
 type Ticket = {
   Month: string;
   Failed: number;
   Completed: number;
   "In Progress": number;
-  _id: Id<"tickets">;
+  _id: string;
 };
 export default function Charts() {
-  const tickets = useQuery(api.tickets.get) as Ticket[];
+  const supabase = createClient();
 
-  if (!tickets) return <>Loading data...</>;
+  const [tickets, setTickets] = useState<Ticket[]>([]);
+
+  const getTickets = async () => {
+    const {
+      data: tickets1,
+      error,
+      status,
+    } = (await supabase.from("tickets").select("*").order("Month", { ascending: true })) || [];
+    setTickets(tickets1 as Ticket[]);
+    console.log("tickets: ", { tickets1, status, error });
+  };
+
+  useEffect(() => {
+    getTickets();
+  }, []);
 
   const chartdata = [
     { date: "Jun 23", "IPhone 12": 3129, "Red Sofa": 172 },

@@ -19,7 +19,7 @@ Tickets ![Tickets](public/tickets.png)
 - Next.js
 - Typescript
 - Socket.io
-- Convex
+- Supabase
 
 ### Integrations
 

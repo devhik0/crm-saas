@@ -1,8 +1,7 @@
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { api } from "@/convex/_generated/api";
+import { createClient } from "@/utils/supabase/server";
 import { DotFilledIcon, DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from "@tremor/react";
-import { fetchQuery } from "convex/nextjs";
 import Link from "next/link";
 
 export type Ticket = {
@@ -14,7 +13,8 @@ export type Ticket = {
   id: number;
 };
 export default async function TicketTable({ status }: { status?: "open" | "waiting" | "solved" }) {
-  const helpTickets = (await fetchQuery(api.helpTickets.get)) as Ticket[];
+  const supabase = createClient();
+  const { data: helpTickets } = await (await supabase).from("helpTickets").select("*");
 
   if (!helpTickets) return;
 

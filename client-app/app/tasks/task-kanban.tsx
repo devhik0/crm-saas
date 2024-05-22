@@ -4,14 +4,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { api } from "@/convex/_generated/api";
+import { createClient } from "@/utils/supabase/server";
 import { AvatarIcon, ClockIcon, DotsHorizontalIcon, PlusIcon } from "@radix-ui/react-icons";
 import { Card } from "@tremor/react";
-import { fetchQuery } from "convex/nextjs";
 
 export default async function TaskKanban() {
-  const tasks = await fetchQuery(api.tasks.get);
-  const taskCategories = await fetchQuery(api.tasks.getTaskCategories);
+  const supabase = createClient();
+  const { data: tasks } = await (await supabase).from("tasks").select();
+  const { data: taskCategories } = await (await supabase).from("task_categories").select();
 
   if (!tasks || !taskCategories) return <>Loading data...</>;
 
@@ -54,7 +54,16 @@ export default async function TaskKanban() {
                     </PopoverTrigger>
                     <PopoverContent className=" border-none bg-gray-900">
                       <div className="grid gap-4">
-                        <div className="space-y-2">menu</div>
+                        <div className="space-y-2">
+                          menu{" "}
+                          <form
+                          // action={addTask}
+                          >
+                            <label>Category: </label>
+                            <input name="category" />
+                            <button>Add task</button>
+                          </form>
+                        </div>
                       </div>
                     </PopoverContent>
                   </Popover>

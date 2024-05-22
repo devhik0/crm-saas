@@ -12,14 +12,14 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { api } from "@/convex/_generated/api";
+import { createClient } from "@/utils/supabase/server";
 import { PencilSquareIcon, PhoneIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from "@tremor/react";
 import { kv } from "@vercel/kv";
-import { fetchQuery } from "convex/nextjs";
 import Link from "next/link";
 
 type Contact = {
+  _id: string;
   owner: string;
   status: string;
   costs: string;
@@ -29,7 +29,10 @@ type Contact = {
 };
 
 export default async function Contacts() {
-  const contacts = (await fetchQuery(api.contacts.get)) as Contact[];
+  const supabase = createClient();
+  const { data: contacts } = await (await supabase).from("contacts").select("*");
+
+  console.log("contacts: ", contacts);
 
   if (!contacts) return <>Loading...</>;
 

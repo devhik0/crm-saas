@@ -1,4 +1,6 @@
-- add remaining functionality to pages <--
+- update deps <-- 
+
+- add remaining functionality to pages 
 
 - add auth and middleware
 
