@@ -6,27 +6,30 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { createClient } from "@/utils/supabase/server";
 import { AvatarIcon, ClockIcon, DotsHorizontalIcon, PlusIcon } from "@radix-ui/react-icons";
-import { Card } from "@tremor/react";
-
-type TaskCategory = {
-  _id: string;
-  name: string;
-};
-
-type Task = TaskCategory & {
-  category_id: string;
-  description: string;
-  time: string;
-};
+import { Card, Textarea } from "@tremor/react";
+import { addTask } from "./addTask";
+// import dayjs from "dayjs";
+// import relativeTime from "dayjs/plugin/relativeTime";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import dayjs from "dayjs";
 
 export default async function TaskList() {
-  // todo: first, make a one task component for both views
-  // todo: continue on !
-  // todo: add addTask feature
-
   const supabase = createClient();
-  const { data: tasks } = await (await supabase).from("tasks").select("*");
+
+  const { data: tasks, error } = await (await supabase)
+    .from("tasks")
+    .select(`*, task_categories (*)`)
+    .order("time", { ascending: false });
+
   const { data: taskCategories } = await (await supabase).from("task_categories").select("*");
+
+  if (error)
+    return (
+      <div className="mx-auto rounded-md border-2 border-red-600 p-4">
+        <h3>Error: </h3>
+        {error.code} <br /> {error.details} <br /> {error.hint} <br /> {error.message}
+      </div>
+    );
 
   if (!tasks || !taskCategories) return <>Loading data...</>;
 
@@ -36,7 +39,7 @@ export default async function TaskList() {
         <div className="my-2 flex w-full flex-col items-center gap-2 rounded-md bg-gray-800 p-3 ">
           <h4 className="text-sm">Category</h4>
           <RadioGroup defaultValue="" className="flex flex-row gap-2 text-sm">
-            {taskCategories.map((cat: TaskCategory) => {
+            {taskCategories.map((cat) => {
               return (
                 <div key={cat._id} className="flex items-center space-x-2">
                   <RadioGroupItem value={cat.name} id={cat.name} />
@@ -68,7 +71,29 @@ export default async function TaskList() {
                   </PopoverTrigger>
                   <PopoverContent className=" border-none bg-gray-900">
                     <div className="grid gap-4">
-                      <div className="space-y-2">menu</div>
+                      <div className="space-y-2">
+                        menu{" "}
+                        <form action={addTask}>
+                          <Input name="name" />
+                          <Textarea name="description" placeholder="Task Description" />
+                          <Select name="category">
+                            <SelectTrigger className="w-[180px]">
+                              <SelectValue placeholder="Category" />
+                            </SelectTrigger>
+                            <SelectContent className="border-none bg-gray-900">
+                              {taskCategories.map((cat, idx) => {
+                                return (
+                                  <SelectItem className="hover:bg-gray-800" key={idx} value={cat._id}>
+                                    {cat.name}
+                                  </SelectItem>
+                                );
+                              })}
+                            </SelectContent>
+                          </Select>
+
+                          <Button className="bg-blue-600">Add task</Button>
+                        </form>
+                      </div>
                     </div>
                   </PopoverContent>
                 </Popover>
@@ -84,8 +109,9 @@ export default async function TaskList() {
                 </Popover>
               </div>
             </div>
-            {tasks.map((item: Task, idx: number) => {
-              const category = taskCategories.find((cat: TaskCategory) => cat._id === item.category_id)?.name;
+            {tasks.map((item, idx: number) => {
+              // todo: rewrite here with join query
+              const category = taskCategories.find((cat) => cat._id === item.category_id)?.name;
 
               return (
                 <Card key={idx} className="flex flex-row items-center justify-between gap-3 p-3">
@@ -100,7 +126,7 @@ export default async function TaskList() {
                     </div>
                     <div className="flex flex-row items-center gap-2">
                       <ClockIcon className="size-4" />
-                      <span className="text-sm">{item.time}</span>
+                      <span className="text-sm">{dayjs(item.time).fromNow()}</span>
                     </div>
                   </div>
                   <div className="">

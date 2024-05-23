@@ -18,16 +18,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } fro
 import { kv } from "@vercel/kv";
 import Link from "next/link";
 
-type Contact = {
-  _id: string;
-  owner: string;
-  status: string;
-  costs: string;
-  region: string;
-  capacity: string;
-  lastEdited: string;
-};
-
 export default async function Contacts() {
   const supabase = createClient();
   const { data: contacts } = await (await supabase).from("contacts").select("*");
@@ -128,7 +118,7 @@ export default async function Contacts() {
               </TableCell>
             </TableRow>
           ) : (
-            contacts.map((item: Contact) => (
+            contacts.map((item) => (
               <TableRow key={item.owner}>
                 <TableCell className="text-center">{item.owner}</TableCell>
                 <TableCell className="text-center">{item.status}</TableCell>

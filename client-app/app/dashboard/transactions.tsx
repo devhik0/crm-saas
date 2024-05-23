@@ -1,15 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
 import { Badge, Button, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from "@tremor/react";
 
-type Transaction = {
-  transactionID: string;
-  user: string;
-  item: string;
-  status: string;
-  amount: string;
-  link: string;
-};
-
 export default async function Transactions() {
   const supabase = createClient();
   const { data: transactions } = await (await supabase).from("transactions").select("*");
@@ -35,13 +26,13 @@ export default async function Transactions() {
         </TableRow>
       </TableHead>
       <TableBody>
-        {transactions.map((item: Transaction) => (
+        {transactions.map((item) => (
           <TableRow key={item.transactionID}>
             <TableCell>{item.transactionID}</TableCell>
             <TableCell>{item.user}</TableCell>
             <TableCell>{item.item}</TableCell>
             <TableCell>
-              <Badge color={colors[item.status]} size="xs">
+              <Badge color={colors[item.status as string]} size="xs">
                 {item.status}
               </Badge>
             </TableCell>

@@ -19,6 +19,7 @@ import Transactions from "./transactions";
 import Visitors from "./visitors";
 
 interface Tracker {
+  _id: string;
   color: Color;
   tooltip: string;
 }
@@ -28,6 +29,7 @@ export default async function Dashboard() {
   const { data: trackers } = await (await supabase).from("trackers").select("*");
 
   if (!trackers) return <>Loading data...</>;
+
   return (
     <div className=" h-full p-2">
       <h3 className="text-lg">Overview</h3>
@@ -58,7 +60,7 @@ export default async function Dashboard() {
                     uptime {((trackers.length / 30) * 100).toPrecision(3)}%
                   </span>
                 </p>
-                <Tracker data={trackers} className="mt-2" />
+                <Tracker data={trackers as Tracker[]} className="mt-2" />
               </Card>
             </div>
             <Visitors />

@@ -23,7 +23,7 @@ export default function Chat({
   const [currentMsg, setCurrentMsg] = useState("");
   const [chat, setChat] = useState<MessageOptions[]>([]);
 
-  const sendData = async (e: React.FormEvent<HTMLFormElement>) => {
+  const sendData = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (currentMsg !== "") {
       const msgData: MessageOptions = {
@@ -32,7 +32,7 @@ export default function Chat({
         msg: currentMsg,
         time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes(),
       };
-      await socket.emit("send_msg", msgData);
+      socket.emit("send_msg", msgData);
       setCurrentMsg("");
     }
   };

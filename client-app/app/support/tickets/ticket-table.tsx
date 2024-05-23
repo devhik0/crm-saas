@@ -54,8 +54,8 @@ export default async function TicketTable({ status }: { status?: "open" | "waiti
         <TableBody>
           {status
             ? helpTickets
-                .filter((t: Ticket) => t.status === status)
-                .map((item: Ticket) => {
+                .filter((t) => t.status === status)
+                .map((item) => {
                   const ticketColors = {
                     open: "text-center text-blue-600",
                     waiting: "text-center text-orange-600",
@@ -70,8 +70,8 @@ export default async function TicketTable({ status }: { status?: "open" | "waiti
                       <TableCell className="text-center">{item.subject}</TableCell>
                       <TableCell className="text-center">{item.assignee}</TableCell>
                       <TableCell className="flex flex-row items-center gap-2">
-                        <DotFilledIcon className={ticketColors[item.status]} />
-                        <span className={ticketColors[item.status]}>{item.status}</span>
+                        <DotFilledIcon className={ticketColors[item.status as string]} />
+                        <span className={ticketColors[item.status as string]}>{item.status}</span>
                       </TableCell>
                       <TableCell className="text-center">{item.lastEdited}</TableCell>
                       <TableCell className="flex items-center justify-center">
@@ -92,7 +92,7 @@ export default async function TicketTable({ status }: { status?: "open" | "waiti
                     </TableRow>
                   );
                 })
-            : helpTickets.map((item: Ticket) => {
+            : helpTickets.map((item) => {
                 const ticketColors = {
                   open: "text-center text-blue-600",
                   waiting: "text-center text-orange-600",
@@ -107,8 +107,8 @@ export default async function TicketTable({ status }: { status?: "open" | "waiti
                     <TableCell>{item.subject}</TableCell>
                     <TableCell>{item.assignee}</TableCell>
                     <TableCell className="flex flex-row items-center gap-2">
-                      <DotFilledIcon className={ticketColors[item.status]} />
-                      <span className={ticketColors[item.status]}>{item.status}</span>
+                      <DotFilledIcon className={ticketColors[item.status as string]} />
+                      <span className={ticketColors[item.status as string]}>{item.status}</span>
                     </TableCell>
                     <TableCell>{item.lastEdited}</TableCell>
                     <TableCell className="flex items-center justify-center">

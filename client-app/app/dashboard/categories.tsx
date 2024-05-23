@@ -1,14 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
 import { BadgeDelta, Card, Flex, Grid, Metric, Text } from "@tremor/react";
 
-type Category = {
-  title: string;
-  metric: string;
-  metricPrev: string;
-  delta: string;
-  deltaType: string;
-};
-
 export default async function Categories() {
   const supabase = createClient();
   const { data: categories } = await (await supabase).from("categories").select("*");
@@ -17,7 +9,7 @@ export default async function Categories() {
 
   return (
     <Grid numItemsSm={2} numItemsLg={3} className="gap-6">
-      {categories.map((item: Category) => (
+      {categories.map((item) => (
         <Card key={item.title}>
           <Flex alignItems="start">
             <Text>{item.title}</Text>
