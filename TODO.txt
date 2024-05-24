@@ -1,5 +1,4 @@
-- add remaining functionality to pages <--
- - Extend task schema to include task status like TODO | IN_PROGRESS ... <-
+- add remaining functionality to pages <-- (task c+ r+ u d)
 
 - add auth and middleware
 

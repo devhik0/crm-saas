@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { createClient } from "@/utils/supabase/server";
 import { AvatarIcon, ClockIcon, DotsHorizontalIcon, PlusIcon } from "@radix-ui/react-icons";
 import { Card, Textarea } from "@tremor/react";
 // import dayjs from "dayjs"
@@ -12,31 +11,18 @@ import { Card, Textarea } from "@tremor/react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { addTask } from "./addTask";
+import { addTask, getTaskCategories, getTaskStatuses, getTasks } from "./taskActions";
 
 dayjs.extend(relativeTime);
 
 export default async function TaskKanban() {
-  // TODO: Extend task schema to include task status like TODO | IN_PROGRESS ...
+  const tasks = await getTasks();
+  const taskCategories = await getTaskCategories();
+  const taskStatuses = await getTaskStatuses();
 
-  const supabase = createClient();
+  if (!tasks || !taskCategories || !taskStatuses) return <>Loading data...</>;
 
-  const { data: tasks, error } = await (await supabase)
-    .from("tasks")
-    .select(`*, task_categories (*)`)
-    .order("time", { ascending: false });
-
-  const { data: taskCategories } = await (await supabase).from("task_categories").select("*");
-
-  if (error)
-    return (
-      <div className="mx-auto rounded-md border-2 border-red-600 p-4">
-        <h3>Error: </h3>
-        {error.code} <br /> {error.details} <br /> {error.hint} <br /> {error.message}
-      </div>
-    );
-
-  if (!tasks || !taskCategories) return <>Loading data...</>;
+  // todo: add crud (U, D)
 
   return (
     <>
@@ -91,6 +77,20 @@ export default async function TaskKanban() {
                                   return (
                                     <SelectItem className="hover:bg-gray-800" key={idx} value={cat._id}>
                                       {cat.name}
+                                    </SelectItem>
+                                  );
+                                })}
+                              </SelectContent>
+                            </Select>
+                            <Select name="status">
+                              <SelectTrigger className="w-[180px]">
+                                <SelectValue placeholder="Status" />
+                              </SelectTrigger>
+                              <SelectContent className="border-none bg-gray-900">
+                                {taskStatuses.map((stat, idx) => {
+                                  return (
+                                    <SelectItem className="hover:bg-gray-800" key={idx} value={stat.id}>
+                                      {stat.name}
                                     </SelectItem>
                                   );
                                 })}

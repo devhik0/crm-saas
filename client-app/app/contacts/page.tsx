@@ -22,8 +22,6 @@ export default async function Contacts() {
   const supabase = createClient();
   const { data: contacts } = await (await supabase).from("contacts").select("*");
 
-  console.log("contacts: ", contacts);
-
   if (!contacts) return <>Loading...</>;
 
   await kv.hset("Data", contacts[0]);

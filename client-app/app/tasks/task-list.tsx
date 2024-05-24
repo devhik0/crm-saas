@@ -7,11 +7,11 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { createClient } from "@/utils/supabase/server";
 import { AvatarIcon, ClockIcon, DotsHorizontalIcon, PlusIcon } from "@radix-ui/react-icons";
 import { Card, Textarea } from "@tremor/react";
-import { addTask } from "./addTask";
 // import dayjs from "dayjs";
 // import relativeTime from "dayjs/plugin/relativeTime";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import dayjs from "dayjs";
+import { addTask } from "./taskActions";
 
 export default async function TaskList() {
   const supabase = createClient();

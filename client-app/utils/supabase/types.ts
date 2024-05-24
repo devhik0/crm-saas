@@ -6,87 +6,87 @@ export type Database = {
       categories: {
         Row: {
           _id: string;
-          delta: string | null;
-          deltaType: string | null;
-          metric: string | null;
-          metricPrev: string | null;
-          title: string | null;
+          delta: string;
+          deltaType: string;
+          metric: string;
+          metricPrev: string;
+          title: string;
         };
         Insert: {
           _id: string;
-          delta?: string | null;
-          deltaType?: string | null;
-          metric?: string | null;
-          metricPrev?: string | null;
-          title?: string | null;
+          delta: string;
+          deltaType: string;
+          metric: string;
+          metricPrev: string;
+          title: string;
         };
         Update: {
           _id?: string;
-          delta?: string | null;
-          deltaType?: string | null;
-          metric?: string | null;
-          metricPrev?: string | null;
-          title?: string | null;
+          delta?: string;
+          deltaType?: string;
+          metric?: string;
+          metricPrev?: string;
+          title?: string;
         };
         Relationships: [];
       };
       contacts: {
         Row: {
           _id: string;
-          capacity: string | null;
-          costs: string | null;
-          lastEdited: string | null;
-          owner: string | null;
-          region: string | null;
-          status: string | null;
+          capacity: string;
+          costs: string;
+          lastEdited: string;
+          owner: string;
+          region: string;
+          status: string;
         };
         Insert: {
           _id: string;
-          capacity?: string | null;
-          costs?: string | null;
-          lastEdited?: string | null;
-          owner?: string | null;
-          region?: string | null;
-          status?: string | null;
+          capacity: string;
+          costs: string;
+          lastEdited: string;
+          owner: string;
+          region: string;
+          status: string;
         };
         Update: {
           _id?: string;
-          capacity?: string | null;
-          costs?: string | null;
-          lastEdited?: string | null;
-          owner?: string | null;
-          region?: string | null;
-          status?: string | null;
+          capacity?: string;
+          costs?: string;
+          lastEdited?: string;
+          owner?: string;
+          region?: string;
+          status?: string;
         };
         Relationships: [];
       };
       helpTickets: {
         Row: {
           _id: string;
-          assignee: string | null;
-          id: number | null;
-          lastEdited: string | null;
-          requester: string | null;
-          status: string | null;
-          subject: string | null;
+          assignee: string;
+          id: number;
+          lastEdited: string;
+          requester: string;
+          status: string;
+          subject: string;
         };
         Insert: {
           _id: string;
-          assignee?: string | null;
-          id?: number | null;
-          lastEdited?: string | null;
-          requester?: string | null;
-          status?: string | null;
-          subject?: string | null;
+          assignee: string;
+          id: number;
+          lastEdited: string;
+          requester: string;
+          status: string;
+          subject: string;
         };
         Update: {
           _id?: string;
-          assignee?: string | null;
-          id?: number | null;
-          lastEdited?: string | null;
-          requester?: string | null;
-          status?: string | null;
-          subject?: string | null;
+          assignee?: string;
+          id?: number;
+          lastEdited?: string;
+          requester?: string;
+          status?: string;
+          subject?: string;
         };
         Relationships: [];
       };
@@ -105,27 +105,45 @@ export type Database = {
         };
         Relationships: [];
       };
+      task_statuses: {
+        Row: {
+          id: string;
+          name: string;
+        };
+        Insert: {
+          id?: string;
+          name: string;
+        };
+        Update: {
+          id?: string;
+          name?: string;
+        };
+        Relationships: [];
+      };
       tasks: {
         Row: {
           _id: string;
           category_id: string;
           description: string;
           name: string;
-          time: Date;
+          status_id: string;
+          time: string;
         };
         Insert: {
           _id?: string;
           category_id?: string;
           description: string;
           name: string;
-          time?: Date;
+          status_id?: string;
+          time?: string;
         };
         Update: {
           _id?: string;
           category_id?: string;
           description?: string;
           name?: string;
-          time?: Date;
+          status_id?: string;
+          time?: string;
         };
         Relationships: [
           {
@@ -135,101 +153,108 @@ export type Database = {
             referencedRelation: "task_categories";
             referencedColumns: ["_id"];
           },
+          {
+            foreignKeyName: "tasks_status_id_fkey";
+            columns: ["status_id"];
+            isOneToOne: false;
+            referencedRelation: "task_statuses";
+            referencedColumns: ["id"];
+          },
         ];
       };
       tickets: {
         Row: {
           _id: string;
-          Completed: number | null;
-          Failed: number | null;
-          "In Progress": number | null;
-          Month: string | null;
+          Completed: number;
+          Failed: number;
+          "In Progress": number;
+          Month: string;
         };
         Insert: {
           _id: string;
-          Completed?: number | null;
-          Failed?: number | null;
-          "In Progress"?: number | null;
-          Month?: string | null;
+          Completed: number;
+          Failed: number;
+          "In Progress": number;
+          Month: string;
         };
         Update: {
           _id?: string;
-          Completed?: number | null;
-          Failed?: number | null;
-          "In Progress"?: number | null;
-          Month?: string | null;
+          Completed?: number;
+          Failed?: number;
+          "In Progress"?: number;
+          Month?: string;
         };
         Relationships: [];
       };
       trackers: {
         Row: {
           _id: string;
-          color: string | null;
-          tooltip: string | null;
+          color: string;
+          tooltip: string;
         };
         Insert: {
           _id: string;
-          color?: string | null;
-          tooltip?: string | null;
+          color: string;
+          tooltip: string;
         };
         Update: {
           _id?: string;
-          color?: string | null;
-          tooltip?: string | null;
+          color?: string;
+          tooltip?: string;
         };
         Relationships: [];
       };
       transactions: {
         Row: {
           _id: string;
-          amount: string | null;
-          item: string | null;
-          link: string | null;
-          status: string | null;
-          transactionID: string | null;
-          user: string | null;
+          amount: string;
+          item: string;
+          link: string;
+          status: string;
+          transactionID: string;
+          user: string;
         };
         Insert: {
           _id: string;
-          amount?: string | null;
-          item?: string | null;
-          link?: string | null;
-          status?: string | null;
-          transactionID?: string | null;
-          user?: string | null;
+          amount: string;
+          item: string;
+          link: string;
+          status: string;
+          transactionID: string;
+          user: string;
         };
         Update: {
           _id?: string;
-          amount?: string | null;
-          item?: string | null;
-          link?: string | null;
-          status?: string | null;
-          transactionID?: string | null;
-          user?: string | null;
+          amount?: string;
+          item?: string;
+          link?: string;
+          status?: string;
+          transactionID?: string;
+          user?: string;
         };
         Relationships: [];
       };
       visitors: {
         Row: {
           _id: string;
-          "Bounce Rate": number | null;
-          Month: string | null;
-          "Page Views": number | null;
-          Visitors: number | null;
+          "Bounce Rate": number;
+          Month: string;
+          "Page Views": number;
+          Visitors: number;
         };
         Insert: {
           _id: string;
-          "Bounce Rate"?: number | null;
-          Month?: string | null;
-          "Page Views"?: number | null;
-          Visitors?: number | null;
+          "Bounce Rate": number;
+          Month: string;
+          "Page Views": number;
+          Visitors: number;
         };
         Update: {
           _id?: string;
-          "Bounce Rate"?: number | null;
-          Month?: string | null;
-          "Page Views"?: number | null;
-          Visitors?: number | null;
+          "Bounce Rate"?: number;
+          Month?: string;
+          "Page Views"?: number;
+          Visitors?: number;
         };
         Relationships: [];
       };
