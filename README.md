@@ -22,7 +22,7 @@ Tasks ![Tasks](./client-app/public/kanban.png)
 - Next.js
 - Typescript
 - Socket.io
-- Convex
+- Supabase
 - Kubernetes
 
 ### Integrations
