@@ -28,7 +28,7 @@ export default async function Contacts() {
   const myData = (await kv.hgetall("Data")) as (typeof contacts)[0];
   // console.log("My data: ", myData);
 
-  const cache = false; // acts as response cache
+  const cache = true; // acts as response cache
 
   return (
     <div className="mt-10 h-full bg-gray-900 p-2">
