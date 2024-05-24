@@ -1,4 +1,4 @@
-- add remaining functionality to pages <-- (task c+ r+ u d)
+- add remaining functionality to pages <--
 
 - add auth and middleware
 

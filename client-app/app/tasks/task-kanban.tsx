@@ -8,10 +8,21 @@ import { AvatarIcon, ClockIcon, DotsHorizontalIcon, PlusIcon } from "@radix-ui/r
 import { Card, Textarea } from "@tremor/react";
 // import dayjs from "dayjs"
 // import relativeTime from "dayjs/plugin/relativeTime"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { addTask, getTaskCategories, getTaskStatuses, getTasks } from "./taskActions";
+import { addTask, deleteTask, getTaskCategories, getTaskStatuses, getTasks } from "./taskActions";
+import UpdateTaskForm from "./update-task-form";
 
 dayjs.extend(relativeTime);
 
@@ -22,7 +33,7 @@ export default async function TaskKanban() {
 
   if (!tasks || !taskCategories || !taskStatuses) return <>Loading data...</>;
 
-  // todo: add crud (U, D)
+  // todo: add filter and search
 
   return (
     <>
@@ -64,9 +75,8 @@ export default async function TaskKanban() {
                     <PopoverContent className=" border-none bg-gray-900">
                       <div className="grid gap-4">
                         <div className="space-y-2">
-                          menu{" "}
                           <form action={addTask}>
-                            <Input name="name" />
+                            <Input name="name" placeholder="Task Name" />
                             <Textarea name="description" placeholder="Task Description" />
                             <Select name="category">
                               <SelectTrigger className="w-[180px]">
@@ -125,7 +135,44 @@ export default async function TaskKanban() {
                       </PopoverTrigger>
                       <PopoverContent className=" border-none bg-gray-900">
                         <div className="grid gap-4">
-                          <div className="space-y-2">menu</div>
+                          <div className="flex flex-row items-center gap-6 space-y-2">
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <PencilSquareIcon className="size-5 self-end" />
+                              </PopoverTrigger>
+                              <PopoverContent className=" border-none bg-gray-900">
+                                <div className="grid gap-4">
+                                  <div className="space-y-2">
+                                    <UpdateTaskForm
+                                      item={item}
+                                      taskCategories={taskCategories}
+                                      taskStatuses={taskStatuses}
+                                    />
+                                  </div>
+                                </div>
+                              </PopoverContent>
+                            </Popover>
+                            <Dialog>
+                              <DialogTrigger>
+                                <TrashIcon className="size-5 text-red-600" />
+                              </DialogTrigger>
+                              <DialogContent className="border-none bg-gray-900">
+                                <DialogHeader>
+                                  <DialogTitle>Are you absolutely sure?</DialogTitle>
+                                  <DialogDescription>
+                                    This action cannot be undone. This will permanently delete this task from our
+                                    servers.
+                                  </DialogDescription>
+                                </DialogHeader>
+                                <DialogFooter>
+                                  <form action={deleteTask}>
+                                    <Input type="hidden" value={item._id} name="task_id" />
+                                    <Button className="bg-red-600">Delete</Button>
+                                  </form>
+                                </DialogFooter>
+                              </DialogContent>
+                            </Dialog>
+                          </div>
                         </div>
                       </PopoverContent>
                     </Popover>
