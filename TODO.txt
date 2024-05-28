@@ -1,3 +1,5 @@
+- split components into smaller parts and refactor <---- !!!
+
 - add remaining functionality to pages <--
 
 - add auth and middleware

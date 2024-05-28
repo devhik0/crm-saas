@@ -3,6 +3,8 @@
 import { Bold, Card, Grid, List, ListItem, Tab, TabGroup, TabList, Text, Title } from "@tremor/react";
 import { useState } from "react";
 
+//todo: split
+
 export default function Reports() {
   const Categories = {
     Interested: "interested",

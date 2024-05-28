@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { BellIcon, MoonIcon, SunIcon } from "@heroicons/react/24/outline";
@@ -43,7 +43,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <BellIcon className="size-5" />
                   <div className="flex flex-row items-center gap-2 border-l-2 border-l-gray-800 p-2">
                     <Avatar>
-                      <AvatarImage src="https://github.com/shadcn.png" />
                       <AvatarFallback>U</AvatarFallback>
                     </Avatar>
                     <span>User1</span>
