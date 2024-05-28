@@ -10,7 +10,11 @@ export default function Tasks() {
   // todo: add drag n drop to tasks
   return (
     <div className="mt-10 flex flex-row justify-between gap-2 bg-gray-900 p-2">
-      <TaskKanban />
+      <div className="w-full">
+        <div className="flex flex-col">
+          <TaskKanban />
+        </div>
+      </div>
     </div>
   );
 }

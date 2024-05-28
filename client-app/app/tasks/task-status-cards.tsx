@@ -1,5 +1,4 @@
 import { Badge } from "@/components/ui/badge";
-import AddTaskForm from "./add-task-form";
 import TaskStatusCardMenu from "./task-status-card-menu";
 import { getTaskStatuses } from "./taskActions";
 import TasksCard from "./tasks-card";
@@ -20,7 +19,6 @@ export default async function TaskStatusCards() {
                 <Badge className="rounded-full bg-gray-300 text-gray-800">5</Badge>
               </div>
               <div className="mr-1 flex flex-row items-center gap-2">
-                <AddTaskForm />
                 <TaskStatusCardMenu />
               </div>
             </div>

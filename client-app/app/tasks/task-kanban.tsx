@@ -2,6 +2,7 @@
 // import relativeTime from "dayjs/plugin/relativeTime"
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import AddTaskForm from "./add-task-form";
 import TaskFilters from "./task-filters";
 import TaskSearch from "./task-search";
 import TaskStatusCards from "./task-status-cards";
@@ -16,6 +17,7 @@ export default async function TaskKanban() {
       <div className="flex flex-row items-center justify-between">
         <TaskFilters />
         <TaskSearch />
+        <AddTaskForm />
       </div>
       <TaskStatusCards />
     </>

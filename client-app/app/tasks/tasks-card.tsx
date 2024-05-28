@@ -10,7 +10,7 @@ export default async function TasksCard() {
   if (!tasks) return <>Loading data...</>;
 
   return (
-    <div>
+    <div className="flex flex-col gap-y-2">
       {tasks.map((item, idx) => {
         return (
           <Card key={idx} className="flex w-full flex-col gap-3 p-3">

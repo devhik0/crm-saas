@@ -14,8 +14,9 @@ export default async function AddTaskForm() {
 
   return (
     <Popover>
-      <PopoverTrigger className="flex flex-row items-center bg-blue-600 p-2 text-sm">
+      <PopoverTrigger className="flex flex-row items-center gap-2 rounded-md bg-blue-600 p-2">
         <PlusIcon className="size-4" />
+        <span className="text-sm">Add Task</span>
       </PopoverTrigger>
       <PopoverContent className=" border-none bg-gray-900">
         <div className="grid gap-4">

@@ -2,29 +2,19 @@
 
 import { valueFormatter } from "@/lib/utils";
 import { createClient } from "@/utils/supabase/client";
+import { Tables } from "@/utils/supabase/types";
 import { BarChart, Card, LineChart, Text, Title } from "@tremor/react";
 import { useEffect, useState } from "react";
 
-type Ticket = {
-  Month: string;
-  Failed: number;
-  Completed: number;
-  "In Progress": number;
-  _id: string;
-};
 export default function Charts() {
   const supabase = createClient();
 
-  const [tickets, setTickets] = useState<Ticket[]>([]);
+  const [tickets, setTickets] = useState<Tables<"tickets">[]>([]);
 
   const getTickets = async () => {
-    const {
-      data: tickets1,
-      error,
-      status,
-    } = (await supabase.from("tickets").select("*").order("Month", { ascending: true })) || [];
-    setTickets(tickets1 as Ticket[]);
-    console.log("tickets: ", { tickets1, status, error });
+    const { data: tickets1 } = (await supabase.from("tickets").select("*").order("Month", { ascending: true })) || [];
+    if (!tickets1) throw "There is no tickets";
+    setTickets(tickets1);
   };
 
   useEffect(() => {
