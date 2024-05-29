@@ -26,6 +26,18 @@ export const getTaskStatuses = async () => {
   return taskStatuses;
 };
 
+export const getTasksByStatus = async (status: string) => {
+  const { data } = await (await supabase)
+    .from("tasks")
+    .select("*, task_statuses(*), task_categories(*)")
+    .eq("task_statuses.name", status)
+    .order("time", { ascending: false });
+
+  // console.log("filtered tasks: ", data);
+
+  return data;
+};
+
 export const addTask = async (formData: FormData) => {
   const category_id = formData.get("category")?.toString() as string;
   const name = formData.get("name")?.toString() as string;
@@ -51,7 +63,6 @@ export const updateTask = async (formData: FormData) => {
   const taskData = { category_id, name, description, status_id };
 
   const { error } = await (await supabase).from("tasks").update(taskData).eq("_id", task_id);
-
   if (error) throw error.message;
 
   revalidatePath("/tasks");

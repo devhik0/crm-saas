@@ -25,8 +25,6 @@ export default function UpdateTaskForm({
   const [category, setCategory] = useState(item.task_categories!.name);
   const [status, setStatus] = useState(item.task_statuses!.name);
 
-  console.log("cat, stat:", { category, status });
-
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -48,13 +46,9 @@ export default function UpdateTaskForm({
                 placeholder="Task Description"
                 onChange={(e) => setDescription(e.currentTarget.value)}
               />
-              <Select name="category">
-                <SelectTrigger
-                  className="w-[180px]"
-                  value={category}
-                  onChange={(e) => setCategory(e.currentTarget.value)}
-                >
-                  <SelectValue placeholder={category} />
+              <Select name="category" onValueChange={(val) => setCategory(val)} value={category}>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Category" />
                 </SelectTrigger>
                 <SelectContent className="border-none bg-gray-900">
                   {taskCategories.map((cat, idx) => {
@@ -66,9 +60,9 @@ export default function UpdateTaskForm({
                   })}
                 </SelectContent>
               </Select>
-              <Select name="status">
-                <SelectTrigger className="w-[180px]" value={status} onChange={(e) => setStatus(e.currentTarget.value)}>
-                  <SelectValue placeholder={status} />
+              <Select name="status" onValueChange={(val) => setStatus(val)} value={status}>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Status" />
                 </SelectTrigger>
                 <SelectContent className="border-none bg-gray-900">
                   {taskStatuses.map((stat, idx) => {
