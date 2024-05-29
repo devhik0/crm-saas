@@ -40,7 +40,7 @@ export default async function TaskStatusCards() {
           // key={idx}
           className="flex w-full flex-col items-center gap-4 rounded-md bg-gray-800 p-2"
         >
-          <div className="flex w-full flex-row items-center justify-between gap-8">
+          <div className="flex w-full flex-row items-center justify-between gap-4">
             <div className="flex flex-row items-center gap-2">
               <h3 className="text-base">
                 {/* {item.name} */}
@@ -64,7 +64,7 @@ export default async function TaskStatusCards() {
           // key={idx}
           className="flex w-full flex-col items-center gap-4 rounded-md bg-gray-800 p-2"
         >
-          <div className="flex w-full flex-row items-center justify-between gap-8">
+          <div className="flex w-full flex-row items-center justify-between gap-4">
             <div className="flex flex-row items-center gap-2">
               <h3 className="text-base">
                 {/* {item.name} */}
@@ -88,7 +88,7 @@ export default async function TaskStatusCards() {
           // key={idx}
           className="flex w-full flex-col items-center gap-4 rounded-md bg-gray-800 p-2"
         >
-          <div className="flex w-full flex-row items-center justify-between gap-8">
+          <div className="flex w-full flex-row items-center justify-between gap-4">
             <div className="flex flex-row items-center gap-2">
               <h3 className="text-base">
                 {/* {item.name} */}
@@ -112,7 +112,7 @@ export default async function TaskStatusCards() {
           // key={idx}
           className="flex w-full flex-col items-center gap-4 rounded-md bg-gray-800 p-2"
         >
-          <div className="flex w-full flex-row items-center justify-between gap-8">
+          <div className="flex w-full flex-row items-center justify-between gap-4">
             <div className="flex flex-row items-center gap-2">
               <h3 className="text-base">
                 {/* {item.name} */}

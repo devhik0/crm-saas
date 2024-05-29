@@ -16,7 +16,7 @@ export default async function TasksCard({ status }: { status: string }) {
         .filter((stat) => stat.task_statuses?.name === status)
         .map((item, idx) => {
           return (
-            <Card key={idx} className="flex w-full flex-col gap-3 p-3">
+            <Card key={idx} className="flex w-full flex-col gap-4">
               <TaskMenu item={item} />
               <h4 className="text-sm">{item.name}</h4>
               <p className="text-xs text-gray-500">{item.description}</p>
