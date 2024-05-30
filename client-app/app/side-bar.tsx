@@ -37,7 +37,7 @@ export default function Sidebar() {
     <div className="h-full bg-gray-900 text-gray-300">
       <Link href={`/`}>
         <div className="flex items-center justify-between gap-6 bg-gray-900 p-2 py-4">
-          <Image src={"/logo.png"} alt="logo" width={48} height={48} /> <span>Customer Nexus</span>
+          <Image src={"/logo.png"} alt="logo" width={48} height={48} priority /> <span>Customer Nexus</span>
         </div>
       </Link>
       <ul>

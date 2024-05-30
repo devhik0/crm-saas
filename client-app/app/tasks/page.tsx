@@ -1,5 +1,10 @@
 import { Tables } from "@/utils/supabase/types";
-import TaskKanban from "./task-kanban";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import AddTaskForm from "./add-task-form";
+import TaskStatusCards from "./task-status-cards";
+
+dayjs.extend(relativeTime);
 
 export type Task = Tables<"tasks"> & {
   task_categories: Tables<"task_categories"> | null;
@@ -12,7 +17,10 @@ export default function Tasks() {
     <div className="mt-10 flex flex-row justify-between gap-2 bg-gray-900 p-2">
       <div className="w-full">
         <div className="flex flex-col">
-          <TaskKanban />
+          <div className="flex flex-row items-center justify-end">
+            <AddTaskForm />
+          </div>
+          <TaskStatusCards />
         </div>
       </div>
     </div>
