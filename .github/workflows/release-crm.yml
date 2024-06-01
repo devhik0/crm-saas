@@ -3,8 +3,6 @@ env:
   NEXT_PUBLIC_SUPABASE_URL: "https://jokkvunyzexyiwypinjd.supabase.co"
   NEXT_PUBLIC_SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impva2t2dW55emV4eWl3eXBpbmpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTYzODIyNzEsImV4cCI6MjAzMTk1ODI3MX0.O-_1nkM2Blhm7kjscCL9bC0BIp_yhLeKGVoFKDdo_bw"
   NEXT_TELEMETRY_DISABLED: 1
-  KV_REST_API_URL: "https://honest-stinkbug-44940.upstash.io"
-  KV_REST_API_TOKEN: "Aa-MASQgOTE1NGFlMDMtMGRmZS00ZGI0LWE1NTYtODA0YmYzMGY2MjdlZDg4Mzg3NzZkZDk3NDdjYzgxM2YyZGQ3MGI4Yzk2ZmM="
 on: [push]
 jobs:
   format:

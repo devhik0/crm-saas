@@ -1,7 +1,6 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 // 'use client';
 import { createClient } from "@/utils/supabase/server";
-import { kv } from "@vercel/kv";
 import AddContactForm from "./add-contact-form";
 import ContactsTable from "./contacts-table";
 
@@ -10,8 +9,6 @@ export default async function Contacts() {
   const { data: contacts } = await (await supabase).from("contacts").select("*");
 
   if (!contacts) return <>Loading...</>;
-
-  await kv.hset("Data", contacts[0]);
 
   return (
     <div className="mt-10 h-full bg-gray-900 p-2">
