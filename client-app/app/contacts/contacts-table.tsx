@@ -1,11 +1,11 @@
 /* eslint-disable tailwindcss/no-custom-classname */
+import { TableCaption, TableHeader } from "@/components/ui/table";
 import { createClient } from "@/utils/supabase/server";
 import { PhoneIcon } from "@heroicons/react/24/outline";
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@tremor/react";
 import Link from "next/link";
 import DeleteContactForm from "./delete-contact-form";
 import EditContactForm from "./edit-contact-form";
-import { TableCaption, TableHeader } from "@/components/ui/table";
 
 export default async function ContactsTable() {
   const supabase = createClient();
@@ -22,7 +22,16 @@ export default async function ContactsTable() {
           <TableHead>Status</TableHead>
           <TableHead>Method</TableHead>
           <TableHead className="text-right">Amount</TableHead>
+    <Table>
+      <TableCaption>A list of your recent invoices.</TableCaption>
+      <TableHeader>
+        <TableRow>
+          <TableHead className="w-[100px]">Invoice</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead>Method</TableHead>
+          <TableHead className="text-right">Amount</TableHead>
         </TableRow>
+      </TableHeader>
       </TableHeader>
       <TableBody>
         {contacts.map((item) => (
