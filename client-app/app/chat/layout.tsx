@@ -1,15 +1,15 @@
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card } from "@/components/ui/card";
 import { DotFilledIcon } from "@radix-ui/react-icons";
-import { Card } from "@tremor/react";
 import Link from "next/link";
 import { ReactNode } from "react";
 
 export default function ChatLayout({ children }: { children: ReactNode }) {
   return (
     <div className="size-full p-2">
-      Messages{" "}
+      Messages
       <div className="my-2 flex size-full flex-row bg-gray-900 ">
         <div className="w-5/12 border-r-2 border-r-blue-800 p-2">
           {[

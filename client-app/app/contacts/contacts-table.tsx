@@ -1,10 +1,11 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 import { createClient } from "@/utils/supabase/server";
 import { PhoneIcon } from "@heroicons/react/24/outline";
-import { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from "@tremor/react";
+import { Table, TableBody, TableCell, TableHead, TableRow } from "@tremor/react";
 import Link from "next/link";
 import DeleteContactForm from "./delete-contact-form";
 import EditContactForm from "./edit-contact-form";
+import { TableCaption, TableHeader } from "@/components/ui/table";
 
 export default async function ContactsTable() {
   const supabase = createClient();
@@ -13,32 +14,16 @@ export default async function ContactsTable() {
   if (!contacts) return <>Loading...</>;
 
   return (
-    <Table className="mt-8">
-      <TableHead>
-        <TableRow className="border-b border-tremor-border dark:border-dark-tremor-border">
-          <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
-            Name
-          </TableHeaderCell>
-          <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
-            Email
-          </TableHeaderCell>
-          <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
-            Company
-          </TableHeaderCell>
-          <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
-            Title
-          </TableHeaderCell>
-          <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
-            Status
-          </TableHeaderCell>
-          <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
-            Last called
-          </TableHeaderCell>
-          <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
-            Actions
-          </TableHeaderCell>
+    <Table>
+      <TableCaption>A list of your recent invoices.</TableCaption>
+      <TableHeader>
+        <TableRow>
+          <TableHead className="w-[100px]">Invoice</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead>Method</TableHead>
+          <TableHead className="text-right">Amount</TableHead>
         </TableRow>
-      </TableHead>
+      </TableHeader>
       <TableBody>
         {contacts.map((item) => (
           <TableRow key={item.owner}>

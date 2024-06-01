@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { BellAlertIcon, ChatBubbleOvalLeftEllipsisIcon, ListBulletIcon } from "@heroicons/react/24/outline";
-import { Card } from "@tremor/react";
 
 export default function LandingPage() {
   return (

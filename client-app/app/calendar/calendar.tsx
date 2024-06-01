@@ -10,7 +10,7 @@ export default function CalendarC({}) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="my-4 ml-2 h-full bg-gray-900 p-4">
+    <div className="my-4 ml-2 h-full bg-blue-900 p-4">
       <div className="flex h-full flex-row gap-4">
         <div className="size-full">
           <FullCalendar

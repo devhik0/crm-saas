@@ -1,4 +1,4 @@
-- add remaining functionality to pages <--
+== not finished due to bundle size ==
 
 - add auth and middleware
 

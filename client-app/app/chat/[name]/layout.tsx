@@ -1,9 +1,9 @@
 "use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Card } from "@/components/ui/card";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import { TrashIcon } from "@radix-ui/react-icons";
-import { Card } from "@tremor/react";
 import { ReactNode } from "react";
 
 export default function ChatPageLayout({ children, params }: { children: ReactNode; params: { name: string } }) {
@@ -14,7 +14,6 @@ export default function ChatPageLayout({ children, params }: { children: ReactNo
           <div className="flex flex-row items-center justify-between gap-2">
             <div className="flex flex-row items-center gap-2">
               <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
               <div className="flex flex-col justify-center gap-2">
