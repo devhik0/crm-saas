@@ -1,8 +1,7 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-import { TableCaption, TableHeader } from "@/components/ui/table";
 import { createClient } from "@/utils/supabase/server";
 import { PhoneIcon } from "@heroicons/react/24/outline";
-import { Table, TableBody, TableCell, TableHead, TableRow } from "@tremor/react";
+import { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from "@tremor/react";
 import Link from "next/link";
 import DeleteContactForm from "./delete-contact-form";
 import EditContactForm from "./edit-contact-form";
@@ -14,25 +13,32 @@ export default async function ContactsTable() {
   if (!contacts) return <>Loading...</>;
 
   return (
-    <Table>
-      <TableCaption>A list of your recent invoices.</TableCaption>
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-[100px]">Invoice</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Method</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
-    <Table>
-      <TableCaption>A list of your recent invoices.</TableCaption>
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-[100px]">Invoice</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Method</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
+    <Table className="mt-8">
+      <TableHead>
+        <TableRow className="border-tremor-border dark:border-dark-tremor-border border-b">
+          <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong text-center">
+            Name
+          </TableHeaderCell>
+          <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong text-center">
+            Email
+          </TableHeaderCell>
+          <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong text-center">
+            Company
+          </TableHeaderCell>
+          <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong text-center">
+            Title
+          </TableHeaderCell>
+          <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong text-center">
+            Status
+          </TableHeaderCell>
+          <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong text-center">
+            Last called
+          </TableHeaderCell>
+          <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong text-center">
+            Actions
+          </TableHeaderCell>
         </TableRow>
-      </TableHeader>
-      </TableHeader>
+      </TableHead>
       <TableBody>
         {contacts.map((item) => (
           <TableRow key={item.owner}>
