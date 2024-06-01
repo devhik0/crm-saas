@@ -1,3 +1,6 @@
+* replace tremor with any other graph lib
+* replace icon libs with any other lib
+
 - add remaining functionality to pages <--
 
 - add auth and middleware

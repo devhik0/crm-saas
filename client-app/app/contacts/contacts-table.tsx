@@ -1,11 +1,5 @@
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { createClient } from "@/utils/supabase/server";
-import { Tables } from "@/utils/supabase/types";
-import { PhoneIcon } from "@heroicons/react/24/outline";
-import { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from "@tremor/react";
-import { kv } from "@vercel/kv";
-import Link from "next/link";
-import DeleteContactForm from "./delete-contact-form";
-import EditContactForm from "./edit-contact-form";
 
 export default async function ContactsTable() {
   const supabase = createClient();
@@ -13,74 +7,24 @@ export default async function ContactsTable() {
 
   if (!contacts) return <>Loading...</>;
 
-  const myData = (await kv.hgetall("Data")) as Tables<"contacts">;
-  // console.log("My data: ", myData);
-
-  const cache = true; // acts as response cache
-
   return (
-    <Table className="mt-8">
-      <TableHead>
-        <TableRow className="border-b border-tremor-border dark:border-dark-tremor-border">
-          <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
-            Name
-          </TableHeaderCell>
-          <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
-            Email
-          </TableHeaderCell>
-          <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
-            Company
-          </TableHeaderCell>
-          <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
-            Title
-          </TableHeaderCell>
-          <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
-            Status
-          </TableHeaderCell>
-          <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
-            Last called
-          </TableHeaderCell>
-          <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
-            Actions
-          </TableHeaderCell>
+    <Table>
+      <TableCaption>A list of your recent invoices.</TableCaption>
+      <TableHeader>
+        <TableRow>
+          <TableHead className="w-[100px]">Invoice</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead>Method</TableHead>
+          <TableHead className="text-right">Amount</TableHead>
         </TableRow>
-      </TableHead>
+      </TableHeader>
       <TableBody>
-        {cache ? (
-          <TableRow key={myData.owner}>
-            <TableCell className="text-center">{myData.owner}</TableCell>
-            <TableCell className="text-center">{myData.status}</TableCell>
-            <TableCell className="text-center">{myData.region}</TableCell>
-            <TableCell className="text-center">{myData.capacity}</TableCell>
-            <TableCell className="text-center">{myData.costs}</TableCell>
-            <TableCell className="text-center">{myData.lastEdited}</TableCell>
-            <TableCell className="flex flex-row items-center justify-center gap-8">
-              <Link href={`/contacts/call`}>
-                <PhoneIcon className="size-4 text-emerald-600" />
-              </Link>
-              <EditContactForm />
-              <DeleteContactForm />
-            </TableCell>
-          </TableRow>
-        ) : (
-          contacts.map((item) => (
-            <TableRow key={item.owner}>
-              <TableCell className="text-center">{item.owner}</TableCell>
-              <TableCell className="text-center">{item.status}</TableCell>
-              <TableCell className="text-center">{item.region}</TableCell>
-              <TableCell className="text-center">{item.capacity}</TableCell>
-              <TableCell className="text-center">{item.costs}</TableCell>
-              <TableCell className="text-center">{item.lastEdited}</TableCell>
-              <TableCell className="flex flex-row items-center justify-center gap-8">
-                <Link href={`/contacts/call`}>
-                  <PhoneIcon className="size-4 text-emerald-600" />
-                </Link>
-                <EditContactForm />
-                <DeleteContactForm />
-              </TableCell>
-            </TableRow>
-          ))
-        )}
+        <TableRow>
+          <TableCell className="font-medium">INV001</TableCell>
+          <TableCell>Paid</TableCell>
+          <TableCell>Credit Card</TableCell>
+          <TableCell className="text-right">$250.00</TableCell>
+        </TableRow>
       </TableBody>
     </Table>
   );

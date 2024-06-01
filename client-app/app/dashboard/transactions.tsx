@@ -1,5 +1,14 @@
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { createClient } from "@/utils/supabase/server";
-import { Badge, Button, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from "@tremor/react";
 
 export default async function Transactions() {
   const supabase = createClient();
@@ -7,44 +16,33 @@ export default async function Transactions() {
 
   if (!transactions) return;
 
-  const colors = {
-    "Ready for dispatch": "gray",
-    Cancelled: "rose",
-    Shipped: "emerald",
-  } as { [key: string]: string };
-
   return (
-    <Table className="mt-6">
-      <TableHead>
+    <Table>
+      <TableCaption>A list of your recent invoices.</TableCaption>
+      <TableHeader>
         <TableRow>
-          <TableHeaderCell>Transaction ID</TableHeaderCell>
-          <TableHeaderCell>User</TableHeaderCell>
-          <TableHeaderCell>Item</TableHeaderCell>
-          <TableHeaderCell>Status</TableHeaderCell>
-          <TableHeaderCell className="text-right">Amount</TableHeaderCell>
-          <TableHeaderCell>Link</TableHeaderCell>
+          <TableHead className="w-[100px]">Invoice</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead>Method</TableHead>
+          <TableHead className="text-right">Amount</TableHead>
         </TableRow>
-      </TableHead>
+      </TableHeader>
       <TableBody>
-        {transactions.map((item) => (
-          <TableRow key={item.transactionID}>
-            <TableCell>{item.transactionID}</TableCell>
-            <TableCell>{item.user}</TableCell>
-            <TableCell>{item.item}</TableCell>
-            <TableCell>
-              <Badge color={colors[item.status as string]} size="xs">
-                {item.status}
-              </Badge>
-            </TableCell>
-            <TableCell className="text-right">{item.amount}</TableCell>
-            <TableCell>
-              <Button size="xs" variant="secondary" color="gray">
-                See details
-              </Button>
-            </TableCell>
+        {transactions.map((trans) => (
+          <TableRow key={trans._id}>
+            <TableCell className="font-medium">{trans.amount}</TableCell>
+            <TableCell>{trans.item}</TableCell>
+            <TableCell>{trans.link}</TableCell>
+            <TableCell className="text-right">{trans.user}</TableCell>
           </TableRow>
         ))}
       </TableBody>
+      <TableFooter>
+        <TableRow>
+          <TableCell colSpan={3}>Total</TableCell>
+          <TableCell className="text-right">$2,500.00</TableCell>
+        </TableRow>
+      </TableFooter>
     </Table>
   );
 }

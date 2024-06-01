@@ -28,8 +28,6 @@
     "@radix-ui/react-tabs": "^1.0.4",
     "@supabase/ssr": "^0.3.0",
     "@supabase/supabase-js": "^2.43.4",
-    "@tremor/react": "^3.16.1",
-    "@vercel/kv": "^1.0.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.11",

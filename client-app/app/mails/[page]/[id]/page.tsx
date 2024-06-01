@@ -1,6 +1,6 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Card } from "@/components/ui/card";
 import { DotFilledIcon } from "@radix-ui/react-icons";
-import { Card } from "@tremor/react";
 
 export default function MailDetails() {
   // TODO: Add a mail renderer/parser here !
@@ -8,7 +8,6 @@ export default function MailDetails() {
     <div className="h-full">
       <Card className="h-full rounded-none p-2">
         <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
 
