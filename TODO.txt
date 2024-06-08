@@ -1,9 +1,5 @@
 == not finished due to bundle size ==
 
-- update deps *
-
--> replace tremor with another graph lib (first check its issues about bundle size)
-
 - add remaining features to pages
 
 - add auth and middleware
