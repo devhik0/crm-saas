@@ -45,7 +45,7 @@ export default function AddContactForm() {
           </div>
           <DialogFooter>
             <Button type="submit" className="bg-blue-600">
-              Save changes
+              Add Contact
             </Button>
           </DialogFooter>
         </form>

@@ -1,4 +1,4 @@
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@tremor/react";
 import TaskStatusCardMenu from "./task-status-card-menu";
 import { getTaskStatuses, getTasksByStatus } from "./taskActions";
 import TasksCard from "./tasks-card";

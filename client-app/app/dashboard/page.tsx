@@ -1,67 +1,82 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { createClient } from "@/utils/supabase/server";
+import {
+  Badge,
+  Card,
+  Flex,
+  ProgressBar,
+  Tab,
+  TabGroup,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Text,
+  Title,
+  Tracker,
+  type Color,
+} from "@tremor/react";
+import Categories from "./categories";
+import Transactions from "./transactions";
+import Visitors from "./visitors";
+
+interface Tracker {
+  color: Color;
+  tooltip: string;
+}
 
 export default async function Dashboard() {
   const supabase = createClient();
   const { data: trackers } = await (await supabase).from("trackers").select("*");
 
   if (!trackers) return <>Loading data...</>;
-
   return (
-    <div className=" h-full bg-yellow-600 p-2">
+    <div className=" h-full p-2">
       <h3 className="text-lg">Overview</h3>
-      <Tabs defaultValue="account" className="w-[400px]">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="account">Account</TabsTrigger>
-          <TabsTrigger value="password">Password</TabsTrigger>
-        </TabsList>
-        <TabsContent value="account">
-          <Card>
-            <CardHeader>
-              <CardTitle>Account</CardTitle>
-              <CardDescription>Make changes to your account here. Click save when you re done.</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <div className="space-y-1">
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" defaultValue="Pedro Duarte" />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="username">Username</Label>
-                <Input id="username" defaultValue="@peduarte" />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button>Save changes</Button>
-            </CardFooter>
-          </Card>
-        </TabsContent>
-        <TabsContent value="password">
-          <Card>
-            <CardHeader>
-              <CardTitle>Password</CardTitle>
-              <CardDescription>Change your password here. After saving, you ll be logged out.</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <div className="space-y-1">
-                <Label htmlFor="current">Current password</Label>
-                <Input id="current" type="password" />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="new">New password</Label>
-                <Input id="new" type="password" />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button>Save password</Button>
-            </CardFooter>
-          </Card>
-        </TabsContent>
-      </Tabs>
+      <TabGroup className="mt-6">
+        <TabList>
+          <Tab>Summary</Tab>
+          <Tab>Purchases</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            <Categories />
+            <div className="flex flex-row items-center gap-2 pt-6">
+              <Card className="m-0 flex size-full flex-col gap-2 p-10">
+                <h3 className="text-lg">Target Sales Revenue</h3>
+                <p className="flex items-center justify-between text-tremor-default text-tremor-content dark:text-dark-tremor-content">
+                  <span>$12,699 &bull; {((12699 / 20000) * 100).toPrecision(3)}%</span> <span>$20,000</span>
+                </p>
+                <ProgressBar value={Number(((12699 / 20000) * 100).toPrecision(3))} color="fuchsia" className="mt-3" />
+              </Card>
+
+              <Card className="flex size-full flex-col gap-2">
+                <h3 className="text-lg">Uptime SLA</h3>
+                <p className="flex items-center justify-between text-tremor-default">
+                  <span className="font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong">
+                    allyouneed.com
+                  </span>
+                  <span className="text-tremor-content dark:text-dark-tremor-content">
+                    uptime {((trackers.length / 30) * 100).toPrecision(3)}%
+                  </span>
+                </p>
+                <Tracker data={trackers} className="mt-2" />
+              </Card>
+            </div>
+            <Visitors />
+          </TabPanel>
+          <TabPanel>
+            <div className="mt-6 bg-gray-900 text-gray-300">
+              <Card className="overflow-y-scroll">
+                <Flex justifyContent="start" className="space-x-2">
+                  <Title>Purchases</Title>
+                  <Badge color="gray">8</Badge>
+                </Flex>
+                <Text className="mt-2">Overview of this months purchases</Text>
+                <Transactions />
+              </Card>
+            </div>
+          </TabPanel>
+        </TabPanels>
+      </TabGroup>
     </div>
   );
 }

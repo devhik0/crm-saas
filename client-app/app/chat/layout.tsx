@@ -1,8 +1,8 @@
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card } from "@/components/ui/card";
 import { DotFilledIcon } from "@radix-ui/react-icons";
+import { Card } from "@tremor/react";
 import Link from "next/link";
 import { ReactNode } from "react";
 

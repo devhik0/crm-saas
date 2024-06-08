@@ -6,6 +6,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tables } from "@/utils/supabase/types";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
+import { Textarea } from "@tremor/react";
 import { useState } from "react";
 import { Task } from "./page";
 import { updateTask } from "./taskActions";
@@ -39,7 +40,7 @@ export default function UpdateTaskForm({
                 value={name}
                 onChange={(e) => setName(e.currentTarget.value)}
               />
-              <textarea
+              <Textarea
                 name="description"
                 value={description}
                 placeholder="Task Description"

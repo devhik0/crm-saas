@@ -23,6 +23,7 @@ export default function DeleteContactForm() {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
+          <Button className="bg-gray-600 text-gray-200">Cancel</Button>
           <Button type="submit" className="bg-red-500 text-gray-200">
             Delete
           </Button>

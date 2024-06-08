@@ -1,6 +1,6 @@
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Card } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DotFilledIcon } from "@radix-ui/react-icons";
+import { Card } from "@tremor/react";
 import Link from "next/link";
 
 // todo: add mail renderer / parser html (after integrating mail service)
@@ -15,6 +15,7 @@ export default function MailPage({ params }: { params: { page: string } }) {
           <Link key={key} href={`/mails/${params.page}/${item}`}>
             <Card className="my-2 rounded-none border-l-2 border-blue-600 p-2 transition duration-300 ease-in hover:bg-gray-800">
               <Avatar>
+                <AvatarImage src="https://github.com/shadcn.png" />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
 

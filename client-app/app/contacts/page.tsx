@@ -12,8 +12,8 @@ export default async function Contacts() {
     <div className="mt-10 h-full bg-gray-900 p-2">
       <div className="sm:flex sm:items-center sm:justify-between sm:space-x-10">
         <div>
-          <h3 className="font-semibold">Contacts</h3>
-          {contacts.length}
+          <h3 className="font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">Contacts</h3>
+          <span className="mr-2">{contacts.length}</span>
           total
         </div>
         <AddContactForm />

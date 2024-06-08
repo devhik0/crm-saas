@@ -1,123 +1,367 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Bold, Card, Grid, List, ListItem, Tab, TabGroup, TabList, Text, Title } from "@tremor/react";
 import { useState } from "react";
-import { Categories, industries, keywords, numEmployees, roles } from "./report-data";
 
 export default function Reports() {
+  const Categories = {
+    Interested: "interested",
+    Open: "open",
+    Reply: "reply",
+  };
+
+  const roles = [
+    {
+      name: "Front-End Developer",
+      data: {
+        [Categories.Interested]: {
+          amount: "3,555",
+          share: "37.2%",
+        },
+        [Categories.Open]: {
+          amount: "2,176",
+          share: "17.6%",
+        },
+        [Categories.Reply]: {
+          amount: "1,555",
+          share: "9.1%",
+        },
+      },
+    },
+    {
+      name: "Product Designer",
+      data: {
+        [Categories.Interested]: {
+          amount: "1,280",
+          share: "19.8%",
+        },
+        [Categories.Open]: {
+          amount: "1,499",
+          share: "14.7%",
+        },
+        [Categories.Reply]: {
+          amount: "508",
+          share: "9.8%",
+        },
+      },
+    },
+    {
+      name: "Technical UX-Engineer",
+      data: {
+        [Categories.Interested]: {
+          amount: "1,777",
+          share: "15.8%",
+        },
+        [Categories.Open]: {
+          amount: "1,523",
+          share: "14.2%",
+        },
+        [Categories.Reply]: {
+          amount: "1,432",
+          share: "9.8%",
+        },
+      },
+    },
+    {
+      name: "Product Manager",
+      data: {
+        [Categories.Interested]: {
+          amount: "789",
+          share: "12%",
+        },
+        [Categories.Open]: {
+          amount: "589",
+          share: "10.2%",
+        },
+        [Categories.Reply]: {
+          amount: "345",
+          share: "8.9%",
+        },
+      },
+    },
+  ];
+
+  const industries = [
+    {
+      name: "Internet",
+      data: {
+        [Categories.Interested]: {
+          amount: "1,365",
+          share: "39%",
+        },
+        [Categories.Open]: {
+          amount: "1,245",
+          share: "31.2%",
+        },
+        [Categories.Reply]: {
+          amount: "965",
+          share: "29%",
+        },
+      },
+    },
+    {
+      name: "Healthcare",
+      data: {
+        [Categories.Interested]: {
+          amount: "984",
+          share: "20.1%",
+        },
+        [Categories.Open]: {
+          amount: "765",
+          share: "19.2%",
+        },
+        [Categories.Reply]: {
+          amount: "654",
+          share: "18.3%",
+        },
+      },
+    },
+    {
+      name: "Automotive",
+      data: {
+        [Categories.Interested]: {
+          amount: "789",
+          share: "11.4%",
+        },
+        [Categories.Open]: {
+          amount: "637",
+          share: "10.5%",
+        },
+        [Categories.Reply]: {
+          amount: "537",
+          share: "10.4%",
+        },
+      },
+    },
+    {
+      name: "Education",
+      data: {
+        [Categories.Interested]: {
+          amount: "789",
+          share: "10.1%",
+        },
+        [Categories.Open]: {
+          amount: "534",
+          share: "9.5%",
+        },
+        [Categories.Reply]: {
+          amount: "432",
+          share: "3.4%",
+        },
+      },
+    },
+  ];
+
+  const numEmployees = [
+    {
+      name: "11 - 50",
+      data: {
+        [Categories.Interested]: {
+          amount: "1,650",
+          share: "37.1%",
+        },
+        [Categories.Open]: {
+          amount: "1,465",
+          share: "33.2%",
+        },
+        [Categories.Reply]: {
+          amount: "750",
+          share: "12.4%",
+        },
+      },
+    },
+    {
+      name: "50 - 100",
+      data: {
+        [Categories.Interested]: {
+          amount: "320",
+          share: "21.2%",
+        },
+        [Categories.Open]: {
+          amount: "290",
+          share: "19.2%",
+        },
+        [Categories.Reply]: {
+          amount: "270",
+          share: "10.2%",
+        },
+      },
+    },
+    {
+      name: "100 - 200",
+      data: {
+        [Categories.Interested]: {
+          amount: "107",
+          share: "18.1%",
+        },
+        [Categories.Open]: {
+          amount: "90",
+          share: "10.1%",
+        },
+        [Categories.Reply]: {
+          amount: "83",
+          share: "9.7%",
+        },
+      },
+    },
+    {
+      name: "250 - 500",
+      data: {
+        [Categories.Interested]: {
+          amount: "93",
+          share: "12.1%",
+        },
+        [Categories.Open]: {
+          amount: "87",
+          share: "9.8%",
+        },
+        [Categories.Reply]: {
+          amount: "79",
+          share: "7.2%",
+        },
+      },
+    },
+  ];
+
+  const keywords = [
+    {
+      name: "Dashboard",
+      data: {
+        [Categories.Interested]: {
+          amount: "37",
+          share: "12.1%",
+        },
+        [Categories.Open]: {
+          amount: "23",
+          share: "9.6%",
+        },
+        [Categories.Reply]: {
+          amount: "21",
+          share: "8.1%",
+        },
+      },
+    },
+    {
+      name: "React Library",
+      data: {
+        [Categories.Interested]: {
+          amount: "28",
+          share: "15.1%",
+        },
+        [Categories.Open]: {
+          amount: "12",
+          share: "7.1%",
+        },
+        [Categories.Reply]: {
+          amount: "10",
+          share: "7.0%",
+        },
+      },
+    },
+    {
+      name: "Custom Web Dev",
+      data: {
+        [Categories.Interested]: {
+          amount: "20",
+          share: "9.8%",
+        },
+        [Categories.Open]: {
+          amount: "18",
+          share: "9.4%",
+        },
+        [Categories.Reply]: {
+          amount: "16",
+          share: "8.9%",
+        },
+      },
+    },
+    {
+      name: "Web Applications",
+      data: {
+        [Categories.Interested]: {
+          amount: "15",
+          share: "6.2%",
+        },
+        [Categories.Open]: {
+          amount: "9",
+          share: "4.3%",
+        },
+        [Categories.Reply]: {
+          amount: "7",
+          share: "3.9%",
+        },
+      },
+    },
+  ];
+
   const categoriesList = Object.values(Categories);
-  const [selectedIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const selectedCategory = categoriesList[selectedIndex];
 
   return (
     <Card className="mt-10 h-full">
-      <CardTitle>Most Engaged Audience</CardTitle>
-      <Tabs defaultValue="account" className="w-[400px]">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="account">Account</TabsTrigger>
-          <TabsTrigger value="password">Password</TabsTrigger>
-        </TabsList>
-        <TabsContent value="account">
-          <Card>
-            <CardHeader>
-              <CardTitle>Account</CardTitle>
-              <CardDescription>Make changes to your account here. Click save when you re done.</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <div className="space-y-1">
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" defaultValue="Pedro Duarte" />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="username">Username</Label>
-                <Input id="username" defaultValue="@peduarte" />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button>Save changes</Button>
-            </CardFooter>
-          </Card>
-        </TabsContent>
-        <TabsContent value="password">
-          <Card>
-            <CardHeader>
-              <CardTitle>Password</CardTitle>
-              <CardDescription>Change your password here. After saving, you ll be logged out.</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <div className="space-y-1">
-                <Label htmlFor="current">Current password</Label>
-                <Input id="current" type="password" />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="new">New password</Label>
-                <Input id="new" type="password" />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button>Save password</Button>
-            </CardFooter>
-          </Card>
-        </TabsContent>
-      </Tabs>
-      <div className="gap-x-8 gap-y-2">
+      <Title>Most Engaged Audience</Title>
+      <TabGroup className="mt-10" index={selectedIndex} onIndexChange={setSelectedIndex}>
+        <TabList variant="line">
+          <Tab>Interested Rate</Tab>
+          <Tab>Open Rate</Tab>
+          <Tab>Reply Rate</Tab>
+        </TabList>
+      </TabGroup>
+      <Grid numItemsMd={2} className="gap-x-8 gap-y-2">
         <div>
-          <h3 className="mt-8">Roles</h3>
-          <ul className="mt-2">
+          <Title className="mt-8">Roles</Title>
+          <List className="mt-2">
             {roles.map((item) => (
-              <li key={item.name}>
-                <p>{item.name}</p>
-                <p>
-                  <b>{item.data[selectedCategory].amount}</b> {`(${item.data[selectedCategory].share})`}
-                </p>
-              </li>
+              <ListItem key={item.name}>
+                <Text>{item.name}</Text>
+                <Text>
+                  <Bold>{item.data[selectedCategory].amount}</Bold> {`(${item.data[selectedCategory].share})`}
+                </Text>
+              </ListItem>
             ))}
-          </ul>
+          </List>
         </div>
         <div>
-          <h3 className="mt-8">Industry</h3>
-          <ul className="mt-2">
+          <Title className="mt-8">Industry</Title>
+          <List className="mt-2">
             {industries.map((item) => (
-              <li key={item.name}>
-                <p>{item.name}</p>
-                <p>
-                  <b>{item.data[selectedCategory].amount}</b> {`(${item.data[selectedCategory].share})`}
-                </p>
-              </li>
+              <ListItem key={item.name}>
+                <Text>{item.name}</Text>
+                <Text>
+                  <Bold>{item.data[selectedCategory].amount}</Bold> {`(${item.data[selectedCategory].share})`}
+                </Text>
+              </ListItem>
             ))}
-          </ul>
+          </List>
         </div>
         <div>
-          <h3 className="mt-8">Number of Employees</h3>
-          <ul className="mt-2">
+          <Title className="mt-8">Number of Employees</Title>
+          <List className="mt-2">
             {numEmployees.map((item) => (
-              <li key={item.name}>
-                <p>{item.name}</p>
-                <p>
-                  <b>{item.data[selectedCategory].amount}</b> {`(${item.data[selectedCategory].share})`}
-                </p>
-              </li>
+              <ListItem key={item.name}>
+                <Text>{item.name}</Text>
+                <Text>
+                  <Bold>{item.data[selectedCategory].amount}</Bold> {`(${item.data[selectedCategory].share})`}
+                </Text>
+              </ListItem>
             ))}
-          </ul>
+          </List>
         </div>
         <div>
-          <h3 className="mt-8">Keywords</h3>
-          <ul className="mt-2">
+          <Title className="mt-8">Keywords</Title>
+          <List className="mt-2">
             {keywords.map((item) => (
-              <li key={item.name}>
-                <p>{item.name}</p>
-                <p>
-                  <b>{item.data[selectedCategory].amount}</b> {`(${item.data[selectedCategory].share})`}
-                </p>
-              </li>
+              <ListItem key={item.name}>
+                <Text>{item.name}</Text>
+                <Text>
+                  <Bold>{item.data[selectedCategory].amount}</Bold> {`(${item.data[selectedCategory].share})`}
+                </Text>
+              </ListItem>
             ))}
-          </ul>
+          </List>
         </div>
-      </div>
+      </Grid>
     </Card>
   );
 }

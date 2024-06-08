@@ -15,26 +15,26 @@ export default async function ContactsTable() {
   return (
     <Table className="mt-8">
       <TableHead>
-        <TableRow className="border-tremor-border dark:border-dark-tremor-border border-b">
-          <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong text-center">
+        <TableRow className="border-b border-tremor-border dark:border-dark-tremor-border">
+          <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
             Name
           </TableHeaderCell>
-          <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong text-center">
+          <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
             Email
           </TableHeaderCell>
-          <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong text-center">
+          <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
             Company
           </TableHeaderCell>
-          <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong text-center">
+          <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
             Title
           </TableHeaderCell>
-          <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong text-center">
+          <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
             Status
           </TableHeaderCell>
-          <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong text-center">
+          <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
             Last called
           </TableHeaderCell>
-          <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong text-center">
+          <TableHeaderCell className="text-center text-tremor-content-strong dark:text-dark-tremor-content-strong">
             Actions
           </TableHeaderCell>
         </TableRow>

@@ -12,5 +12,5 @@
     "@typescript-eslint/no-explicit-any": "error"
   },
   "root": true,
-  "ignorePatterns": ["**/*.config", "components"]
+  "ignorePatterns": ["**/*.config", "components", "node_modules", ".next"]
 }

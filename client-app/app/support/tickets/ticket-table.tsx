@@ -1,7 +1,7 @@
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Table, TableBody, TableCell, TableHead, TableRow } from "@/components/ui/table";
 import { createClient } from "@/utils/supabase/server";
 import { DotFilledIcon, DotsHorizontalIcon } from "@radix-ui/react-icons";
+import { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from "@tremor/react";
 import Link from "next/link";
 
 export type Ticket = {
@@ -22,19 +22,33 @@ export default async function TicketTable({ status }: { status?: "open" | "waiti
     <div className="mt-1 bg-gray-900 p-2">
       <div className=" sm:flex sm:items-center sm:justify-between sm:space-x-10">
         <div>
-          <h3>Tickets</h3>
-          <p>Overview of your all tickets</p>
+          <h3 className="font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">Tickets</h3>
+          <p className="mt-1 text-tremor-default leading-6 text-tremor-content dark:text-dark-tremor-content">
+            Overview of your all tickets
+          </p>
         </div>
       </div>
       <Table className="mt-8">
         <TableHead>
-          <TableRow>
-            <TableHead>Requester</TableHead>
-            <TableHead>Subject</TableHead>
-            <TableHead>Asssignee</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Last message</TableHead>
-            <TableHead>Actions</TableHead>
+          <TableRow className="border-b border-tremor-border dark:border-dark-tremor-border">
+            <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
+              Requester
+            </TableHeaderCell>
+            <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
+              Subject
+            </TableHeaderCell>
+            <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
+              Asssignee
+            </TableHeaderCell>
+            <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
+              Status
+            </TableHeaderCell>
+            <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
+              Last message
+            </TableHeaderCell>
+            <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
+              Actions
+            </TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -50,16 +64,16 @@ export default async function TicketTable({ status }: { status?: "open" | "waiti
 
                   return (
                     <TableRow key={item.requester}>
-                      <TableCell>
+                      <TableCell className="font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong">
                         <Link href={`/support/tickets/${item.id}`}>{item.requester}</Link>
                       </TableCell>
-                      <TableCell className="text-center">{item.subject}</TableCell>
-                      <TableCell className="text-center">{item.assignee}</TableCell>
+                      <TableCell>{item.subject}</TableCell>
+                      <TableCell>{item.assignee}</TableCell>
                       <TableCell className="flex flex-row items-center gap-2">
-                        <DotFilledIcon className={ticketColors[item.status as string]} />
-                        <span className={ticketColors[item.status as string]}>{item.status}</span>
+                        <DotFilledIcon className={ticketColors[item.status]} />
+                        <span className={ticketColors[item.status]}>{item.status}</span>
                       </TableCell>
-                      <TableCell className="text-center">{item.lastEdited}</TableCell>
+                      <TableCell>{item.lastEdited}</TableCell>
                       <TableCell className="flex items-center justify-center">
                         <Popover>
                           <PopoverTrigger>
@@ -87,14 +101,14 @@ export default async function TicketTable({ status }: { status?: "open" | "waiti
 
                 return (
                   <TableRow key={item.requester}>
-                    <TableCell>
+                    <TableCell className="font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong">
                       <Link href={`/support/tickets/${item.id}`}>{item.requester}</Link>
                     </TableCell>
                     <TableCell>{item.subject}</TableCell>
                     <TableCell>{item.assignee}</TableCell>
                     <TableCell className="flex flex-row items-center gap-2">
-                      <DotFilledIcon className={ticketColors[item.status as string]} />
-                      <span className={ticketColors[item.status as string]}>{item.status}</span>
+                      <DotFilledIcon className={ticketColors[item.status]} />
+                      <span className={ticketColors[item.status]}>{item.status}</span>
                     </TableCell>
                     <TableCell>{item.lastEdited}</TableCell>
                     <TableCell className="flex items-center justify-center">

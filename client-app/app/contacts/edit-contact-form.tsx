@@ -31,6 +31,7 @@ export default function EditContactForm() {
             <Input
               id="name"
               className="col-span-3"
+              placeholder="John Doe"
               // value={item.owner}
               // onChange={(e) => setValue(e.target.value)}
             />
@@ -39,11 +40,13 @@ export default function EditContactForm() {
             <Label htmlFor="username" className="text-right">
               Username
             </Label>
-            <Input id="username" defaultValue="@peduarte" className="col-span-3" />
+            <Input id="username" placeholder="johndoe" className="col-span-3" />
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit">Save changes</Button>
+          <Button type="submit" className="bg-blue-600">
+            Save changes
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

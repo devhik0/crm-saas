@@ -1,9 +1,8 @@
 import { AvatarIcon, ClockIcon } from "@radix-ui/react-icons";
+import { Badge, Card } from "@tremor/react";
 import dayjs from "dayjs";
 import TaskMenu from "./task-menu";
 import { getTasks, getTasksByStatus } from "./taskActions";
-import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
 
 export default async function TasksCard({ status }: { status: string }) {
   const tasks = await getTasks();

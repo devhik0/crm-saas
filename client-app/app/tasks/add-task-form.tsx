@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { PlusIcon } from "@heroicons/react/24/outline";
+import { Textarea } from "@tremor/react";
 import { addTask, getTaskCategories, getTaskStatuses } from "./taskActions";
 
 export default async function AddTaskForm() {
@@ -22,7 +23,7 @@ export default async function AddTaskForm() {
           <div className="space-y-2">
             <form action={addTask}>
               <Input name="name" placeholder="Task Name" />
-              <textarea name="description" placeholder="Task Description" />
+              <Textarea name="description" placeholder="Task Description" />
               <Select name="category">
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Category" />
