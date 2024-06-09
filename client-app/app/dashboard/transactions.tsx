@@ -1,5 +1,5 @@
-import {createClient} from "@/utils/supabase/server";
-import {Badge, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow} from "@tremor/react";
+import { createClient } from "@/utils/supabase/server";
+import { Badge, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from "@tremor/react";
 
 export default async function Transactions() {
   const supabase = createClient();
@@ -22,7 +22,6 @@ export default async function Transactions() {
           <TableHeaderCell>Item</TableHeaderCell>
           <TableHeaderCell>Status</TableHeaderCell>
           <TableHeaderCell className="text-right">Amount</TableHeaderCell>
-          <TableHeaderCell>Link</TableHeaderCell>
         </TableRow>
       </TableHead>
       <TableBody>
