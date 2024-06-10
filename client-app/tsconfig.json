@@ -25,5 +25,5 @@
     }
   },
   "include": ["**/*.tsx", "**/*.ts", ".next/types/**/*.ts", "services/chat-svc/chat-server.js"],
-  "exclude": ["node_modules"]
+  "exclude": ["**/node_modules", "**/.*/"]
 }
