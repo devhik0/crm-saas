@@ -1,4 +1,3 @@
-/* eslint-disable tailwindcss/no-custom-classname */
 import { createClient } from "@/utils/supabase/server";
 import { PhoneIcon } from "@heroicons/react/24/outline";
 import { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from "@tremor/react";
