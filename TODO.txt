@@ -1,5 +1,3 @@
-== not finished due to bundle size ==
-
 - add remaining features to pages <--
 
 - add auth and middleware
