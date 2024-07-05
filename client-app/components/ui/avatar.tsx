@@ -1,5 +1,7 @@
 "use client";
 
+//todo: remove generics and optmize typescript from github issue
+
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
 
 import { cn } from "@/lib/utils";

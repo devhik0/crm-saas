@@ -40,7 +40,7 @@ export default async function ContactsTable() {
       </TableHead>
       <TableBody>
         {contacts.map((item) => (
-          <TableRow key={item.owner}>
+          <TableRow key={item._id}>
             <TableCell className="text-center">{item.owner}</TableCell>
             <TableCell className="text-center">{item.status}</TableCell>
             <TableCell className="text-center">{item.region}</TableCell>

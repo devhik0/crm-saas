@@ -13,7 +13,6 @@ export default async function TaskMenu({ item }: { item: Task }) {
 
   return (
     <Popover>
-      <div>something</div>
       <PopoverTrigger asChild>
         <DotsHorizontalIcon className="size-5 self-end" />
       </PopoverTrigger>
