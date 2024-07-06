@@ -1,22 +1,5 @@
 import { createClient } from "@/utils/supabase/server";
-import {
-  Badge,
-  Card,
-  Flex,
-  ProgressBar,
-  Tab,
-  TabGroup,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Text,
-  Title,
-  Tracker,
-  type Color,
-} from "@tremor/react";
-import Categories from "./categories";
-import Transactions from "./transactions";
-import Visitors from "./visitors";
+import { Tracker, type Color } from "@tremor/react";
 
 interface Tracker {
   color: Color;
@@ -31,7 +14,8 @@ export default async function Dashboard() {
   return (
     <div className=" h-full p-2">
       <h3 className="text-lg">Overview</h3>
-      <TabGroup className="mt-6">
+      {/* //todo: fix that client/server issue from here <- */}
+      {/* <TabGroup className="mt-6">
         <TabList>
           <Tab>Summary</Tab>
           <Tab>Purchases</Tab>
@@ -76,7 +60,7 @@ export default async function Dashboard() {
             </div>
           </TabPanel>
         </TabPanels>
-      </TabGroup>
+      </TabGroup> */}
     </div>
   );
 }
