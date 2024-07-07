@@ -1,7 +1,5 @@
 "use client";
 
-//todo: remove generics and optmize typescript from github issue
-
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
 
 import { cn } from "@/lib/utils";
@@ -40,3 +38,4 @@ const AvatarFallback = forwardRef<
 AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
 
 export { Avatar, AvatarFallback, AvatarImage };
+
