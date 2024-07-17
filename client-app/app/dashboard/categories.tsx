@@ -1,5 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import { BadgeDelta, Card, Flex, Grid, Metric, Text } from "@tremor/react";
+import Link from "next/link";
+// import { BadgeDelta, Card, Flex, Grid, Metric, Text } from "@tremor/react";
 
 export default async function Categories() {
   const supabase = createClient();
@@ -7,23 +9,25 @@ export default async function Categories() {
 
   if (!categories) return <>Loading data...</>;
 
-  console.log("categories: ", categories);
+  // console.log("categories: ", categories);
 
   // todo: make categories clickable and navigate each to its report at /reports
 
   return (
     <Grid numItemsSm={2} numItemsLg={3} className="gap-6">
       {categories.map((item) => (
-        <Card key={item.title}>
-          <Flex alignItems="start">
-            <Text>{item.title}</Text>
-            <BadgeDelta deltaType={item.deltaType}>{item.delta}</BadgeDelta>
-          </Flex>
-          <Flex justifyContent="start" alignItems="baseline" className="space-x-3 truncate">
-            <Metric>{item.metric}</Metric>
-            <Text className="truncate">from {item.metricPrev}</Text>
-          </Flex>
-        </Card>
+        <Link key={item.title} href={`/reports`}>
+          <Card>
+            <Flex alignItems="start">
+              <Text>{item.title}</Text>
+              <BadgeDelta deltaType={item.deltaType}>{item.delta}</BadgeDelta>
+            </Flex>
+            <Flex justifyContent="start" alignItems="baseline" className="space-x-3 truncate">
+              <Metric>{item.metric}</Metric>
+              <Text className="truncate">from {item.metricPrev}</Text>
+            </Flex>
+          </Card>
+        </Link>
       ))}
     </Grid>
   );

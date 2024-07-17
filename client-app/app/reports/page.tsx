@@ -1,84 +1,52 @@
 "use client";
 
-import { Bold, Card, Grid, List, ListItem, Tab, TabGroup, TabList, Text, Title } from "@tremor/react";
-import { useState } from "react";
-import { industries, keywords, numEmployees, roles } from "./report-data";
+import { dataFormatter } from "@/lib/utils";
+import { createClient } from "@/utils/supabase/client";
+import { Tables } from "@/utils/supabase/types";
+import { AreaChart, Card } from "@tremor/react";
+import { useEffect, useState } from "react";
 
 export default function Reports() {
-  const Categories = {
-    Interested: "interested",
-    Open: "open",
-    Reply: "reply",
+  // todo: continue for other categories like profit, customers
+  const supabase = createClient();
+
+  const [categories, setCategories] = useState<Tables<"categories">[]>([]);
+  const [loading, setLoading] = useState(false);
+  const getCategories = async () => {
+    const { data: categories1 } =
+      (await supabase.from("categories").select("*").order("metric", {
+        ascending: true,
+      })) || [];
+    setCategories(categories1 as Tables<"categories">[]);
+    setLoading(true);
   };
 
-  const categoriesList = Object.values(Categories);
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const selectedCategory = categoriesList[selectedIndex];
+  // const getProfits = async
+
+  useEffect(() => {
+    getCategories();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (!loading) return;
+  console.log("CAT: ", categories[0].metricPrev);
+  const chartData = [
+    { date: "Jan 23", Sales: categories[0].metricPrev.slice(2) },
+    { date: "Jun 24", Sales: categories[0].metric.slice(2) },
+  ];
 
   return (
     <Card className="mt-10 h-full">
-      <Title>Most Engaged Audience</Title>
-      <TabGroup className="mt-10" index={selectedIndex} onIndexChange={setSelectedIndex}>
-        <TabList variant="line">
-          <Tab>Interested Rate</Tab>
-          <Tab>Open Rate</Tab>
-          <Tab>Reply Rate</Tab>
-        </TabList>
-      </TabGroup>
-      <Grid numItemsMd={2} className="gap-x-8 gap-y-2">
-        <div>
-          <Title className="mt-8">Roles</Title>
-          <List className="mt-2">
-            {roles.map((item) => (
-              <ListItem key={item.name}>
-                <Text>{item.name}</Text>
-                <Text>
-                  <Bold>{item.data[selectedCategory].amount}</Bold> {`(${item.data[selectedCategory].share})`}
-                </Text>
-              </ListItem>
-            ))}
-          </List>
-        </div>
-        <div>
-          <Title className="mt-8">Industry</Title>
-          <List className="mt-2">
-            {industries.map((item) => (
-              <ListItem key={item.name}>
-                <Text>{item.name}</Text>
-                <Text>
-                  <Bold>{item.data[selectedCategory].amount}</Bold> {`(${item.data[selectedCategory].share})`}
-                </Text>
-              </ListItem>
-            ))}
-          </List>
-        </div>
-        <div>
-          <Title className="mt-8">Number of Employees</Title>
-          <List className="mt-2">
-            {numEmployees.map((item) => (
-              <ListItem key={item.name}>
-                <Text>{item.name}</Text>
-                <Text>
-                  <Bold>{item.data[selectedCategory].amount}</Bold> {`(${item.data[selectedCategory].share})`}
-                </Text>
-              </ListItem>
-            ))}
-          </List>
-        </div>
-        <div>
-          <Title className="mt-8">Keywords</Title>
-          <List className="mt-2">
-            {keywords.map((item) => (
-              <ListItem key={item.name}>
-                <Text>{item.name}</Text>
-                <Text>
-                  <Bold>{item.data[selectedCategory].amount}</Bold> {`(${item.data[selectedCategory].share})`}
-                </Text>
-              </ListItem>
-            ))}
-          </List>
-        </div>
-      </Grid>
+      <AreaChart
+        className="h-80"
+        data={chartData}
+        index="date"
+        categories={["Sales"]}
+        colors={["emerald"]}
+        valueFormatter={dataFormatter}
+        yAxisWidth={60}
+        showYAxis={false}
+      />
     </Card>
   );
 }
