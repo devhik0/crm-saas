@@ -7,6 +7,10 @@ export default async function Categories() {
 
   if (!categories) return <>Loading data...</>;
 
+  console.log("categories: ", categories);
+
+  // todo: make categories clickable and navigate each to its report at /reports
+
   return (
     <Grid numItemsSm={2} numItemsLg={3} className="gap-6">
       {categories.map((item) => (
