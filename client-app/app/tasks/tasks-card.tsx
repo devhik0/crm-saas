@@ -20,7 +20,7 @@ export default async function TasksCard({ status }: { status: string }) {
               <TaskMenu item={item} />
               <h4 className="text-sm">{item.name}</h4>
               <p className="text-xs text-gray-500">{item.description}</p>
-              <div className="flex flex-row items-center justify-between">
+              <div className="flex flex-row items-center justify-between gap-4">
                 <Badge className="bg-blue-600">{item.task_categories?.name}</Badge>
                 <AvatarIcon className="size-4" />
                 <div className="flex flex-row items-center gap-1">

@@ -15,7 +15,7 @@ export const valueFormatter = (number: number | bigint) => Intl.NumberFormat("us
 export const percentageFormatter = (value: number) =>
   `${Intl.NumberFormat("us")
     .format(value * 100)
-    .toString()}%`;
+    .toString().slice(0, 4)}%`;
 
 export type Visitor = {
   Month: string;

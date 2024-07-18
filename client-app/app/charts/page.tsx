@@ -45,6 +45,8 @@ export default function Charts() {
     { date: "Mar 24", "IPhone 12": 3322, "Red Sofa": 219 },
     { date: "Apr 24", "IPhone 12": 3470, "Red Sofa": 210 },
     { date: "May 24", "IPhone 12": 3475, "Red Sofa": 181 },
+    { date: "Jun 24", "IPhone 12": 3405, "Red Sofa": 81 },
+    { date: "Jul 24", "IPhone 12": 3205, "Red Sofa": 41 },
   ];
 
   return (

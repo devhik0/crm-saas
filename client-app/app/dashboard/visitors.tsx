@@ -47,10 +47,11 @@ export default function Visitors() {
                 data={visitors}
                 index="Month"
                 categories={["Visitors"]}
-                colors={["blue"]}
+                colors={["emerald"]}
                 valueFormatter={numberFormatter}
                 showLegend={false}
                 yAxisWidth={50}
+                curveType="natural"
               />
             </TabPanel>
             <TabPanel className="p-6">
@@ -59,10 +60,11 @@ export default function Visitors() {
                 data={visitors}
                 index="Month"
                 categories={["Page Views"]}
-                colors={["blue"]}
+                colors={["indigo"]}
                 valueFormatter={numberFormatter}
                 showLegend={false}
                 yAxisWidth={50}
+                curveType="natural"
               />
             </TabPanel>
             <TabPanel className="p-6">
@@ -71,10 +73,11 @@ export default function Visitors() {
                 data={visitors}
                 index="Month"
                 categories={["Bounce Rate"]}
-                colors={["blue"]}
+                colors={["rose"]}
                 valueFormatter={percentageFormatter}
                 showLegend={false}
                 yAxisWidth={40}
+                curveType="natural"
               />
             </TabPanel>
           </TabPanels>

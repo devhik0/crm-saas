@@ -32,20 +32,12 @@ export default async function TaskStatusCards() {
   if (!taskStatuses || !taskStatusData) return <>Loading data...</>;
 
   return (
-    <div className="mt-2 flex flex-row items-start gap-6">
-      <div className="mt-2 flex w-1/4 flex-row items-start gap-6">
-        {/* {taskStatuses.map((item, idx) => {
-        return ( */}
-        <div
-          // key={idx}
-          className="flex w-full flex-col items-center gap-4 rounded-md bg-gray-800 p-2"
-        >
-          <div className="flex w-full flex-row items-center justify-between gap-4">
+    <div className="mt-2 flex flex-row items-start justify-around gap-6">
+      <div className="mt-2 flex flex-row gap-6">
+        <div className="flex flex-col items-center gap-4 rounded-md bg-gray-800 p-2">
+          <div className="flex w-full flex-row items-center justify-between gap-4 px-2">
             <div className="flex flex-row items-center gap-2">
-              <h3 className="text-base">
-                {/* {item.name} */}
-                TODO
-              </h3>
+              <h3 className="text-base">TODO</h3>
               <Badge className="rounded-full bg-gray-300 text-gray-800">{tasks_status_td_f?.length}</Badge>
             </div>
             <div className="mr-1 flex flex-row items-center gap-2">
@@ -54,22 +46,12 @@ export default async function TaskStatusCards() {
           </div>
           <TasksCard status={"TODO"} />
         </div>
-        {/* );
-      })} */}
       </div>
-      <div className="mt-2 flex w-1/4 flex-row items-center gap-6">
-        {/* {taskStatuses.map((item, idx) => {
-        return ( */}
-        <div
-          // key={idx}
-          className="flex w-full flex-col items-center gap-4 rounded-md bg-gray-800 p-2"
-        >
-          <div className="flex w-full flex-row items-center justify-between gap-4">
+      <div className="mt-2 flex flex-row gap-6">
+        <div className="flex flex-col items-center gap-4 rounded-md bg-gray-800 p-2">
+          <div className="flex w-full flex-row items-center justify-between gap-4 px-2">
             <div className="flex flex-row items-center gap-2">
-              <h3 className="text-base">
-                {/* {item.name} */}
-                IN PROGRESS
-              </h3>
+              <h3 className="text-base">IN PROGRESS</h3>
               <Badge className="rounded-full bg-gray-300 text-gray-800">{tasks_status_inp_f?.length}</Badge>
             </div>
             <div className="mr-1 flex flex-row items-center gap-2">
@@ -78,22 +60,12 @@ export default async function TaskStatusCards() {
           </div>
           <TasksCard status={"IN PROGRESS"} />
         </div>
-        {/* );
-      })} */}
       </div>
-      <div className="mt-2 flex w-1/4 flex-row items-center gap-6">
-        {/* {taskStatuses.map((item, idx) => {
-        return ( */}
-        <div
-          // key={idx}
-          className="flex w-full flex-col items-center gap-4 rounded-md bg-gray-800 p-2"
-        >
-          <div className="flex w-full flex-row items-center justify-between gap-4">
+      <div className="mt-2 flex flex-row gap-6">
+        <div className="flex flex-col items-center gap-4 rounded-md bg-gray-800 p-2">
+          <div className="flex w-full flex-row items-center justify-between gap-4 px-2">
             <div className="flex flex-row items-center gap-2">
-              <h3 className="text-base">
-                {/* {item.name} */}
-                REVIEW
-              </h3>
+              <h3 className="text-base">REVIEW</h3>
               <Badge className="rounded-full bg-gray-300 text-gray-800">{tasks_status_rw_f?.length}</Badge>
             </div>
             <div className="mr-1 flex flex-row items-center gap-2">
@@ -102,22 +74,12 @@ export default async function TaskStatusCards() {
           </div>
           <TasksCard status={"REVIEW"} />
         </div>
-        {/* );
-      })} */}
       </div>
-      <div className="mt-2 flex w-1/4 flex-row items-center gap-6">
-        {/* {taskStatuses.map((item, idx) => {
-        return ( */}
-        <div
-          // key={idx}
-          className="flex w-full flex-col items-center gap-4 rounded-md bg-gray-800 p-2"
-        >
-          <div className="flex w-full flex-row items-center justify-between gap-4">
+      <div className="mt-2 flex flex-row gap-6">
+        <div className="flex flex-col items-center gap-4 rounded-md bg-gray-800 p-2">
+          <div className="flex w-full flex-row items-center justify-between gap-4 px-2">
             <div className="flex flex-row items-center gap-2">
-              <h3 className="text-base">
-                {/* {item.name} */}
-                DONE
-              </h3>
+              <h3 className="text-base">DONE</h3>
               <Badge className="rounded-full bg-gray-300 text-gray-800">{tasks_status_dn_f?.length}</Badge>
             </div>
             <div className="mr-1 flex flex-row items-center gap-2">
@@ -126,8 +88,6 @@ export default async function TaskStatusCards() {
           </div>
           <TasksCard status={"DONE"} />
         </div>
-        {/* );
-      })} */}
       </div>
     </div>
   );

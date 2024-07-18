@@ -14,7 +14,7 @@ export type Task = Tables<"tasks"> & {
 export default function Tasks() {
   // todo: add drag n drop to tasks
   return (
-    <div className="mt-10 flex flex-row justify-between gap-2 bg-gray-900 p-2">
+    <div className="m-4 p-2">
       <div className="w-full">
         <div className="flex flex-col">
           <div className="flex flex-row items-center justify-end">

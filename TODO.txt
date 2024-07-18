@@ -1,6 +1,6 @@
-- add remaining features to pages <--
+- add auth and middleware <-- (find an auth solution and features like SSO, MFA)
 
-- add auth and middleware
+- add remaining features to pages
 
 - add integrations (calendar, mail, files for many vendors like google, microsoft ..)
 
