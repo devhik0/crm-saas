@@ -13,7 +13,7 @@ export default async function TicketDetails({ params }: { params: { id: string }
 
   const ticketId = params.id;
   return (
-    <div className="m-4 rounded-md bg-gray-800 p-2">
+    <div className="m-4 rounded-md p-2 dark:bg-gray-800">
       <div className="flex w-full flex-row justify-between">
         <h3 className="mb-2">Ticket Details for {ticketId}</h3>
         <Link href={`/support/tickets`}>

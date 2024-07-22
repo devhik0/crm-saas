@@ -11,9 +11,9 @@ import { ReactNode } from "react";
 
 export default function DetailsLayout({ children, params }: { children: ReactNode; params: { page: string } }) {
   return (
-    <div className="flex size-full flex-col gap-1 bg-gray-900">
-      <div className="flex w-full items-center justify-between gap-2 bg-gray-800">
-        <div className="flex flex-row justify-center gap-6 bg-gray-700 p-2">
+    <div className="flex size-full flex-col gap-1 dark:bg-gray-900">
+      <div className="flex w-full items-center justify-between gap-2 dark:bg-gray-800">
+        <div className="flex flex-row justify-center gap-6 p-2 dark:bg-gray-700">
           <ArchiveBoxArrowDownIcon className="size-5" />
           <NoSymbolIcon className="size-5" />
           <ArrowUturnLeftIcon className="size-5" />

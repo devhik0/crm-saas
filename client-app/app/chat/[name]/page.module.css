@@ -12,7 +12,7 @@
   height: 2rem;
   width: 15rem;
   padding: 5px;
-  @apply bg-gray-800;
+  @apply dark:bg-gray-800;
 }
 
 .main_button {

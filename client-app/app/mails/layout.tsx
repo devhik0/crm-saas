@@ -11,7 +11,7 @@ import { ReactNode } from "react";
 
 export default function MailsLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="mt-10 flex h-full flex-row gap-1 border-2 border-gray-800 bg-gray-900">
+    <div className="mt-10 flex h-full flex-row gap-1 border-2 dark:border-gray-800 dark:bg-gray-900">
       <div className="h-full w-[12%] border-r-2 border-blue-600">
         {/* //* Folder list  */}
         <div className="">
@@ -26,7 +26,7 @@ export default function MailsLayout({ children }: { children: ReactNode }) {
             return (
               <div
                 key={idx}
-                className="border-l-2 border-gray-500 bg-gray-800 hover:border-l-blue-600 hover:text-blue-600 active:text-blue-600"
+                className="border-l-2 hover:border-l-blue-600 hover:text-blue-600 active:text-blue-600 dark:border-gray-500 dark:bg-gray-800"
               >
                 <Link href={`/mails/${item.page.toLocaleLowerCase()}`}>
                   <li className="mb-1 flex gap-2 p-2 hover:text-blue-600">

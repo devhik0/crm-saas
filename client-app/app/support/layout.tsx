@@ -1,7 +1,8 @@
 import { TicketIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { ReactNode } from "react";
 
-export default function SupportLayout({ children }: { children: React.ReactNode }) {
+export default function SupportLayout({ children }: { children: ReactNode }) {
   const routes = [
     { page: "All tickets", link: "/support/tickets", icon: <TicketIcon className="size-5 text-gray-500" /> },
     { page: "Open", link: "/support/tickets?state=open", icon: <TicketIcon className="size-5 text-blue-600" /> },
@@ -14,14 +15,14 @@ export default function SupportLayout({ children }: { children: React.ReactNode 
   ];
 
   return (
-    <div className="my-2 mt-10 flex h-full flex-row gap-4 bg-gray-900 p-2">
+    <div className="my-2 mt-10 flex h-full flex-row gap-4 p-2 dark:bg-gray-900">
       <div className="">
         <h3 className="text-lg">Tickets</h3>
-        <div className="p-1 text-gray-300">
+        <div className="p-1">
           {routes.map((item, idx) => (
             <div
               key={idx}
-              className="p-2 text-gray-300 transition duration-500 hover:border-l-2 hover:border-l-[#879ed8] active:border-l-2 active:border-l-[#879ed8]"
+              className=" p-2 transition duration-500 hover:border-l-2 hover:border-l-[#879ed8] active:border-l-2 active:border-l-[#879ed8]"
             >
               <Link href={item.link} className="flex items-center justify-between gap-4">
                 {item.icon} <span>{item.page}</span>

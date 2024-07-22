@@ -26,10 +26,10 @@ export default async function Transactions() {
   } as { [key: string]: string };
 
   return (
-    <div className="mt-6 bg-gray-900 text-gray-300">
+    <div className="mt-6">
       <Card className="overflow-y-scroll">
         <Flex justifyContent="between" className="space-x-2">
-          <div className="flex flex-row gap-2 items-center">
+          <div className="flex flex-row items-center gap-2">
             <Title>Purchases</Title>
             <Badge color="blue">{transactions.length}</Badge>
           </div>

@@ -9,9 +9,9 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { deleteTask } from "./taskActions";
 import { TrashIcon } from "@radix-ui/react-icons";
 import { Task } from "./page";
+import { deleteTask } from "./taskActions";
 
 export default function DeleteTaskForm({ item }: { item: Task }) {
   return (
@@ -19,7 +19,7 @@ export default function DeleteTaskForm({ item }: { item: Task }) {
       <DialogTrigger>
         <TrashIcon className="size-5 text-red-600" />
       </DialogTrigger>
-      <DialogContent className="border-none bg-gray-900">
+      <DialogContent className="border-none bg-gray-100 dark:bg-gray-900 dark:text-gray-300">
         <DialogHeader>
           <DialogTitle>Are you absolutely sure?</DialogTitle>
           <DialogDescription>

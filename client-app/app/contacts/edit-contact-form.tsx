@@ -18,7 +18,7 @@ export default function EditContactForm() {
       <DialogTrigger>
         <PencilSquareIcon className="size-4 text-orange-600" />
       </DialogTrigger>
-      <DialogContent className="bg-gray-900 sm:max-w-[425px]">
+      <DialogContent className="bg-gray-100 dark:bg-gray-900 dark:text-gray-300 sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Edit Contact</DialogTitle>
           <DialogDescription>Make changes to your Contact here. Click save when you done.</DialogDescription>

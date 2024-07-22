@@ -19,7 +19,7 @@ export default async function TicketTable({ status }: { status?: "open" | "waiti
   if (!helpTickets) return;
 
   return (
-    <div className="mt-1 bg-gray-900 p-2">
+    <div className="mt-1 p-2 dark:bg-gray-900">
       <div className=" sm:flex sm:items-center sm:justify-between sm:space-x-10">
         <div>
           <h3 className="font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">Tickets</h3>
@@ -79,7 +79,7 @@ export default async function TicketTable({ status }: { status?: "open" | "waiti
                           <PopoverTrigger>
                             <DotsHorizontalIcon className="size-5" />
                           </PopoverTrigger>
-                          <PopoverContent className=" flex w-full flex-col gap-2 border-gray-800 bg-gray-900">
+                          <PopoverContent className=" flex w-full flex-col gap-2 border-gray-800 dark:bg-gray-900 dark:text-gray-300">
                             <Link href={`/support/tickets/${item.id}`}>
                               <span>View Details</span>
                             </Link>
@@ -116,7 +116,7 @@ export default async function TicketTable({ status }: { status?: "open" | "waiti
                         <PopoverTrigger>
                           <DotsHorizontalIcon className="size-5" />
                         </PopoverTrigger>
-                        <PopoverContent className=" flex w-full flex-col gap-2 border-gray-800 bg-gray-900">
+                        <PopoverContent className=" flex w-full flex-col gap-2 bg-gray-100 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300">
                           <Link href={`/support/tickets/${item.id}`}>
                             <span>View Details</span>
                           </Link>

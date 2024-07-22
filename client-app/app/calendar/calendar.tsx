@@ -7,10 +7,12 @@ import { useState } from "react";
 import AddEventForm from "./add-event-form";
 
 export default function CalendarC({}) {
+  // todo: add calendar integration
+
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="my-4 ml-2 h-full bg-gray-900 p-4">
+    <div className="my-4 ml-2 h-full p-4 dark:bg-gray-900">
       <div className="flex h-full flex-row gap-4">
         <div className="size-full">
           <FullCalendar
@@ -37,7 +39,7 @@ export default function CalendarC({}) {
             }}
           />
         </div>
-        <div className="w-1/3 bg-gray-800 p-2">
+        <div className="w-1/3 p-2 dark:bg-gray-800">
           <h3 className="text-base">Your Events (this month)</h3>
           <ul>
             {[
@@ -45,7 +47,7 @@ export default function CalendarC({}) {
               { title: "event 3", date: "2024-05-16" },
               { title: "event 4", date: "2024-05-25" },
             ].map((item) => (
-              <li key={item.title} className="my-2 rounded-sm bg-gray-700 p-2 text-sm">
+              <li key={item.title} className="my-2 rounded-sm bg-gray-200 p-2 text-sm dark:bg-gray-700">
                 {item.title}
               </li>
             ))}

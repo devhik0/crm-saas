@@ -16,7 +16,7 @@ export default async function TaskMenu({ item }: { item: Task }) {
       <PopoverTrigger asChild>
         <DotsHorizontalIcon className="size-5 self-end" />
       </PopoverTrigger>
-      <PopoverContent className=" border-none bg-gray-900">
+      <PopoverContent className=" border-none bg-gray-100 dark:bg-gray-900">
         <div className="grid gap-4">
           <div className="flex flex-row items-center gap-6 space-y-2">
             <UpdateTaskForm item={item} taskCategories={taskCategories} taskStatuses={taskStatuses} />

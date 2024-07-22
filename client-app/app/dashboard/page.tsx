@@ -17,7 +17,7 @@ export default async function Dashboard() {
 
   if (!trackers) return <>Loading data...</>;
   return (
-    <div className=" h-full p-2">
+    <div className=" h-full p-2 dark:bg-gray-900 dark:text-gray-100">
       <h3 className="text-lg">Overview</h3>
       <TabGroup className="mt-6">
         <TabList>

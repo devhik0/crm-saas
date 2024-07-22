@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { Socket } from "socket.io-client";
 import style from "./chat.module.css";
 
@@ -23,7 +23,7 @@ export default function Chat({
   const [currentMsg, setCurrentMsg] = useState("");
   const [chat, setChat] = useState<MessageOptions[]>([]);
 
-  const sendData = (e: React.FormEvent<HTMLFormElement>) => {
+  const sendData = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (currentMsg !== "") {
       const msgData: MessageOptions = {

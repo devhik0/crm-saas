@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="size-full bg-gray-900 p-4 text-center">
+    <div className="size-full p-4 text-center dark:bg-gray-900 dark:text-gray-100">
       <Card>
         <div className="absolute right-0 top-0 pr-3 pt-3">
           <button
@@ -33,7 +33,7 @@ export default function Home() {
         </div>
       </Card>
       <div className="">
-        <Image className="mx-auto bg-gray-900" src="/welcome.png" width={800} height={200} alt="welcome" />
+        <Image className="mx-auto dark:bg-gray-900" src="/welcome.png" width={800} height={200} alt="welcome" />
       </div>
     </div>
   );

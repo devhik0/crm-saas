@@ -1,16 +1,12 @@
-- add auth and middleware <-- (find an auth solution and features like SSO, MFA)
-
-- add remaining features to pages
-
-- add integrations (calendar, mail, files for many vendors like google, microsoft ..)
+- add integrations (calendar, mail, files for many vendors like google, microsoft ..) <--
 
 - add search feature with elastic
 
 - add notifications and sync
 
-- make frontend styling, light/dark mode switch
-
 - add unit and e2e tests
+
+- add remaining features to pages
 
 - fix todos
 

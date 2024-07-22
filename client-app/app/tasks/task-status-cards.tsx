@@ -34,7 +34,7 @@ export default async function TaskStatusCards() {
   return (
     <div className="mt-2 flex flex-row items-start justify-around gap-6">
       <div className="mt-2 flex flex-row gap-6">
-        <div className="flex flex-col items-center gap-4 rounded-md bg-gray-800 p-2">
+        <div className="flex flex-col items-center gap-4 rounded-md p-2 dark:bg-gray-800">
           <div className="flex w-full flex-row items-center justify-between gap-4 px-2">
             <div className="flex flex-row items-center gap-2">
               <h3 className="text-base">TODO</h3>
@@ -48,7 +48,7 @@ export default async function TaskStatusCards() {
         </div>
       </div>
       <div className="mt-2 flex flex-row gap-6">
-        <div className="flex flex-col items-center gap-4 rounded-md bg-gray-800 p-2">
+        <div className="flex flex-col items-center gap-4 rounded-md p-2 dark:bg-gray-800">
           <div className="flex w-full flex-row items-center justify-between gap-4 px-2">
             <div className="flex flex-row items-center gap-2">
               <h3 className="text-base">IN PROGRESS</h3>
@@ -62,7 +62,7 @@ export default async function TaskStatusCards() {
         </div>
       </div>
       <div className="mt-2 flex flex-row gap-6">
-        <div className="flex flex-col items-center gap-4 rounded-md bg-gray-800 p-2">
+        <div className="flex flex-col items-center gap-4 rounded-md p-2 dark:bg-gray-800">
           <div className="flex w-full flex-row items-center justify-between gap-4 px-2">
             <div className="flex flex-row items-center gap-2">
               <h3 className="text-base">REVIEW</h3>
@@ -76,7 +76,7 @@ export default async function TaskStatusCards() {
         </div>
       </div>
       <div className="mt-2 flex flex-row gap-6">
-        <div className="flex flex-col items-center gap-4 rounded-md bg-gray-800 p-2">
+        <div className="flex flex-col items-center gap-4 rounded-md p-2 dark:bg-gray-800">
           <div className="flex w-full flex-row items-center justify-between gap-4 px-2">
             <div className="flex flex-row items-center gap-2">
               <h3 className="text-base">DONE</h3>

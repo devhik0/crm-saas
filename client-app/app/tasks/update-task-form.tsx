@@ -28,9 +28,9 @@ export default function UpdateTaskForm({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <PencilSquareIcon className="size-5 self-end" />
+        <PencilSquareIcon className="size-5 self-end dark:text-gray-300" />
       </PopoverTrigger>
-      <PopoverContent className=" border-none bg-gray-900">
+      <PopoverContent className=" border-none bg-gray-100 dark:bg-gray-900">
         <div className="grid gap-4">
           <div className="space-y-2">
             <form action={updateTask}>
@@ -50,10 +50,10 @@ export default function UpdateTaskForm({
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
-                <SelectContent className="border-none bg-gray-900">
+                <SelectContent className="border-none bg-gray-100 dark:bg-gray-900">
                   {taskCategories.map((cat, idx) => {
                     return (
-                      <SelectItem className="hover:bg-gray-800" key={idx} value={cat._id}>
+                      <SelectItem className="dark:hover:bg-gray-800" key={idx} value={cat._id}>
                         {cat.name}
                       </SelectItem>
                     );
@@ -64,10 +64,10 @@ export default function UpdateTaskForm({
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Status" />
                 </SelectTrigger>
-                <SelectContent className="border-none bg-gray-900">
+                <SelectContent className="border-none bg-gray-100 dark:bg-gray-900">
                   {taskStatuses.map((stat, idx) => {
                     return (
-                      <SelectItem className="hover:bg-gray-800" key={idx} value={stat.id}>
+                      <SelectItem className="dark:hover:bg-gray-800" key={idx} value={stat.id}>
                         {stat.name}
                       </SelectItem>
                     );
@@ -75,7 +75,7 @@ export default function UpdateTaskForm({
                 </SelectContent>
               </Select>
               <Input type="hidden" value={item._id} name="task_id" />
-              <Button className="bg-blue-600">Update task</Button>
+              <Button className="bg-blue-600 text-gray-200">Update task</Button>
             </form>
           </div>
         </div>

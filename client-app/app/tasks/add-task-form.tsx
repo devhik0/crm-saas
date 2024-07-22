@@ -14,13 +14,13 @@ export default async function AddTaskForm() {
 
   return (
     <Popover>
-      <PopoverTrigger className="flex flex-row items-center gap-2 rounded-md bg-blue-600 p-2">
+      <PopoverTrigger className="flex flex-row items-center gap-2 rounded-md bg-blue-600 p-2 text-gray-200">
         <PlusIcon className="size-4" />
         <span className="text-sm">Add Task</span>
       </PopoverTrigger>
-      <PopoverContent className=" border-none bg-gray-900">
+      <PopoverContent className=" border-none bg-gray-100 dark:bg-gray-900">
         <div className="grid gap-4">
-          <div className="space-y-2">
+          <div>
             <form action={addTask}>
               <Input name="name" placeholder="Task Name" />
               <Textarea name="description" placeholder="Task Description" />
@@ -28,10 +28,10 @@ export default async function AddTaskForm() {
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
-                <SelectContent className="border-none bg-gray-900">
+                <SelectContent className="border-none bg-gray-100 dark:bg-gray-900">
                   {taskCategories.map((cat, idx) => {
                     return (
-                      <SelectItem className="hover:bg-gray-800" key={idx} value={cat._id}>
+                      <SelectItem className="dark:hover:bg-gray-800" key={idx} value={cat._id}>
                         {cat.name}
                       </SelectItem>
                     );
@@ -42,10 +42,10 @@ export default async function AddTaskForm() {
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Status" />
                 </SelectTrigger>
-                <SelectContent className="border-none bg-gray-900">
+                <SelectContent className="border-none bg-gray-100 dark:bg-gray-900">
                   {taskStatuses.map((stat, idx) => {
                     return (
-                      <SelectItem className="hover:bg-gray-800" key={idx} value={stat.id}>
+                      <SelectItem className="dark:hover:bg-gray-800" key={idx} value={stat.id}>
                         {stat.name}
                       </SelectItem>
                     );
@@ -53,7 +53,7 @@ export default async function AddTaskForm() {
                 </SelectContent>
               </Select>
 
-              <Button className="bg-blue-600">Add task</Button>
+              <Button className="bg-blue-600 text-gray-200">Add task</Button>
             </form>
           </div>
         </div>

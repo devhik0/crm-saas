@@ -17,7 +17,7 @@ export default function AddContactForm() {
       <DialogTrigger asChild>
         <Button className="bg-blue-600">Add Contact</Button>
       </DialogTrigger>
-      <DialogContent className="border-none bg-gray-900 sm:max-w-[425px]">
+      <DialogContent className="border-none bg-gray-100 dark:bg-gray-900 dark:text-gray-300 sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Add contact</DialogTitle>
           <DialogDescription>Add contact here and click save when you re done.</DialogDescription>

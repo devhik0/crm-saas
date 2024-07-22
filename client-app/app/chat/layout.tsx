@@ -10,7 +10,7 @@ export default function ChatLayout({ children }: { children: ReactNode }) {
   return (
     <div className="size-full p-2">
       Messages
-      <div className="my-2 flex size-full flex-row bg-gray-900 ">
+      <div className="my-2 flex size-full flex-row dark:bg-gray-900 ">
         <div className="w-5/12 border-r-2 border-r-blue-800 p-2">
           {[
             { name: "Jake", message: "Hello, man ! how are you ?" },
@@ -20,7 +20,7 @@ export default function ChatLayout({ children }: { children: ReactNode }) {
           ].map((item, key) => {
             return (
               <Link key={key} href={`/chat/${item.name.toLocaleLowerCase()}`}>
-                <Card className="my-2 w-full rounded-none p-2 transition duration-300 ease-in hover:bg-gray-800">
+                <Card className="my-2 w-full rounded-none p-2 transition duration-300 ease-in hover:bg-gray-200 dark:hover:bg-gray-800">
                   <div className="flex flex-row items-center justify-between gap-2">
                     <div className="flex flex-row items-center gap-2">
                       <Avatar>

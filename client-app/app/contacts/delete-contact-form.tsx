@@ -15,7 +15,7 @@ export default function DeleteContactForm() {
       <DialogTrigger>
         <TrashIcon className="size-4 text-red-600" />
       </DialogTrigger>
-      <DialogContent className="border-none bg-gray-900">
+      <DialogContent className="border-none bg-gray-100 dark:bg-gray-900 dark:text-gray-300">
         <DialogHeader>
           <DialogTitle>Are you absolutely sure?</DialogTitle>
           <DialogDescription>
