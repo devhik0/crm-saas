@@ -1,0 +1,22 @@
+{
+  "name": "calendar-svc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "calendar-server.js",
+  "scripts": {
+    "format": "prettier -w .",
+    "start": "bun run calendar-server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "nylas": "^7.5.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.11",
+    "prettier": "^3.1.1"
+  }
+}
