@@ -1,5 +1,6 @@
 import express from "express";
 import Nylas from "nylas";
+const cors = require("cors");
 
 const config = {
   clientId: process.env.NYLAS_CLIENT_ID,
@@ -16,12 +17,16 @@ const nylas = new Nylas({
 const app = express();
 const port = 8080;
 
+app.use(cors());
+
 // Route to initialize authentication
 app.get("/nylas/auth", (req, res) => {
   const authUrl = nylas.auth.urlForOAuth2({
     clientId: config.clientId,
     redirectUri: config.callbackUri,
   });
+
+  console.log("auth: ", authUrl);
 
   res.redirect(authUrl);
 });
