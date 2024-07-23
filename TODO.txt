@@ -1,6 +1,6 @@
 - add integrations (calendar, mail, files for many vendors like google, microsoft ..) <--
 
-- add search feature with elastic
+- add full text search feature
 
 - add notifications and sync
 
