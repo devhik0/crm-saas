@@ -15,7 +15,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import FullCalendar from "@fullcalendar/react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Calendar() {
   const [open, setOpen] = useState(false);
@@ -25,65 +25,87 @@ export default function Calendar() {
 
   const router = useRouter();
 
-  useEffect(() => {
-    async function getCalendar() {
-      const authUrl = "http://localhost:8080/nylas/auth";
-      const calendarUrl = "http://localhost:8080/nylas/primary-calendar";
-      const eventUrl = "http://localhost:8080/nylas/list-events";
+  async function getCalendar() {
+    const authUrl = "http://localhost:8080/nylas/auth";
+    const calendarUrl = "http://localhost:8080/nylas/primary-calendar";
+    const eventUrl = "http://localhost:8080/nylas/list-events";
+    const createEventUrl = "http://localhost:8080//nylas/create-event";
 
-      try {
-        const response = await fetch(authUrl);
-        console.log("auth : ", response);
-        router.push(response.url);
-      } catch (error) {
-        console.log("Error: ", error);
-      }
-
+    try {
+      const response = await fetch(authUrl);
+      console.log("auth : ", response);
+      router.push(response.url);
       router.push("/calendar");
-
-      const response2 = await fetch(calendarUrl);
-      const calendar = await response2.json();
-      console.log("calendar : ", calendar);
-
-      const response3 = await fetch(eventUrl, { cache: "no-store" });
-      const events = await response3.json();
-      console.log("events : ", events.data);
-
-      const eventArr = events.data.map(({ title, when }: { title: string; when: { startTime: number } }) => ({
-        title,
-        date: new Date(when.startTime * 1000).toISOString(),
-      }));
-      console.log("eventarr : ", eventArr);
-
-      setData(eventArr);
-      setLoading(false);
+    } catch (error) {
+      console.log("Error: ", error);
     }
 
-    getCalendar();
-  }, []);
+    const response2 = await fetch(calendarUrl);
+    const calendar = await response2.json();
+    console.log("calendar : ", calendar);
 
-  if (isLoading) return <p>Loading...</p>;
+    const response3 = await fetch(eventUrl, { cache: "no-store" });
+    const events = await response3.json();
+    console.log("events : ", events.data);
 
+    const eventArr = events.data.map(({ title, when }: { title: string; when: { startTime: number } }) => ({
+      title,
+      date: new Date(when.startTime * 1000).toISOString(),
+    }));
+    console.log("eventarr : ", eventArr);
+
+    setData(eventArr);
+    setLoading(false);
+  }
   console.log("DATA: ", data);
+
+  async function createEvent() {
+    const authUrl = "http://localhost:8080/nylas/auth";
+    const calendarUrl = "http://localhost:8080/nylas/primary-calendar";
+    const eventUrl = "http://localhost:8080/nylas/list-events";
+    const createEventUrl = "http://localhost:8080/nylas/create-event";
+
+    try {
+      const response = await fetch(authUrl);
+      console.log("auth : ", response);
+      router.push(response.url);
+      router.push("/calendar");
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+
+    const response2 = await fetch(calendarUrl);
+    const calendar = await response2.json();
+    console.log("calendar : ", calendar);
+
+    const response4 = await fetch(createEventUrl, { cache: "no-store" });
+    const createdEvent = await response4.json();
+    console.log("createdEvent : ", createdEvent.data);
+
+    setLoading(false);
+  }
 
   return (
     <div className="my-4 ml-2 h-full p-4 dark:bg-gray-900">
       <div className="flex h-full flex-row gap-4">
         <div className="size-full">
+          <Button className="dark:bg-blue-500 dark:text-gray-300" onClick={getCalendar}>
+            Sync
+          </Button>
           <FullCalendar
             height={"100%"}
             plugins={[dayGridPlugin, interactionPlugin]}
             initialView="dayGridMonth"
             weekends={true}
             events={data}
-            // eventContent={function renderEventContent(eventInfo) {
-            //   return (
-            //     <>
-            //       <b>{eventInfo.timeText}</b>
-            //       <i>{eventInfo.event.title}</i>
-            //     </>
-            //   );
-            // }}
+            eventContent={function renderEventContent(eventInfo) {
+              return (
+                <>
+                  <b>{eventInfo.timeText}</b>
+                  <i>{eventInfo.event.title}</i>
+                </>
+              );
+            }}
             dateClick={() => {
               setOpen(true);
               alert("Today is that day");
@@ -129,6 +151,7 @@ export default function Calendar() {
             <Button
               onClick={() => {
                 setOpen(!open);
+                createEvent();
                 alert("Event created !");
               }}
               className="bg-gray-800"

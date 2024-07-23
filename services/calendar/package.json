@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "format": "prettier -w .",
-    "start": "nodemon calendar-server.js"
+    "start": "bun run calendar-server.js"
   },
   "keywords": [],
   "author": "",

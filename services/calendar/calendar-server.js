@@ -10,8 +10,6 @@ const config = {
   apiUri: process.env.NYLAS_API_URI,
 };
 
-console.log("config: ", config);
-
 const nylas = new Nylas({
   apiKey: config.apiKey,
   apiUri: config.apiUri,
