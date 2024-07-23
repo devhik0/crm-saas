@@ -14,36 +14,57 @@ import { Label } from "@/components/ui/label";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import FullCalendar from "@fullcalendar/react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Calendar() {
   const [open, setOpen] = useState(false);
 
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([{}]);
   const [isLoading, setLoading] = useState(true);
 
+  const router = useRouter();
+
   useEffect(() => {
-    fetch("http://localhost:8080/nylas/auth")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("nylas: ", data);
-        setData(data);
-        setLoading(false);
-      });
-    fetch("http://localhost:8080/oauth/exchange")
-      .then((res) => res.json())
-      .then((data) => console.log("exc data: ", data));
-    // fetch("/nylas/list-events")
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log("nylas: ", data);
-    //     setData(data);
-    //     setLoading(false);
-    //   });
+    async function getCalendar() {
+      const authUrl = "http://localhost:8080/nylas/auth";
+      const calendarUrl = "http://localhost:8080/nylas/primary-calendar";
+      const eventUrl = "http://localhost:8080/nylas/list-events";
+
+      try {
+        const response = await fetch(authUrl);
+        console.log("auth : ", response);
+        router.push(response.url);
+      } catch (error) {
+        console.log("Error: ", error);
+      }
+
+      router.push("/calendar");
+
+      const response2 = await fetch(calendarUrl);
+      const calendar = await response2.json();
+      console.log("calendar : ", calendar);
+
+      const response3 = await fetch(eventUrl, { cache: "no-store" });
+      const events = await response3.json();
+      console.log("events : ", events.data);
+
+      const eventArr = events.data.map(({ title, when }: { title: string; when: { startTime: number } }) => ({
+        title,
+        date: new Date(when.startTime * 1000).toISOString(),
+      }));
+      console.log("eventarr : ", eventArr);
+
+      setData(eventArr);
+      setLoading(false);
+    }
+
+    getCalendar();
   }, []);
 
   if (isLoading) return <p>Loading...</p>;
-  if (!data) return <p>No profile data</p>;
+
+  console.log("DATA: ", data);
 
   return (
     <div className="my-4 ml-2 h-full p-4 dark:bg-gray-900">
@@ -54,11 +75,7 @@ export default function Calendar() {
             plugins={[dayGridPlugin, interactionPlugin]}
             initialView="dayGridMonth"
             weekends={true}
-            events={[
-              { title: "event 2", date: "2024-05-05", color: "orange" },
-              { title: "event 3", date: "2024-05-16", color: "coral" },
-              { title: "event 4", date: "2024-05-25", color: "teal" },
-            ]}
+            events={data}
             // eventContent={function renderEventContent(eventInfo) {
             //   return (
             //     <>

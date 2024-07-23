@@ -1,6 +1,7 @@
+import cors from "cors";
+import "dotenv/config";
 import express from "express";
 import Nylas from "nylas";
-const cors = require("cors");
 
 const config = {
   clientId: process.env.NYLAS_CLIENT_ID,
@@ -8,6 +9,8 @@ const config = {
   apiKey: process.env.NYLAS_API_KEY,
   apiUri: process.env.NYLAS_API_URI,
 };
+
+console.log("config: ", config);
 
 const nylas = new Nylas({
   apiKey: config.apiKey,
@@ -35,6 +38,8 @@ app.get("/nylas/auth", (req, res) => {
 app.get("/oauth/exchange", async (req, res) => {
   console.log("Received callback from Nylas");
   const code = req.query.code;
+
+  console.log("code: ", code);
 
   if (!code) {
     res.status(400).send("No authorization code returned from Nylas");
@@ -79,7 +84,7 @@ app.get("/nylas/primary-calendar", async (req, res) => {
 
     res.json(primaryCalendar);
   } catch (error) {
-    console.error("Error fetching emails:", error);
+    console.error("Error fetching calendar:", error);
   }
 });
 
