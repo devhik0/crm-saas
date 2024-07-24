@@ -27,8 +27,6 @@ app.get("/nylas/auth", (req, res) => {
     redirectUri: config.callbackUri,
   });
 
-  console.log("auth: ", authUrl);
-
   res.redirect(authUrl);
 });
 
@@ -36,8 +34,6 @@ app.get("/nylas/auth", (req, res) => {
 app.get("/oauth/exchange", async (req, res) => {
   console.log("Received callback from Nylas");
   const code = req.query.code;
-
-  console.log("code: ", code);
 
   if (!code) {
     res.status(400).send("No authorization code returned from Nylas");
@@ -59,7 +55,8 @@ app.get("/oauth/exchange", async (req, res) => {
     // In a real app you would store this in a database, associated with a user
     process.env.NYLAS_GRANT_ID = grantId;
 
-    res.json({ message: "OAuth2 flow completed successfully for grant ID: " + grantId });
+    // res.json({ message: "OAuth2 flow completed successfully for grant ID: " + grantId });
+    res.redirect("http://localhost:3000/calendar");
   } catch (error) {
     res.status(500).send("Failed to exchange authorization code for token");
   }
@@ -75,8 +72,6 @@ app.get("/nylas/primary-calendar", async (req, res) => {
     });
 
     const primaryCalendar = calendars.data;
-
-    console.log("pc: ", primaryCalendar);
 
     // NB: This stores in RAM
     // In a real app you would store this in a database, associated with a user
@@ -98,7 +93,6 @@ app.get("/nylas/list-events", async (req, res) => {
       identifier,
       queryParams: {
         calendarId,
-        limit: 5,
       },
     });
 
@@ -115,11 +109,17 @@ app.get("/nylas/create-event", async (req, res) => {
     const calendarId = process.env.PRIMARY_CALENDAR_ID;
 
     // Schedule the event to start in 5 minutes and end in 35 minutes
-    const now = new Date();
-    const startTime = new Date(now.getTime());
-    startTime.setMinutes(now.getMinutes() + 5);
-    const endTime = new Date(now.getTime());
-    endTime.setMinutes(now.getMinutes() + 35);
+    // const now = new Date();
+    // const startTime = new Date(now.getTime());
+    // startTime.setMinutes(now.getMinutes() + 5);
+    // const endTime = new Date(now.getTime());
+    // endTime.setMinutes(now.getMinutes() + 35);
+
+    const title = req.body.title;
+    const startTime = req.body.startTime;
+    const endTime = req.body.endTime;
+
+    console.log("event: ", { title, startTime, endTime });
 
     const newEvent = await nylas.events.create({
       identifier,
@@ -127,7 +127,7 @@ app.get("/nylas/create-event", async (req, res) => {
         calendarId,
       },
       requestBody: {
-        title: "Your event title here",
+        title,
         when: {
           startTime: Math.floor(startTime.getTime() / 1000),
           endTime: Math.floor(endTime.getTime() / 1000),

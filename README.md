@@ -21,6 +21,7 @@ Tasks ![Tasks](./client-app/public/kanban.png)
 - Shadcn UI
 - Next.js
 - Typescript
+- Clerk
 - Socket.io
 - Supabase
 - Kubernetes
