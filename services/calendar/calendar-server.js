@@ -76,6 +76,8 @@ app.get("/nylas/primary-calendar", async (req, res) => {
 
     const primaryCalendar = calendars.data;
 
+    console.log("pc: ", primaryCalendar);
+
     // NB: This stores in RAM
     // In a real app you would store this in a database, associated with a user
     process.env.PRIMARY_CALENDAR_ID = primaryCalendar.id;

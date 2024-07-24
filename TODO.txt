@@ -1,4 +1,6 @@
-- add integrations (calendar, mail, files for many vendors like google, microsoft ..) <--
+-> add calendar service to ci workflows into release-svc
+
+- add integrations (mail, files for many vendors like google, microsoft ..) <--
 
 - add full text search feature
 

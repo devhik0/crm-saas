@@ -29,40 +29,36 @@ export default function Calendar() {
     const authUrl = "http://localhost:8080/nylas/auth";
     const calendarUrl = "http://localhost:8080/nylas/primary-calendar";
     const eventUrl = "http://localhost:8080/nylas/list-events";
-    const createEventUrl = "http://localhost:8080//nylas/create-event";
 
     try {
       const response = await fetch(authUrl);
-      console.log("auth : ", response);
       router.push(response.url);
-      router.push("/calendar");
+
+      const response2 = await fetch(calendarUrl);
+      const calendar = await response2.json();
+      console.log("calendar : ", calendar);
+
+      const response3 = await fetch(eventUrl, { cache: "no-store" });
+      const events = await response3.json();
+      console.log("events : ", events.data);
+
+      const eventArr = events.data.map(({ title, when }: { title: string; when: { startTime: number } }) => ({
+        title,
+        date: new Date(when.startTime * 1000).toISOString(),
+      }));
+      console.log("eventarr : ", eventArr);
+
+      setData(eventArr);
+      setLoading(false);
     } catch (error) {
-      console.log("Error: ", error);
+      console.log("Error auth: ", error);
     }
-
-    const response2 = await fetch(calendarUrl);
-    const calendar = await response2.json();
-    console.log("calendar : ", calendar);
-
-    const response3 = await fetch(eventUrl, { cache: "no-store" });
-    const events = await response3.json();
-    console.log("events : ", events.data);
-
-    const eventArr = events.data.map(({ title, when }: { title: string; when: { startTime: number } }) => ({
-      title,
-      date: new Date(when.startTime * 1000).toISOString(),
-    }));
-    console.log("eventarr : ", eventArr);
-
-    setData(eventArr);
-    setLoading(false);
   }
   console.log("DATA: ", data);
 
   async function createEvent() {
     const authUrl = "http://localhost:8080/nylas/auth";
     const calendarUrl = "http://localhost:8080/nylas/primary-calendar";
-    const eventUrl = "http://localhost:8080/nylas/list-events";
     const createEventUrl = "http://localhost:8080/nylas/create-event";
 
     try {
