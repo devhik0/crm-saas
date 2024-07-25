@@ -19,12 +19,16 @@ Tasks ![Tasks](./client-app/public/kanban.png)
 
 - Tailwind
 - Shadcn UI
+- Tremor.so
 - Next.js
 - Typescript
 - Clerk
+- Express
 - Socket.io
 - Supabase
+- Nylas
 - Kubernetes
+- ELK Stack
 
 ### Integrations
 

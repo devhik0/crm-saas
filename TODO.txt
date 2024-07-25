@@ -1,8 +1,5 @@
-- setup monorepo
-
--> add calendar service to ci workflows into release-svc
-
-- add integrations (mail, files for many vendors like google, microsoft ..) <--
+- add integrations (mail <--, files for many vendors like google, microsoft ..) <--
+  - add other services to ci workflows into release-svc
 
 - add full text search feature
 
@@ -21,5 +18,7 @@
 - remove all console logs
 
 - fix build errors
+
+- setup monorepo
 
 - finish app and deploy
