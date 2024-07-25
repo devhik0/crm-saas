@@ -31,10 +31,10 @@ COPY --from=prerelease /app/package.json .
 
 
 # Set correct permissions for nextjs user and don't run as root
-RUN adduser mail
-RUN chown mail:bun .
+RUN adduser mailsrv
+RUN chown mailsrv:bun .
 
 # run the app
-USER mail
+USER mailsrv
 EXPOSE 3000/tcp
 ENTRYPOINT [ "bun", "start" ]
