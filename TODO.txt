@@ -1,4 +1,4 @@
-- add unit and e2e tests
+- add all type of tests <--
 
 - add remaining features to pages
 

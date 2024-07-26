@@ -15,8 +15,6 @@ export default function Notifications() {
     if (isSupported()) {
       client.subscribe();
     }
-
-    return () => client.unsubscribe();
   }, []);
   return (
     <MagicBell
