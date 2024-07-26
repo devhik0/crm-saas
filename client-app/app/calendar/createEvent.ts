@@ -1,7 +1,5 @@
 "use server";
 
-import { redirect } from "next/navigation";
-
 export async function createEvent(formData: FormData) {
   const authUrl = "http://localhost:8080/nylas/auth";
   const calendarUrl = "http://localhost:8080/nylas/primary-calendar";
@@ -13,28 +11,45 @@ export async function createEvent(formData: FormData) {
 
   console.log("evt: ", { name, startTime, endTime });
 
-  try {
-    const response = await fetch(authUrl);
-    console.log("auth : ", response);
-    redirect(response.url);
-  } catch (error) {
-    console.log("Error: ", error);
-  }
+  const response = await fetch(authUrl);
 
   const response2 = await fetch(calendarUrl);
   const calendar = await response2.json();
   console.log("calendar : ", calendar);
 
-  const response4 = await fetch(createEventUrl, {
-    cache: "no-store",
-    body: {
-      title,
-      when: {
-        startTime,
-        endTime,
-      },
+  // const response4 = await fetch(createEventUrl, {
+  //   cache: "no-store",
+  //   body: {
+  //     title,
+  //     when: {
+  //       startTime,
+  //       endTime,
+  //     },
+  //   },
+  // });
+  // const createdEvent = await response4.json();
+  // console.log("createdEvent : ", createdEvent.data);
+
+  const response5 = await fetch("https://api.magicbell.com/broadcasts", {
+    method: "POST",
+    headers: {
+      "X-MAGICBELL-API-KEY": "98cbd6c1a28e50c1fe35f5406c707499e2ac4791",
+      "X-MAGICBELL-API-SECRET": "BcZwQq0u8XSvfU2Y2soGjp5R8lL1MExZYc5lXxjd",
     },
+    body: JSON.stringify({
+      broadcast: {
+        title: "Event created !",
+        content: `Here is your event details: ${name} ${startTime} ${endTime}`,
+        recipients: [
+          {
+            email: "aydin96tr@gmail.com",
+          },
+        ],
+      },
+    }),
   });
-  const createdEvent = await response4.json();
-  console.log("createdEvent : ", createdEvent.data);
+
+  const notifications = await response5.json();
+
+  console.log("notifications: ", notifications);
 }

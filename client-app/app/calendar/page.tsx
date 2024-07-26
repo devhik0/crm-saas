@@ -110,27 +110,27 @@ export default function Calendar() {
                 <Label htmlFor="title" className="text-right">
                   Title
                 </Label>
-                <Input id="title" placeholder="some event" className="col-span-3" />
+                <Input id="title" name="title" placeholder="some event" className="col-span-3" />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="startDate" className="text-right">
                   Start Date
                 </Label>
-                <Input type="date" id="startDate" className="col-span-3" />
+                <Input type="date" name="startDate" id="startDate" className="col-span-3" />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="endDate" className="text-right">
                   End Date
                 </Label>
-                <Input type="date" id="endDate" className="col-span-3" />
+                <Input type="date" id="endDate" name="endDate" className="col-span-3" />
               </div>
             </div>
             <DialogFooter>
               <Button
-                onClick={() => {
-                  setOpen(!open);
-                  alert("Event created !");
-                }}
+                // onClick={() => {
+                //   setOpen(!open);
+                //   alert("Event created !");
+                // }}
                 className="bg-gray-800"
                 type="submit"
               >

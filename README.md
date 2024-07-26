@@ -29,6 +29,7 @@ Tasks ![Tasks](./client-app/public/kanban.png)
 - Supabase
 - Algolia
 - Nylas
+- MagicBell
 - Kubernetes
 - ELK Stack
 

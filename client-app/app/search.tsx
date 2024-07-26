@@ -6,7 +6,6 @@ import { Configure, Highlight, Hits, InstantSearch, PoweredBy, SearchBox, useIns
 import "./search.css";
 
 const Hit = ({ hit }) => {
-  console.log("hit: ", hit);
   return (
     <article>
       <div>
