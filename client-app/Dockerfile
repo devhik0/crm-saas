@@ -8,12 +8,12 @@ WORKDIR /app
 FROM base AS install
 RUN mkdir -p /temp/dev
 COPY package.json bun.lockb /temp/dev/
-RUN cd /temp/dev && && bun pm trust --all && bun install && bun pm untrusted --all
+RUN cd /temp/dev && bun pm trust --all && bun install && bun pm untrusted --all
 
 # install with --production (exclude devDependencies)
 RUN mkdir -p /temp/prod
 COPY package.json bun.lockb /temp/prod/
-RUN cd /temp/prod && && bun pm trust --all && bun install --production && bun pm untrusted --all
+RUN cd /temp/prod && bun pm trust --all && bun install --production && bun pm untrusted --all
 
 # copy node_modules from temp directory
 # then copy all (non-ignored) project files into the image
