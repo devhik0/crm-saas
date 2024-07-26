@@ -27,6 +27,7 @@ Tasks ![Tasks](./client-app/public/kanban.png)
 - Express
 - Socket.io
 - Supabase
+- Algolia
 - Nylas
 - Kubernetes
 - ELK Stack

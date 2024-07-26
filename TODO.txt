@@ -1,5 +1,3 @@
-- add full text search feature
-
 - add notifications and sync
 
 - add unit and e2e tests

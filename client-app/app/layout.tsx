@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { ClerkProvider, SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { BellIcon } from "@heroicons/react/24/outline";
 import type { Metadata } from "next";
@@ -7,6 +5,7 @@ import { Poppins } from "next/font/google";
 import { ReactNode } from "react";
 import "./globals.css";
 import { Providers } from "./providers/providers";
+import { Search } from "./search";
 import Sidebar from "./side-bar";
 import Theme from "./theme";
 
@@ -28,11 +27,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <Sidebar />
               <div className="w-full">
                 <div className="flex w-full items-center justify-between p-3 dark:bg-gray-900">
-                  <div className="flex w-full max-w-sm items-center space-x-2 rounded-md p-2 dark:bg-gray-900">
-                    <Input type="search" placeholder="Search in all your data..." />
-                    <Button type="submit" className="dark:bg-gray-800">
-                      Search
-                    </Button>
+                  <div className="flex w-full max-w-sm flex-col items-center space-x-2 rounded-md p-2 dark:bg-gray-900">
+                    <Search />
                   </div>
                   <div className="flex items-center gap-6">
                     <Theme />
