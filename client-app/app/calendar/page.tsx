@@ -27,7 +27,7 @@ export default function Calendar() {
   const router = useRouter();
 
   async function auth() {
-    const authUrl = "http://localhost:8080/nylas/auth";
+    const authUrl = `${process.env.NEXT_PUBLIC_API_URL as string}/nylas/auth`;
 
     try {
       const response = await fetch(authUrl);
@@ -39,8 +39,8 @@ export default function Calendar() {
   }
 
   const getEvents = async () => {
-    const calendarUrl = "http://localhost:8080/nylas/primary-calendar";
-    const eventUrl = "http://localhost:8080/nylas/list-events";
+    const calendarUrl = `${process.env.NEXT_PUBLIC_API_URL as string}/nylas/primary-calendar`;
+    const eventUrl = `${process.env.NEXT_PUBLIC_API_URL as string}/nylas/list-events`;
 
     const response2 = await fetch(calendarUrl);
     const calendar = await response2.json();

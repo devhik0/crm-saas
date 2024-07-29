@@ -5,7 +5,7 @@ import Nylas from "nylas";
 
 const config = {
   clientId: process.env.NYLAS_CLIENT_ID,
-  callbackUri: "http://localhost:8080/oauth/exchange",
+  callbackUri: `"${process.env.NEXT_PUBLIC_API_URL}/oauth/exchange`,
   apiKey: process.env.NYLAS_API_KEY,
   apiUri: process.env.NYLAS_API_URI,
 };
@@ -56,7 +56,7 @@ app.get("/oauth/exchange", async (req, res) => {
     process.env.NYLAS_GRANT_ID = grantId;
 
     // res.json({ message: "OAuth2 flow completed successfully for grant ID: " + grantId });
-    res.redirect("http://localhost:3000/calendar");
+    res.redirect(`${process.env.CLIENT_URL}/calendar`);
   } catch (error) {
     res.status(500).send("Failed to exchange authorization code for token");
   }

@@ -12,7 +12,7 @@ export default function ChatPage() {
   const [showSpinner, setShowSpinner] = useState(false);
   const [roomId, setroomId] = useState("");
 
-  const socket = io("http://localhost:3001");
+  const socket = io(`${process.env.NEXT_PUBLIC_SOCKET_URL as string}`);
 
   const handleJoin = () => {
     if (userName !== "" && roomId !== "") {

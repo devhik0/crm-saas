@@ -36,7 +36,10 @@ function EmptyQueryBoundary({ children, fallback }) {
   return children;
 }
 
-const searchClient = algoliasearch("373J4VGZX5", "b8458308b8471802ff8e2f99ffdd25ab");
+const searchClient = algoliasearch(
+  process.env.NEXT_PUBLIC_ALGOLIA_APP_ID as string,
+  process.env.NEXT_PUBLIC_ALGOLIA_API_KEY as string
+);
 
 export const Search = () => {
   return (

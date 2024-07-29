@@ -1,9 +1,9 @@
 "use server";
 
 export async function createEvent(formData: FormData) {
-  const authUrl = "http://localhost:8080/nylas/auth";
-  const calendarUrl = "http://localhost:8080/nylas/primary-calendar";
-  const createEventUrl = "http://localhost:8080/nylas/create-event";
+  const authUrl = `${process.env.NEXT_PUBLIC_API_URL as string}/nylas/auth`;
+  const calendarUrl = `${process.env.NEXT_PUBLIC_API_URL as string}/nylas/primary-calendar`;
+  const createEventUrl = `${process.env.NEXT_PUBLIC_API_URL as string}/nylas/create-event`;
 
   const name = formData.get("title")!;
   const startTime = formData.get("startTime")!;
@@ -15,7 +15,6 @@ export async function createEvent(formData: FormData) {
 
   const response2 = await fetch(calendarUrl);
   const calendar = await response2.json();
-  console.log("calendar : ", calendar);
 
   // const response4 = await fetch(createEventUrl, {
   //   cache: "no-store",
@@ -33,8 +32,8 @@ export async function createEvent(formData: FormData) {
   const response5 = await fetch("https://api.magicbell.com/broadcasts", {
     method: "POST",
     headers: {
-      "X-MAGICBELL-API-KEY": "98cbd6c1a28e50c1fe35f5406c707499e2ac4791",
-      "X-MAGICBELL-API-SECRET": "BcZwQq0u8XSvfU2Y2soGjp5R8lL1MExZYc5lXxjd",
+      "X-MAGICBELL-API-KEY": `${process.env.NEXT_PUBLIC_MAGICBELL_API_KEY as string}`,
+      "X-MAGICBELL-API-SECRET": `${process.env.MAGICBELL_API_SECRET as string}`,
     },
     body: JSON.stringify({
       broadcast: {
