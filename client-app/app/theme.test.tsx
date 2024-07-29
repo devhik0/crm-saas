@@ -1,8 +1,8 @@
 import { render } from "@testing-library/react";
 import { expect, test } from "vitest";
-import Sidebar from "./side-bar";
+import Theme from "./theme";
 
-test("Renders sidebar", () => {
-  const el = render(<Sidebar />);
+test("Renders themes", () => {
+  const el = render(<Theme />);
   expect(el).toBeDefined();
 });

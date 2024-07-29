@@ -24,28 +24,28 @@ jobs:
         working-directory: ./client-app
 
   # todo: add here after adding tests
-  # test:
-  #   name: Test
-  #   needs: format
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v4
+  test:
+    name: Test
+    needs: format
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-  #     - name: Install Bun
-  #       uses: oven-sh/setup-bun@v1
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
 
-  #     - name: Install Dependencies
-  #       run: bun install
-  #       working-directory: ./client-app
+      - name: Install Dependencies
+        run: bun install
+        working-directory: ./client-app
 
-  #     - name: Test App
-  #       run: bun run test
-  #       working-directory: ./client-app
+      - name: Test App
+        run: npm run test
+        working-directory: ./client-app
 
   build:
     name: Build
-    # needs: test
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

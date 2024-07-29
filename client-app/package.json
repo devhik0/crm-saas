@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint .",
     "format": "prettier -w .",
-    "test": "vitest"
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@clerk/nextjs": "^5.2.6",
@@ -62,6 +63,7 @@
     "@types/react-instantsearch-core": "^6.26.10",
     "@typescript-eslint/eslint-plugin": "^7.17.0",
     "@vitejs/plugin-react": "^4.3.1",
+    "@vitest/coverage-v8": "^2.0.4",
     "autoprefixer": "^10.4.19",
     "cssnano": "^7.0.4",
     "eslint": "^9.7.0",
