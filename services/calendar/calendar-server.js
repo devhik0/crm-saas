@@ -5,7 +5,7 @@ import Nylas from "nylas";
 
 const config = {
   clientId: process.env.NYLAS_CLIENT_ID,
-  callbackUri: `"${process.env.NEXT_PUBLIC_API_URL}/oauth/exchange`,
+  callbackUri: `${process.env.API_URL}/oauth/exchange`,
   apiKey: process.env.NYLAS_API_KEY,
   apiUri: process.env.NYLAS_API_URI,
 };
@@ -19,6 +19,8 @@ const app = express();
 const port = 8080;
 
 app.use(cors());
+
+console.log("conf: ", config);
 
 // Route to initialize authentication
 app.get("/nylas/auth", (req, res) => {

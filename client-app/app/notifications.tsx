@@ -18,6 +18,7 @@ export default function Notifications() {
     if (isSupported()) {
       client.subscribe();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -1,11 +1,15 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 "use client";
 
 import algoliasearch from "algoliasearch/lite";
 import "instantsearch.css/themes/satellite-min.css";
+import { ReactNode } from "react";
 import { Configure, Highlight, Hits, InstantSearch, PoweredBy, SearchBox, useInstantSearch } from "react-instantsearch";
+// @ts-ignore
+import { Hit } from "react-instantsearch-core";
 import "./search.css";
 
-const Hit = ({ hit }) => {
+const Hit = ({ hit }: { hit: Hit }) => {
   return (
     <article>
       <div>
@@ -21,7 +25,7 @@ const Hit = ({ hit }) => {
   );
 };
 
-function EmptyQueryBoundary({ children, fallback }) {
+function EmptyQueryBoundary({ children, fallback }: { children: ReactNode; fallback: JSX.Element | null }) {
   const { indexUiState } = useInstantSearch();
 
   if (!indexUiState.query) {

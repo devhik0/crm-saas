@@ -22,7 +22,9 @@ import { createEvent } from "./createEvent";
 export default function Calendar() {
   const [open, setOpen] = useState(false);
 
-  const [data, setData] = useState([{}]);
+  const [data, setData] = useState<{ color: string; date: Date; title: string }[]>([
+    { color: "#ccc", date: new Date(), title: "Test Event" },
+  ]);
 
   const router = useRouter();
 
