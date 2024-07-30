@@ -23,7 +23,25 @@ jobs:
         run: bun run format
         working-directory: ./client-app
 
-  # todo: add here after adding tests
+  lint:
+    needs: format
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: Install Dependencies
+        run: bun install
+        working-directory: ./client-app
+
+      - name: Lint App
+        run: bun run lint
+        working-directory: ./client-app
+
   test:
     name: Test
     needs: format
@@ -61,6 +79,18 @@ jobs:
       - name: Build App
         run: bun run build
         working-directory: ./client-app
+
+      - name: Cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.bun
+            ${{ github.workspace }}/.next/cache
+          # Generate a new cache whenever packages or source files change.
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/bun.lockb') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+          # If source files changed but packages didn't, rebuild from a prior cache.
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/bun.lockb') }}-
 
   docker:
     name: Docker

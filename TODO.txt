@@ -1,5 +1,3 @@
--> fix build, docker and other errors
-
 - add all type of tests, follow coverage <--
 
 - add remaining features to pages

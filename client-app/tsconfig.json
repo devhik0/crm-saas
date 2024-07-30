@@ -24,6 +24,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["**/*.tsx", "**/*.ts", ".next/types/**/*.ts"],
+  "include": ["**/*.tsx", "**/*.ts|.mts", ".next/types/**/*.ts"],
   "exclude": ["**/node_modules", "**/.*/"]
 }

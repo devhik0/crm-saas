@@ -18,11 +18,29 @@ jobs:
       - name: Format App
         run: bun run format
         working-directory: ./services/calendar
+  lint:
+    needs: format
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: Install Dependencies
+        run: bun install
+        working-directory: ./services/calendar
+
+      - name: Lint App
+        run: bun run lint
+        working-directory: ./services/calendar
 
   # todo: add here after adding tests
   # test:
   #   name: Test
-  #   needs: format
+  #   needs: lint
   #   runs-on: ubuntu-latest
   #   steps:
   #     - name: Checkout
