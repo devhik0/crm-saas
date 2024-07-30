@@ -3,8 +3,6 @@ import { ArrowDownIcon, DocumentIcon, PlusIcon, TrashIcon } from "@heroicons/rea
 import { Card } from "@tremor/react";
 
 export default async function Storage() {
-  // todo: add file preview here
-
   return (
     <div>
       <div className="flex flex-row items-center justify-between gap-2">

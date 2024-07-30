@@ -1,17 +1,9 @@
-- add all type of tests, follow coverage <--
+- optimize for performance and seo (run lighthouse) <--
 
-- add remaining features to pages
-
-- fix todos
-
-- organise pages and components
-
-- optimize for performance and seo
+- organise pages, components and apis
 
 - remove all console logs
 
 - fix build errors
-
-- setup monorepo
 
 - finish app and deploy

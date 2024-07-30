@@ -3,7 +3,6 @@ import { DotFilledIcon } from "@radix-ui/react-icons";
 import { Card } from "@tremor/react";
 
 export default function MailDetails() {
-  // TODO: Add a mail renderer/parser here !
   return (
     <div className="h-full">
       <Card className="h-full rounded-none p-2">

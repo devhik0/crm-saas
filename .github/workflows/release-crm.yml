@@ -58,7 +58,7 @@ jobs:
         working-directory: ./client-app
 
       - name: Test App
-        run: npm run test
+        run: bun run test
         working-directory: ./client-app
 
   build:

@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "format": "prettier -w .",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "cov": "vitest run --coverage"
   },
   "dependencies": {
     "@clerk/nextjs": "^5.2.6",

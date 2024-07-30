@@ -12,7 +12,6 @@ export type Task = Tables<"tasks"> & {
 };
 
 export default function Tasks() {
-  // todo: add drag n drop to tasks
   return (
     <div className="m-4 p-2">
       <div className="w-full">

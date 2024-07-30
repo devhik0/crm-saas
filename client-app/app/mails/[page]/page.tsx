@@ -3,8 +3,6 @@ import { DotFilledIcon } from "@radix-ui/react-icons";
 import { Card } from "@tremor/react";
 import Link from "next/link";
 
-// todo: add mail renderer / parser html (after integrating mail service)
-
 export default function MailPage({ params }: { params: { page: string } }) {
   return (
     <div className="w-full p-2">
