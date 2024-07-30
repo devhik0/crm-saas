@@ -5,6 +5,7 @@
   "main": "chat-server.js",
   "scripts": {
     "format": "prettier -w .",
+    "lint": "eslint .",
     "start": "bun run chat-server.js"
   },
   "keywords": [],

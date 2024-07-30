@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "format": "prettier -w .",
+    "lint": "eslint .",
     "start": "nodemon --env-file=.env.local"
   },
   "keywords": [],
