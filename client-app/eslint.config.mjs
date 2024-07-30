@@ -16,7 +16,7 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: ["**/*.config", "**/components", "**/node_modules", "**/.next"],
+    ignores: ["**/*.config", "**/components", "**/node_modules", "**/.next", "**/coverage"],
   },
   ...fixupConfigRules(
     compat.extends(

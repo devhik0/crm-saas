@@ -3,9 +3,9 @@
 import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
 
-const supabase = createClient();
-
 export const getTasks = async () => {
+  const supabase = createClient();
+
   const { data: tasks } = await (await supabase)
     .from("tasks")
     .select(`*, task_categories (*), task_statuses (*)`)
@@ -15,18 +15,24 @@ export const getTasks = async () => {
 };
 
 export const getTaskCategories = async () => {
+  const supabase = createClient();
+
   const { data: taskCategories } = await (await supabase).from("task_categories").select("*");
 
   return taskCategories;
 };
 
 export const getTaskStatuses = async () => {
+  const supabase = createClient();
+
   const { data: taskStatuses } = await (await supabase).from("task_statuses").select("*");
 
   return taskStatuses;
 };
 
 export const getTasksByStatus = async (status: string) => {
+  const supabase = createClient();
+
   const { data } = await (await supabase)
     .from("tasks")
     .select("*, task_statuses(*), task_categories(*)")
@@ -39,6 +45,8 @@ export const getTasksByStatus = async (status: string) => {
 };
 
 export const addTask = async (formData: FormData) => {
+  const supabase = createClient();
+
   const category_id = formData.get("category")?.toString() as string;
   const name = formData.get("name")?.toString() as string;
   const description = formData.get("description")?.toString() as string;
@@ -54,6 +62,8 @@ export const addTask = async (formData: FormData) => {
 };
 
 export const updateTask = async (formData: FormData) => {
+  const supabase = createClient();
+
   const category_id = formData.get("category")?.toString() as string;
   const task_id = formData.get("task_id")?.toString() as string;
   const name = formData.get("name")?.toString() as string;
@@ -69,6 +79,8 @@ export const updateTask = async (formData: FormData) => {
 };
 
 export const deleteTask = async (formData: FormData) => {
+  const supabase = createClient();
+
   const task_id = formData.get("task_id")?.toString() as string;
 
   const { error } = await (await supabase).from("tasks").delete().eq("_id", task_id);

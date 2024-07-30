@@ -9,12 +9,9 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["@radix-ui/react-icons"],
   },
-  // to pass CI
+  // to fix eslint compat issue
   eslint: {
     ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
   },
 };
 
