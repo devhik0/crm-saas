@@ -44,7 +44,7 @@ jobs:
 
   test:
     name: Test
-    needs: format
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
