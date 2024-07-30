@@ -72,14 +72,6 @@ jobs:
       - name: Install Bun
         uses: oven-sh/setup-bun@v1
 
-      - name: Install Dependencies
-        run: bun install
-        working-directory: ./client-app
-
-      - name: Build App
-        run: bun run build
-        working-directory: ./client-app
-
       - name: Cache
         uses: actions/cache@v4
         with:
@@ -91,6 +83,14 @@ jobs:
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/bun.lockb') }}-
+
+      - name: Install Dependencies
+        run: bun install
+        working-directory: ./client-app
+
+      - name: Build App
+        run: bun run build
+        working-directory: ./client-app
 
   docker:
     name: Docker
