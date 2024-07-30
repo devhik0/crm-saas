@@ -18,13 +18,8 @@ export default function Charts() {
   const [tickets, setTickets] = useState<Ticket[]>([]);
 
   const getTickets = async () => {
-    const {
-      data: tickets1,
-      error,
-      status,
-    } = (await supabase.from("tickets").select("*").order("Month", { ascending: true })) || [];
+    const { data: tickets1 } = (await supabase.from("tickets").select("*").order("Month", { ascending: true })) || [];
     setTickets(tickets1 as Ticket[]);
-    console.log("tickets: ", { tickets1, status, error });
   };
 
   useEffect(() => {

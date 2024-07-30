@@ -39,8 +39,6 @@ export const getTasksByStatus = async (status: string) => {
     .eq("task_statuses.name", status)
     .order("time", { ascending: false });
 
-  // console.log("filtered tasks: ", data);
-
   return data;
 };
 

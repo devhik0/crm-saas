@@ -50,7 +50,7 @@ export default function UpdateTaskForm({
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
-                <SelectContent className="border-none bg-gray-100 dark:bg-gray-900">
+                <SelectContent className="border-none bg-gray-100 dark:bg-gray-900 dark:text-gray-300">
                   {taskCategories.map((cat, idx) => {
                     return (
                       <SelectItem className="dark:hover:bg-gray-800" key={idx} value={cat._id}>
@@ -64,7 +64,7 @@ export default function UpdateTaskForm({
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Status" />
                 </SelectTrigger>
-                <SelectContent className="border-none bg-gray-100 dark:bg-gray-900">
+                <SelectContent className="border-none bg-gray-100 dark:bg-gray-900 dark:text-gray-300">
                   {taskStatuses.map((stat, idx) => {
                     return (
                       <SelectItem className="dark:hover:bg-gray-800" key={idx} value={stat.id}>

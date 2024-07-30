@@ -35,30 +35,22 @@ export default function Calendar() {
       const response = await fetch(authUrl);
       router.push(response.url);
       return response;
-    } catch (error) {
-      console.log("Error auth: ", error);
-    }
+    } catch (error) {}
   }
 
   const getEvents = async () => {
     const calendarUrl = `${process.env.NEXT_PUBLIC_API_URL as string}/nylas/primary-calendar`;
     const eventUrl = `${process.env.NEXT_PUBLIC_API_URL as string}/nylas/list-events`;
 
-    const response2 = await fetch(calendarUrl);
-    const calendar = await response2.json();
-    console.log("calendar : ", calendar, response2);
+    await fetch(calendarUrl);
 
     const response3 = await fetch(eventUrl, { cache: "no-store" });
     const events = await response3.json();
-    console.log("events : ", events.data);
-
     const eventArr = events.data.map(({ title, when }: { title: string; when: { startTime: number } }) => ({
       title,
       date: new Date(when.startTime * 1000).toISOString(),
       color: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
     }));
-    console.log("eventarr : ", eventArr);
-
     setData(eventArr);
     return eventArr;
   };

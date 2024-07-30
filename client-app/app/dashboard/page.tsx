@@ -1,15 +1,10 @@
 import { createClient } from "@/utils/supabase/server";
 
-import { Card, Color, Tab, TabGroup, TabList, TabPanel, TabPanels, Tracker } from "@tremor/react";
+import { Card, Tab, TabGroup, TabList, TabPanel, TabPanels, Tracker } from "@tremor/react";
 import Categories from "./categories";
 import Revenue from "./revenue";
 import Transactions from "./transactions";
 import Visitors from "./visitors";
-
-interface Tracker {
-  color: Color;
-  tooltip: string;
-}
 
 export default async function Dashboard() {
   const supabase = createClient();

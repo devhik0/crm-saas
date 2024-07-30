@@ -1,17 +1,18 @@
 "use client";
 
-import { Visitor, numberFormatter, percentageFormatter, sumArray } from "@/lib/utils";
+import { numberFormatter, percentageFormatter, sumArray } from "@/lib/utils";
 import { createClient } from "@/utils/supabase/client";
+import { Tables } from "@/utils/supabase/types";
 import { AreaChart, Card, Metric, Tab, TabGroup, TabList, TabPanel, TabPanels } from "@tremor/react";
 import { useEffect, useState } from "react";
 
 export default function Visitors() {
   const supabase = createClient();
 
-  const [visitors, setVisitors] = useState<Visitor[]>([]);
+  const [visitors, setVisitors] = useState<Tables<"visitors">[]>([]);
   const getVisitors = async () => {
     const { data: visitors1 } = await supabase.from("visitors").select("*");
-    setVisitors(visitors1 as Visitor[]);
+    setVisitors(visitors1 as Tables<"visitors">[]);
   };
   useEffect(() => {
     getVisitors();

@@ -18,7 +18,7 @@ export default async function AddTaskForm() {
         <PlusIcon className="size-4" />
         <span className="text-sm">Add Task</span>
       </PopoverTrigger>
-      <PopoverContent className=" border-none bg-gray-100 dark:bg-gray-900">
+      <PopoverContent className=" border-none bg-gray-100 dark:bg-gray-900 dark:text-gray-300">
         <div className="grid gap-4">
           <div>
             <form action={addTask}>
@@ -28,7 +28,7 @@ export default async function AddTaskForm() {
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
-                <SelectContent className="border-none bg-gray-100 dark:bg-gray-900">
+                <SelectContent className="border-none bg-gray-100 dark:bg-gray-900 dark:text-gray-300">
                   {taskCategories.map((cat, idx) => {
                     return (
                       <SelectItem className="dark:hover:bg-gray-800" key={idx} value={cat._id}>

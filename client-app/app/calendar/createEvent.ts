@@ -3,18 +3,14 @@
 export async function createEvent(formData: FormData) {
   const authUrl = `${process.env.NEXT_PUBLIC_API_URL as string}/nylas/auth`;
   const calendarUrl = `${process.env.NEXT_PUBLIC_API_URL as string}/nylas/primary-calendar`;
-  const createEventUrl = `${process.env.NEXT_PUBLIC_API_URL as string}/nylas/create-event`;
 
   const name = formData.get("title")!;
   const startTime = formData.get("startTime")!;
   const endTime = formData.get("endTime")!;
 
-  console.log("evt: ", { name, startTime, endTime });
+  await fetch(authUrl);
 
-  const response = await fetch(authUrl);
-
-  const response2 = await fetch(calendarUrl);
-  const calendar = await response2.json();
+  await fetch(calendarUrl);
 
   // const response4 = await fetch(createEventUrl, {
   //   cache: "no-store",
@@ -27,9 +23,8 @@ export async function createEvent(formData: FormData) {
   //   },
   // });
   // const createdEvent = await response4.json();
-  // console.log("createdEvent : ", createdEvent.data);
 
-  const response5 = await fetch("https://api.magicbell.com/broadcasts", {
+  await fetch("https://api.magicbell.com/broadcasts", {
     method: "POST",
     headers: {
       "X-MAGICBELL-API-KEY": `${process.env.NEXT_PUBLIC_MAGICBELL_API_KEY as string}`,
@@ -47,8 +42,4 @@ export async function createEvent(formData: FormData) {
       },
     }),
   });
-
-  const notifications = await response5.json();
-
-  console.log("notifications: ", notifications);
 }

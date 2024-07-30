@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { ReactNode } from "react";
 import "./globals.css";
+import Notifications from "./notifications";
 import { Providers } from "./providers/providers";
 import { Search } from "./search";
 import Sidebar from "./side-bar";
@@ -31,7 +32,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                   </div>
                   <div className="flex items-center gap-6">
                     <Theme />
-                    {/* <Notifications /> */}
+                    <Notifications />
                     <div className="flex flex-row items-center gap-2 border-l-2 border-l-gray-800 px-4">
                       <SignedOut>
                         <SignInButton />

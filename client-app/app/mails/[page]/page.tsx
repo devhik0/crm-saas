@@ -13,7 +13,7 @@ export default function MailPage({ params }: { params: { page: string } }) {
           <Link key={key} href={`/mails/${params.page}/${item}`}>
             <Card className="my-2 rounded-none border-l-2 border-blue-600 p-2 transition duration-300 ease-in hover:bg-gray-200 dark:hover:bg-gray-800">
               <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarImage src="https://github.com/shadcn.png" alt="avatar" />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
 

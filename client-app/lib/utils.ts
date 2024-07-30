@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+import { Tables } from "@/utils/supabase/types";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -15,16 +16,10 @@ export const valueFormatter = (number: number | bigint) => Intl.NumberFormat("us
 export const percentageFormatter = (value: number) =>
   `${Intl.NumberFormat("us")
     .format(value * 100)
-    .toString().slice(0, 4)}%`;
+    .toString()
+    .slice(0, 4)}%`;
 
-export type Visitor = {
-  Month: string;
-  Visitors: number;
-  "Page Views": number;
-  "Bounce Rate": number;
-  _id: string;
-};
-export function sumArray(array: Visitor[], metric: string) {
+export function sumArray(array: Tables<"visitors">[], metric: string) {
   // @ts-expect-error
   return array.reduce((accumulator, currentValue) => accumulator + currentValue[metric], 0);
 }

@@ -7,13 +7,6 @@ import { isSupported, WebPushClient } from "@magicbell/webpush";
 import { useEffect } from "react";
 
 export default function Notifications() {
-  const { user } = useUser();
-
-  const client = new WebPushClient({
-    apiKey: process.env.NEXT_PUBLIC_MAGICBELL_API_KEY as string,
-    userEmail: user?.emailAddresses[0].emailAddress as string,
-  });
-
   useEffect(() => {
     if (isSupported()) {
       client.subscribe();
@@ -21,11 +14,20 @@ export default function Notifications() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const { user } = useUser();
+
+  if (!user?.primaryEmailAddress) return <>Please login first</>;
+
+  const client = new WebPushClient({
+    apiKey: process.env.NEXT_PUBLIC_MAGICBELL_API_KEY as string,
+    userEmail: user?.primaryEmailAddress?.emailAddress as string,
+  });
+
   return (
     <MagicBell
       BellIcon={<BellIcon />}
       apiKey={process.env.NEXT_PUBLIC_MAGICBELL_API_KEY as string}
-      userEmail={user?.emailAddresses[0].emailAddress as string}
+      userEmail={user?.primaryEmailAddress?.emailAddress as string}
       theme={{
         icon: { width: "1.2rem" },
       }}

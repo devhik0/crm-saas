@@ -1,9 +1,0 @@
-- optimize for performance and seo (run lighthouse) <--
-
-- organise pages, components and apis
-
-- remove all console logs
-
-- fix build errors
-
-- finish app and deploy
