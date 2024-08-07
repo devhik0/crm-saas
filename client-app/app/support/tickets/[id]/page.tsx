@@ -1,7 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
+import { Tables } from "@/utils/supabase/types";
 import { ExitIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
-import { Ticket } from "../ticket-table";
 
 export default async function TicketDetails({ params }: { params: { id: string } }) {
   const supabase = createClient();
@@ -9,7 +9,7 @@ export default async function TicketDetails({ params }: { params: { id: string }
 
   if (!helpTickets) return;
 
-  const data = helpTickets.find((ticket) => ticket.id!.toString() === params.id) as Ticket;
+  const data = helpTickets.find((ticket) => ticket.id!.toString() === params.id) as Tables<"helpTickets">;
 
   const ticketId = params.id;
   return (

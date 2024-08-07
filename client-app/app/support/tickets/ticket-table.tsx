@@ -1,18 +1,11 @@
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { createClient } from "@/utils/supabase/server";
+import { Tables } from "@/utils/supabase/types";
 import { DotFilledIcon, DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from "@tremor/react";
 import Link from "next/link";
 
-export type Ticket = {
-  requester: string;
-  subject: string;
-  assignee: string;
-  status: string;
-  lastEdited: string;
-  id: number;
-};
-export default async function TicketTable({ status }: { status?: "open" | "waiting" | "solved" }) {
+export default async function TicketTable({ status }: { status?: Tables<"helpTickets">["status"] }) {
   const supabase = createClient();
   const { data: helpTickets } = await (await supabase).from("helpTickets").select("*");
 

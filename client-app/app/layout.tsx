@@ -4,7 +4,7 @@ import { Poppins } from "next/font/google";
 import { ReactNode } from "react";
 import "./globals.css";
 import Notifications from "./notifications";
-import { Providers } from "./providers/providers";
+import { LightDarkTheme } from "./providers/light-dark-theme";
 import { Search } from "./search";
 import Sidebar from "./side-bar";
 import Theme from "./theme";
@@ -19,10 +19,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <ClerkProvider>
-      <html lang="en" suppressHydrationWarning>
-        <body className={`${poppins.className} dark:bg-gray-900`}>
-          <Providers>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${poppins.className} dark:bg-gray-900`}>
+        <ClerkProvider>
+          <LightDarkTheme>
             <div className="flex flex-row bg-gray-100 dark:bg-gray-900 dark:text-gray-100">
               <Sidebar />
               <div className="w-full">
@@ -46,9 +46,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 {children}
               </div>
             </div>
-          </Providers>
-        </body>
-      </html>
-    </ClerkProvider>
+          </LightDarkTheme>
+        </ClerkProvider>
+      </body>
+    </html>
   );
 }

@@ -15,20 +15,20 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
-const routes = [
-  { page: "Dashboard", link: "/dashboard", icon: <DashboardIcon className="size-5" /> },
-  { page: "Calendar", link: "/calendar", icon: <CalendarIcon className="size-5" /> },
-  { page: "Reports", link: "/reports", icon: <TableIcon className="size-5" /> },
-  { page: "Charts", link: "/charts", icon: <PieChartIcon className="size-5" /> },
-  { page: "Tasks", link: "/tasks", icon: <ListBulletIcon className="size-5" /> },
-  { page: "Mails", link: "/mails", icon: <EnvelopeClosedIcon className="size-5" /> },
-  { page: "Chat", link: "/chat", icon: <ChatBubbleIcon className="size-5" /> },
-  { page: "Contacts", link: "/contacts", icon: <PersonIcon className="size-5" /> },
-  { page: "Storage", link: "/storage", icon: <ArchiveIcon className="size-5" /> },
-  { page: "Support", link: "/support", icon: <QuestionMarkIcon className="size-5" /> },
-];
-
 export default function Sidebar() {
+  const routes = [
+    { page: "Dashboard", link: "/dashboard", icon: <DashboardIcon className="size-5" /> },
+    { page: "Calendar", link: "/calendar", icon: <CalendarIcon className="size-5" /> },
+    { page: "Reports", link: "/reports", icon: <TableIcon className="size-5" /> },
+    { page: "Charts", link: "/charts", icon: <PieChartIcon className="size-5" /> },
+    { page: "Tasks", link: "/tasks", icon: <ListBulletIcon className="size-5" /> },
+    { page: "Mails", link: "/mails", icon: <EnvelopeClosedIcon className="size-5" /> },
+    { page: "Chat", link: "/chat", icon: <ChatBubbleIcon className="size-5" /> },
+    { page: "Contacts", link: "/contacts", icon: <PersonIcon className="size-5" /> },
+    { page: "Storage", link: "/storage", icon: <ArchiveIcon className="size-5" /> },
+    { page: "Support", link: "/support", icon: <QuestionMarkIcon className="size-5" /> },
+  ];
+
   return (
     <div className="h-full dark:bg-gray-900 dark:text-gray-100">
       <Link href={`/`}>

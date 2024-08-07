@@ -1,7 +1,12 @@
 import { createClient } from "@/utils/supabase/server";
+import { Tables } from "@/utils/supabase/types";
 import TicketTable from "./ticket-table";
 
-export default async function Tickets({ searchParams }: { searchParams: { state?: "open" | "waiting" | "solved" } }) {
+export default async function Tickets({
+  searchParams,
+}: {
+  searchParams: { status?: Tables<"helpTickets">["status"] };
+}) {
   const supabase = createClient();
   const { data: helpTickets } = await (await supabase).from("helpTickets").select("*");
 
@@ -9,12 +14,12 @@ export default async function Tickets({ searchParams }: { searchParams: { state?
 
   return (
     <div>
-      {searchParams.state ? (
-        searchParams.state[0].toUpperCase() + searchParams.state.slice(1)
+      {searchParams.status ? (
+        searchParams.status[0].toUpperCase() + searchParams.status.slice(1)
       ) : (
         <p className="ml-2">All ({helpTickets.length})</p>
       )}
-      <TicketTable status={searchParams.state} />
+      <TicketTable status={searchParams.status} />
     </div>
   );
 }
